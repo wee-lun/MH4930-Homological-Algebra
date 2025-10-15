@@ -1,0 +1,254 @@
+\begin{ex}
+    \hfill
+
+    \begin{enumerate}
+        \item Let $F$ be a field, an $F$-module $V$ is a vector space over $F$ and hence $V$ has a basis, i.e. $B\subseteq V$ such that $V$ is free on $B$. So $V$ is then projective, since free implies projective. In particular, all $F$-module are free and projective.
+        \item Let $V$ be a $\Z$-module. Suppose that $V$ consists an non-zero element $x$ of finite order $n$. We claim that $V$ is not free. Suppose not, then $V$ is free on a set $B\subseteq V$, then 
+        \[x = r_1 b_1 + \dots, + r_mb_m\]
+        where $r_i\in \Z$ and $b_i\in B$. But since order of $x$ is $n$, so we have
+        \[x = (n+1)x = x = r_1(n+1)b_1 + \dots + r_m(n+1)b_m\]
+        Note $(n+1)r_i \neq r_i$ in $\Z$, so this gives non-unique representation of $x$. Since projective $\Z$-module are direct summand of free $\Z$-modules, any projective $\Z$-module does not contain non-zero element of finite order.
+        \item The previous example shows that, in general, finite abelian groups are not projective.
+        \item The $\Z$-module $\Q/\Z$ is torsion. I.e for any $x\in \Q/\Z$, there exists $n\in \Z$ such that $nx=0$. In particular, if $x = r/s + \Z$, take $n=s$ and we have
+        \[s\br{\frac{r}{s} + \Z} = r + \Z = \Z\]
+        So $\Q/\Z$ is not projective. The SES
+        \[0 \to \Z\to \Q \to \Q/\Z \to 0\]
+        does not split. If not, then $\Q/\Z$ is a direct summand of $\Q$. Since $\Q/\Z$ contains non-zero element of finite order, it implies that so is $\Q$, which is clearly contradiction.
+        \item $\Q$ is not a projective $\Z$-module.
+        \item A finitely generated module over a $\Z$ is projective if and only if it is free. Free implies projective is clear. Assuming that it is projective. By the Classification of Finitely Generated Module over PID, an finitely generated $\Z$-module $M$ is isomorphic with 
+        \[\Z^n \bigoplus \text{ direct sum of finite copies of finite cyclic groups}\]
+        The direct sum of finite cyclic groups part contains elements of finite order. By assumption $M$ is projective, so there must be no non-zero elements of finite order in $M$, implying that the direct sum of finite cyclic groups must be $0$. This shows that 
+        \[M \cong \Z^n\]
+        So $M$ is free.
+    \end{enumerate}
+\end{ex}
+
+\subsection{Injective Modules}
+
+\begin{thm}
+    Let $V$ be an $R$-module and consider the sequence
+    \[X \xto{\alpha} Y\xto{\beta} Z \to 0\]
+    If the above sequence is exact, then the following sequence is also exact:
+    \[0 \to \h_R(Z,V) \xto{\beta^*} \h_R(Y,V) \xto{\alpha^*} \h_R(X,V)\]
+    where $\beta^*: f\mapsto f\circ \beta$ and $\alpha^*: f\mapsto f\circ \alpha$. Furthermore, the sequance $0 \to X \xto{\alpha} Y\xto{\beta} Z \to 0$ is exact if and only if the following
+    \[0 \to \h_R(Z,V) \xto{\beta^*} \h_R(Y,V) \xto{\alpha^*} \h_R(X,V)\]
+    is exact for every $V$.
+\end{thm}
+\begin{proof}
+    Suppose that $X\xto{\alpha} Y \xto{\beta} Z\to 0$ is exact. We first show that $\beta^*$ is injective. Let $f\in \ker \beta^*$, so $\beta^*(f) = f\circ \beta = 0$ is the zero map. In other words, for all $y\in Y$ we have $f(\beta(y))=0$. By assumption $\beta$ is surjective, thus let for all $z\in Z$, let $y_z\in Y$ be such that $\beta(y_z) = z$, and so $f(z) = f(\beta(y)) = 0$. This shows that $f$ must be a zero map.
+
+    Next, we show that $\im \beta^* \subseteq \ker \alpha^*$. This is simple, simply follow:
+    \[\alpha^*(\beta^*(f)) = \alpha^* (f\circ \beta) = f\circ \beta \circ \alpha = f\circ (\beta \circ \alpha) \overset{(*)}{=} f\circ (0) = 0\]
+    where at $(*)$ we apply the assumption that $\beta\circ \alpha=0$ given by exactness.
+
+    Then, we show that $\ker \alpha^* \subseteq \im \beta^*$. Let $g\in \ker \alpha^*$, i.e. $\alpha^* (g) = g \circ \alpha = 0$ is the zero map. Note that $\beta$ is surjective, so for every $z\in Z$ we let $y_z\in Y$ be such that $\beta(y_z)=z$. Then, we define $f:Z\to V$ such that $z\mapsto g(y_z)$. We claim that $\beta^*(f) = g$. 
+    \begin{itemize}
+        \item First we show $f$ is well-defined. Suppose given $z$, let $y_z, y_z'\in Y$ be such that $\beta(y_z')=z = \beta(y_z)$. This implies $\beta(y_z-y_z')=0$ and so $y_z - y_z'\in \ker \beta = \im \alpha$. So let $x\in X$ such that $\alpha(x) = y_z - y_z'$. Recall that $g\circ \alpha$ is the zero map by assumption, thus $g(y_z-y_z') = g(\alpha(x)) = 0$. This shows that $g(y_z) = g(y_z')$, showing that $f$ is indeed well-defined.
+        \item Next we show that $f$ is an $R$-module homomorphism. Let $z, z'\in Z$ and let $y_z, y_{z'}\in Z$ such that $\beta(y_z) = z$ and $\beta(y_{z'}) = z'$, implying that $\beta(y_z+y_{z'}) = z+z'$. Therefore, by definition of the map $f$, we have $f(z) = g(y)$ and $f(z') = g(y_{z'})$. To show additivity:
+        \[f(z+z') = g(y_z+y_{z'}) \overset{(**)}{=} g(y_z) + g(y_{z'}) = f(z) + f(z')\]
+        where at $(**)$ it is valid to split since by assumption $g$ is $R$-modole homomorphism by assumption. Next, for the action, let $r\in R$. Note $\beta(ry_z) = r\beta(y_z) = rz$, so
+        \[ f(rz) = g(ry_z) = rg(y_z) = f(z)\]
+        This shows that $f$ is a $R$-module homomorphism.
+        \item Lastly, suppose again given $z$, let $y_z\in Y$ be such that $\beta(y_z) = z$. So $(\beta^*(f))(y_z) = f(\beta(y_z)) = f(z) = g(y)$. This shows that $\beta^*(f) = g$.
+    \end{itemize}
+    This proves the first part of the statement.
+
+    For the second statement, the forward direction is a immediate result of the first statement, so it suffices to show the backward direction is true. Suppose as assumed in the statement. First we show that $\beta$ is surjective. Consider 
+    \[V := Z/\im \beta\]
+    In other words, take $V= \text{coker}\ \beta$. Let $\pi:Z\to V$ be the canonical surjection. Then $\beta^*(\pi) = \pi\circ \beta$, so $(\beta^*(\pi))(y) = (\pi\circ \beta)(y) = \pi(\beta(y))$. Since $\beta(y)\in \im \beta$. so $(\beta^*(\pi))(y) = \overline{0}$. This means that $\beta^*(\pi)=0$. Since $\beta^*$ is injective, so $\pi=0$ which means that $V=0$, and so $Z = \im \beta$. This shows that $\beta$ is surjective.
+    
+    Next, we show that $\im\alpha \subseteq \ker \beta$. Take $V=Z$, and let $\id_Z$ be the identical map of $Z$. By the assumption of exactness we have $\alpha^*\circ \beta^*$ is zero map. So
+    \[(\alpha^* \circ \beta^*)(\id_Z) = 0 \implies \beta\circ \alpha \circ \id_Z = 0\implies \beta\circ \alpha = 0\]
+    This shows that $\im \alpha\subseteq \ker \beta$.
+
+    Lastly, we show that $\ker\beta\subseteq \im \alpha$. Let $V=\text{coker}\ \alpha = Y/\im\alpha$. Let $\pi:Y\to V$ be the canonical surjection. Similar to previous argument, we see that $\alpha^*(\pi) = \pi \circ \alpha = 0$ is the zero map, so $\pi \in \ker \alpha^* = \im \beta^*$ due to exactness. Let $g\in Z\to V$ such that $\beta^*(g) = g\circ \beta=\pi$. Then for every $y\in \ker \beta$, we see that
+    \[(g\circ \beta)(y) = \pi(y) \implies g(\beta(y)) = \pi(y) \implies g(0) = \pi(y) \implies \pi(y) = 0\]
+    By definition of canonical surjection $\pi$, we have that $y\in \im \alpha$. So $\ker \beta \subseteq \im \alpha$. The proof is completed.
+\end{proof}
+
+\begin{defn} [Injective modules]
+    Let $Q$ be an $R$-module. We say that $Q$ is injective if for any injective $R$-homomorphism $\varphi:Z\to Y$ and $R$-homomorphism $g:Z\to Q$, there exists $f:Y\to Q$ such that $f\circ \varphi = g$, i.e. we have the following commutative diagram
+    \[\begin{tikzcd} [sep = small]
+	&& Q \\
+	\\
+	Y && Z
+	\arrow["{\exists f}", dashed, from=3-1, to=1-3]
+	\arrow["g"', from=3-3, to=1-3]
+	\arrow["\varphi", hook', from=3-3, to=3-1]
+    \end{tikzcd}\]
+\end{defn}
+
+\begin{pro} \label{pro: Baer}
+    Let $Q$ be an $R$-module.
+    \begin{enumerate}
+        \item (Baer's Criterion) The module $Q$ is injective if and only if for every left ideal $I$ of $R$ and any $R$-module homomorphism $g:I\to Q$, there exists $R$-module homomorphism $f:R\to Q$ such that $g = f\circ \iota$, where $\iota:I\hookrightarrow R$ is the inclusion map.
+        \item If $R$ is a PID, then $Q$ is injective if and only if $Q$ is divisible (i.e. for every $r\in R$ is non-zero, we have $rQ=Q$). When $R$ is a PID, quotients of injective $R$-modules are injective.
+    \end{enumerate}
+\end{pro}
+\begin{proof}
+    The forward direction simply follows from the definition of injective module, thus we are done. To prove the backward statement, suppose as stated in the condition, and we want to show that module $Q$ is injective.
+
+    First, let $\alpha:Z\hookrightarrow Y$ be the inclusion map, and let $\beta:Z\to Q$ be a $R$-module homomorphism. Define 
+    \[\Omega = \sbr{(f',Y'):\im \alpha \subseteq Y' \subseteq Y \text{ and } f':Y'\to Q \text{ s.t. } f'\circ \alpha = \beta, f' \text{ is $R$-module homomorphism}}\]
+    Note that $\Omega$ is non-empty since we can check that $(\beta\circ \alpha^{-1}, \im \alpha)\in \Omega$. We now impose a partial order to $\Omega$, where we define the partial order
+    \[(f',Y')\leq (f'',Y'') \iff Y'\subseteq Y'' \text{ and }f''\mid_{Y'} = f'\]
+    We show that it is indeed a partial order:
+    \begin{itemize}
+        \item Firstly, it is clear that $(f',Y') = (f',Y')$.
+        \item Next, suppose that $(f',Y')\leq (f'',Y'')$ and $(f'',Y'')\leq (f',Y')$. This says that $Y'\subseteq Y''\subseteq Y'$, so $Y' = Y''$. Also, we see that $f' = f''\mid _{Y'} = f''\mid _{Y''} = f''$. This concludes that $(f',Y') = (f'',Y'')$.
+        \item Lastly, suppose that $(f',Y')\leq (f'',Y'') \leq (f''',Y''')$. Then we have $Y'\subseteq Y''\subseteq Y'''$, implying that $Y'\subseteq Y'''$. Also, note that $f' = f''\mid _{Y'} = \br{f'''\mid _{Y''}} \mid_{Y'} = f'''\mid_{Y'}$. This shows that $(f',Y')\le (f''', Y''')$.
+    \end{itemize}
+    Therefore the relation $\le$ is indeed a partial order. (As part of a tutorial question) we see $\Omega$ satisfies the hypothesis for applying Zorn's Lemma, and thus $\Omega$ has a maximum element, say $(f,Y')$. 
+    
+    We claim that $Y' = Y$. Suppose not, then $Y'\subsetneq Y$, and let $m\in Y\setminus Y'$. Define $I = \sbr{r\in R:rm\in Y'}$. This is clearly an ideal of $R$. Let $g:I\to Q$ such that $g(r) = f(rm)$. We show that it is an $R$-module homomorphism:
+    \begin{itemize}
+        \item First, note $g(r+ r') = f((r+r')m) = f(rm + r'm) = f(rm) + f(r'm) = g(r) + g(r')$.
+        \item Next, let $s\in R$, we have $g(sr) = f((sr)m) = f(s(rm)) = sf(rm) = sg(r)$.
+    \end{itemize}
+    So $g$ is an $R$-module homomorphism. By assumption, the exists an $R$-module homomorphism $h:R\to Q$ such that $h\circ \iota = g$, where $\iota:I\to R$ is the inclusion map.
+
+    Define the map $\gamma:Y' + Rm \to Q$ by $\gamma(m'+rm) = f(m') + h(r)$ where $m'\in Y'$ and $r\in R$. We show that $(\gamma, Y' + Rm)\in \Omega$
+    \begin{itemize}
+        \item We first show that $\gamma$ is well-defined. Let $m_1' + r_1 m = m_2' + r_2 m$. Then $(r_2-r_1) m = m_1' - m_2' \in Y'$, implying that $(r_2-r_1)\in I$. Recall that $h\circ \iota = g$, so we have
+        \[h(r_2-r_1) = (h\circ \iota) (r_2 - r_1) = g(r_2-r_1) = f((r_2-r_1)m) = f(m_1'-m_2')\]
+        and thus $h(r_2)-h(r_1) = h(r_2-r_1) = f(m_1'-m_2') = f(m_1')-f(m_2')$. By rearranging we see that $\gamma$ is well-defined.
+        \item We show that $\gamma$ is $R$-module homomorphism. Note
+        \begin{align*}
+            \gamma((m_1' + r_1 m) + (m_2' + r_2m))
+            &= \gamma((m_1' + m_2') + (r_1 + r_2)m)\\
+            &= f(m_1' + m_2') + h(r_1 + r_2)\\
+            &= f(m_1') + f(m_2') + h(r_1) + h(r_2)\\
+            &= \gamma(m_1' + r_1 m) + \gamma(m_2' + r_2m)
+        \end{align*}
+        and also 
+        \begin{align*}
+            \gamma(s(m' + rm))
+            &= \gamma(sm' + (sr)m)\\
+            &= f(sm') + h(sr)\\
+            &= s f(m') + s h(r) \\
+            &= s(f(m') + h(r))\\
+            &= s \gamma(m' + rm)
+        \end{align*}
+        This shows that $\gamma$ is an $R$-module homomorphism.
+        \item Lastly, we show that $\gamma \circ \alpha = \beta$. Since $(f,Y')\in\Omega$, by definition it satisfies $\im\alpha\subseteq Y'\subseteq Y$ and $f\circ \alpha=\beta$. Note $\alpha:Z\to Y$, so for all $z\in Z$ we have $\alpha(z)\in \im \alpha \subseteq Y'$, thus we can express $\alpha(z)=m' + 0m$ for $m'\in Y'$ and $0\in R$. Therefore
+        \[\gamma(\alpha(z)) = \gamma(m'+0m) = f(m')+h(0) = f(m') = f(\alpha(z)) = (f\circ\alpha)(z) = \beta(z)\]
+    \end{itemize} 
+    We claim that $(\gamma, Y' + Rm)$ is strictly larger than the maximal element $(f,Y')$ obtained from the Zorn's Lemma. Clearly $Y'\subsetneq Y'+Rm$. Also, note $\gamma \mid_{Y'} = f$. This contradicts to the maximality of $(f,Y')$, thus $Y' = Y$, and we have obtained an extended map $f:Y\to Q$. This completes the proof for the first statement.
+
+    For the second statement, we first show the forward direction: let $Q$ be injective. Let $r\in R$ be non-zero. It is clear that $rQ\subseteq Q$, so we want to show that $rQ\subseteq Q$. For any $m\in Q$, define $g:(r)\to Q$ where $r\mapsto m$ and so $sr\mapsto sm$. By Baer's criterion, since $Q$ is injective, there exists $f:R\to Q$ such that $f\circ \iota = g$ where $\iota: (r) \hookrightarrow R$ is the inclusion map. In particular $f(r) = (f\circ \iota)(r) = g(r) = m$. Note $f$ is an $R$-module homomorphism, so $m = f(r) = rf(1)\in rQ$, implying that $m\in rQ$. This shows that $Q$ is divisible.
+
+    For the backward direction, suppose that $Q$ is divisible, and we want to show that $Q$ is injective. Let $I\triangleleft R$ and $g:I\to Q$ be an $R$-module homomorphism. Since $R$ is PID, so $I = (r)$ for some $r\in I$. If $r=0$, then take $f:R\to Q$ is the zero map, and we have $f\circ \iota = 0 = g$. So the statement holds for when $r=0$. Next, assume $r\neq 0$, since $Q$ is divisible we have $rQ = Q$. We want to construct $f:R \to Q = rQ$ such that $f\circ \iota = g$. Note $g(r) \in Q = rQ$, so let $g(r) = rm$ for some $m\in Q$, and we define $f:R\to Q$ where $1\mapsto m$. This implicitly defines for other $s\in R$ where $s \mapsto sm$. Note $f$ is certainly well-defined, and we now show that $f$ is a $R$-module homomorphism:
+    \begin{itemize}
+        \item $f(s+s') = (s+s')m = sm + s'm = f(s) + f(s')$. 
+        \item $f(s\cdot s') = f(ss') = (ss')m = s(s'm) = sf'(s)$. 
+    \end{itemize}
+    So $f$ is a $R$-module homomorphism. Lastly, see that $(f\circ \iota)(r) = f(r) = rm = g(r)$. Since $I= (r)$, so it implies $f\circ \iota = g$. By definition of injective modules, we have shown that $Q$ is injective.
+    
+    Finally, let $Q$ be an injective $R$-module, and $Q'\subseteq Q$. Let $r\in R$ is non-zero element, observe that 
+    \[r\br{Q/Q'} = rQ/Q' = Q/Q'\]
+    Since $R$ is PID and $Q/Q'$ is divisible, we have that $Q/Q'$ is injective. This completes the whole proof.
+\end{proof}
+
+%  Baer's criterion for projective module? Reversing all the arrows?
+
+\begin{ex}
+    \hfill
+
+    \begin{enumerate}
+        \item $Q$ is injective $\Z$-module because $\Q$ is divisible. However $\Z$ is not injective $\Z$-module because $2\Z \neq \Z$. But $\Z$ is a free module, so $\Q/\Z$ is injective module. Recall we have seen that $\Q/\Z$ is not projective.
+        \item Let $F$ be a field. Then any $F$-module is injective.
+        \item Over any ring $R$, any injective $R$-module is divisible. 
+    \end{enumerate}
+\end{ex}
+
+\medskip
+
+\begin{cor} \label{cor: Z-mod sub inj}
+    Any $\Z$-module is a sub-module of an injective $\Z$-module.
+\end{cor}
+\begin{proof}
+    Let $M$ be a $\Z$-module and let $F(A)$ surjects onto $M$ via $\pi$. This induces an isomorphism $\varphi$ such that
+    \[F(A)/\ker \pi \overset{\varphi}{\cong} M\]
+    Let $Q = \bigoplus_{a\in A} \Q$ be a free $Q$-module. Consider $\Q$ as a $\Z$-module. For any $n\in \Z$ is non-zero, and $\br{\frac{r_a}{s_a}}_{a\in A} \in Q$, we have
+    \[\br{\frac{r_a}{s_a}}_{a\in A} = n\br{\frac{r_a}{ns_a}}_{a\in A}\]
+    So $Q$ is injective $\Z$-module. 
+
+    Next, observe that $\ker\pi \subseteq F(A) \cong \bigoplus_{a\in A} \Z$ and we can embeed $\bigoplus_{a\in A} \Z$ into $Q$ via the following inclusion map
+    \[\iota:(n_a)_{a\in A} \mapsto \br{\frac{n_a}{1}}_{a\in A}\]
+    Since $Q$ is injective, so $Q/\ker \pi$ is injective by the second statement of Proposition \ref{pro: Baer} (note $\Z$ is PID). Together, we see that 
+    \[M\cong \frac{F(A)}{\ker\pi} \overset{\iota'}{\hookrightarrow} \frac{Q}{\ker\pi}\]
+    where the inclusion $\iota'$ is induced by $\iota$. This proves that $M$, as a $\Z$-module, is a submodule of $Q/\ker \pi$, an injective $\Z$-module.
+\end{proof}
+
+\begin{thm}
+    Any $R$-module is a sub-module of an injective $R$-module.
+\end{thm}
+\begin{proof}
+    Let $M$ be an $R$-module. By treating $M$ as a $Z$-module, by Corollary \ref{cor: Z-mod sub inj}, it is a sub-module of an injective $\Z$-module, say $Q$. Note that $\h_Z(R,M) \subseteq \h_Z(R,Q)$ due to the following arguments:
+    \begin{itemize}
+        \item Since $M\subseteq Q$, we have the exact sequence $0\to M \xto{\iota} Q/M$.
+        \item This gives rise to the exact sequence $0 \to \h_\Z(R,M) \xto{\iota_*} \h_\Z(R,Q) \to \h_\Z(R,Q/M)$. 
+        \item This shows that $\h_\Z(R,M) \subseteq \h_\Z(R,Q)$.
+    \end{itemize}
+    On the other hand, recall that $\h_R(R,M) \cong M$, and since it is clear that $\h_R(R,M) \subseteq \h_\Z(R,M)$, we have the following:
+    \[M\cong \h_R(R,M)\subseteq \h_\Z(R,M) \subseteq \h_\Z(R,Q) \implies M\subseteq \h_\Z(R,Q)\]
+    And we will show that $\h_\Z(R,Q)$ is an injective $R$-module.
+    
+    Firstly , note we can view $\h_\Z(R,Q)$ as an $R$-module via the $R$-action $(r\cdot \varphi)(x) = \varphi(xr)$, which is valid since we can impose the $(\Z,R)$-bimodule struction to $R$. 
+    
+    Next, to show that $\h_\Z(R,Q)$ is an injective $R$-module, let $X$ and $Y$ be any $R$-modules, and let $\alpha:X\hookrightarrow Y$ be an injective $R$-module homomorphism, and let $g:X \to \h_\Z(R,Q)$ be an $R$-module homomorphism. We want to show that there exists a $R$-module homomorphism that commutes the following diagram:
+    \[\begin{tikzcd} [sep = small]
+	X && Y \\
+	\\
+	{\h_\Z(R,Q)}
+	\arrow["\alpha", hook, from=1-1, to=1-3]
+	\arrow["g"', from=1-1, to=3-1]
+	\arrow[dashed, from=1-3, to=3-1]
+    \end{tikzcd}\]
+    Define $g':X\to Q$ where $x\mapsto (g(x))(1)$. We claim that $g'$ is a $\Z$-module homomorphism:
+    \begin{itemize}
+        \item It suffices to show that it is an abelian group homomorphism. By definition $X$ and $Q$ are abelian groups. Note then $g'(x+x') = (g(x+x'))(1) = (g(x) + g(x'))(1) = (g(x))(1) + (g(x'))(1) = g'(x) + g'(x')$. Thus $g'$ is a $\Z$-module homomorphism.
+    \end{itemize}
+    By assumption $Q$ is an injective $\Z$-homomorphism, so there exists $f'$ is a $\Z$-module homomorphism such that the following diagram commutes:
+    \[\begin{tikzcd} [sep = small]
+	X && Y \\
+	\\
+	{Q}
+	\arrow["\alpha", hook, from=1-1, to=1-3]
+	\arrow["g'"', from=1-1, to=3-1]
+	\arrow["\exists f'",dashed, from=1-3, to=3-1]
+    \end{tikzcd}\]
+    In particular $f'\circ \alpha = g'$. Define $f:Y\to \h_Z(R,Q)$ by $y \mapsto f_y$ such that $f_y$ is defined by $f_y:r\mapsto f'(ry)$. We show that $f$ is an $R$-module homomorphism:
+    \begin{itemize}
+        \item We claim $f$ is well-defined, i.e. $f_y \in \h_\Z(R,Q)$. It suffices to show that $f_y$ is an abelian group homomorphism. Note $f_y(r+r') = f'((r+r')y) = f'(ry + r'y) = f'(ry) + f(r'y) = f_y(r) + f_y(r')$. Thus $f(y) = f_y$ is indeed a $\Z$-module homomorphism.
+        \item To show additivity: $(f(y+y'))(r) = f_{y+y'}(r) = f'(r(y+y')) = f'(ry + ry') = f'(ry) + f'(ry') = f_y(r) + f_{y'}(r) = (f_y + f_{y'})(r) = (f(y) + f(y'))(r)$.
+        \item To show it respect $R$-action: $(s\cdot f(y))(r) = (s\cdot f_y)(r) = f_y(rs) = f'(rsy) = f'(r(sy)) = f_{sy}(r)=(f(sy))(r)$.
+    \end{itemize}
+    Lastly, we show that $f\circ \alpha= g$, i.e. we want to show that $((f\circ \alpha)(x))(r) = (g(x))(r)$ where $x\in X$ and $r\in R$. Note 
+    \begin{align*}
+        ((f\circ \alpha)(x))(r) 
+        &= (f(\alpha(x)))(r) \\
+        &= f_{\alpha(x)}(r) \\
+        &= f'(r\alpha(x))\\
+        &= f'(\alpha(rx)) \\
+        &=(f'\circ \alpha)(rx) \\
+        &= g'(rx)\\
+        &= (g(rx))(1)\\
+        &= (r\cdot g(x))(1) \\
+        &= (g(x))(1\cdot r)\\
+        &= (g(x)) (r)
+    \end{align*}
+    In other words, we have establish the following commutative diagram:
+    \[\begin{tikzcd} [sep = small]
+	X && Y \\
+	\\
+	{\h_\Z(R,Q)}
+	\arrow["\alpha", hook, from=1-1, to=1-3]
+	\arrow["g"', from=1-1, to=3-1]
+	\arrow["\exists f", dashed, from=1-3, to=3-1]
+    \end{tikzcd}\]
+    Therefore $\h_Z(R,Q)$ is an injective $R$-module. This completes the proof.
+\end{proof}
+
+
+

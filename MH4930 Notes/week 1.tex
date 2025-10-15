@@ -1,0 +1,332 @@
+\subsection{Definition and Basic Theory of Modules}
+\begin{defn} [Module]
+    Let $R$ be a ring (might be unital or not). A left $R$-module $M$ is an abelian group $\br{M,+}$ with binary operation $\cdot:R\times M\to M, \br{r,m}\mapsto r\cdot m$ such that for every $r,s\in R$ and $m,n\in M$ we have
+    \begin{enumerate}
+        \item $\br{r+s}\cdot m = r\cdot m + s\cdot m$
+        \item $r\cdot \br{s\cdot m} = \br{rs}\cdot m$
+        \item $r\cdot \br{m+n} = r\cdot m + r\cdot n$
+    \end{enumerate}
+    Additionally, if $R$ is unital, then we want $1\cdot m = m$.
+\end{defn}
+One can think of module analogous to "ring action". 
+
+\medskip
+
+\begin{re}
+    One can define a right $R$-module in a similar manner. However, the existence of a left module does not necessarily imply the existence of a corresponding right module, where the usual obstruction is the second criteria. Despite that, we describe a general procedure in constructing a right module from a left module. 
+
+    Suppose $\br{R,+,\star}$ is a ring. Let $(R^{\op},+,*)$ be a ring where $R^{\op}$ is the same set as $R$ but the operation $*$ is defined as $a*b := b\star a$. Then any left $R$-module $(M,\cdot)$ is a right $R^{\op}$ module with operation $\cdot_{\op}$ defined as $m\cdot_{\op} r:= r\cdot m$ and vice versa.
+\end{re}
+
+\medskip
+
+\begin{re}
+    If $R$ is a commutative ring, then any left $R$-module is a right $R$-module via the the binary operation $m*r := r\cdot m$.
+\end{re}
+
+\medskip
+
+\textbf{From now onward, all mentioned module is a left module unless otherwise specified.}
+
+\medskip
+
+\begin{defn} [Sub-module]
+    Let $M$ be an $R$-module and $N\subseteq M$. We say that $N$ is a sub-module of $M$ if $N$ is also an $R$-module under the same action.
+\end{defn}
+
+\medskip
+
+\begin{re}
+    If $R$ is a field, then an $R$-module is a vector space over $F$. Naturally, a sub-module over a field is a subspace. Thus, the idea of module can be interpreted as a generalization of the theory of vector spaces.
+\end{re}
+
+\medskip
+
+\begin{pro}
+    Let $M$ be a group. We have $M$ is abelian if and only if $M$ is a $\Z$-module.
+\end{pro}
+\begin{proof}
+    $\br{\impliedby}$. This is trivial, since by definition a module must be abelian.
+
+    $\br{\implies}$. For any $n\in \Z$ and $m\in M$, define the operation where
+    \[n\cdot m 
+    \begin{cases}
+        \underbrace{m+\dots +m}_{n \text{ times}} &, n\geq 0\\
+        \underbrace{(-m)+\dots +(-m)}_{-n \text{ times}} &, n< 0
+    \end{cases}\]
+    Then by verifying the axioms (which are omitted here), one can show that $M$ is indeed a $\Z$-module.
+\end{proof}
+
+\medskip
+
+\begin{ex}
+    Here, we provide some examples of modules.
+    \begin{enumerate}
+        \item For any ring $R$, the trivial module is defined to be $M:=\sbr{0}$ where $r\cdot 0:= 0$ for any $r\in R$
+        \item For any ring $R$, the regular module is defined to be $M=R$ where $r\cdot m:= rm$. To distinguish $R$ as a ring and as a module, we use $_RR$ to denote the ring $R$ being a regular module.
+        \item For any unital ring $R$, the free $R$-module is defined to be $M:= R^n$ where $r\cdot \br{v_1, \dots, v_n} := \br{rv_1, \dots, rv_n}$
+        \item Let $M:= \R$, then
+        \begin{enumerate}
+            \item if $R=\R$, then it is a regular module.
+            \item if $R=\Q$, then it is a infinite dimensional vector space.
+            \item if $R=\Z$, then it is viewed as an abelian group.
+        \end{enumerate}
+        \item (Restriction of scalars). Let $\varphi:R\to S$ be a ring homomorphism and $\br{M,\cdot}$ be an $S$-module. Then $M$ is an $R$-module via $r\star m := \varphi\br{r}\cdot m$.
+        \item Let $\br{N, \cdot}$ be an $R$-module. The annihilator of $N$ is defined to be
+        \[\ann_R\br{N}=\sbr{r\in R:r\cdot n =0\  \forall n\in N }\]
+        Suppose that $\pi:R\to S$ is a ring epimorphism such that $\ker \pi\subseteq \ann_R\br{N}$. Then $N$ is an $S$-module via $s\star n= r\cdot n$ where $\pi\br{r}=s$.
+        \item Let $R= \mathbb M_{n\times n}\br{F}$ where $F$ is some field and $V = \mathbb M_{n\times 1}\br{F}$. Then $V$ is a $R$-module via left multiplication as the binary operation. We say $V$ is the natural module over the matrix ring $R$.
+    \end{enumerate}
+\end{ex}
+
+\medskip
+
+\begin{re}
+    The sub-module of a regular module corresponds to left ideal.
+\end{re}
+
+\medskip
+
+\textbf{From now onward, all rings are unital unless otherwise specified.}
+
+\begin{pro} \label{pro: 0 and -1 act}
+    Let $M$ be an $R$-module, and $x\in N$, $r\in R$. Then we have
+    \begin{itemize}
+        \item $0_R\cdot x=0_M$
+        \item $-1_R\cdot x = -x $
+    \end{itemize}
+\end{pro}
+\begin{proof}
+    For the first statement, note that
+    \[r\cdot m = (0_R+r)\cdot m = 0_R\cdot m + r\cdot m\implies 0_R\cdot m = r\cdot m - r\cdot m = 0_M\]
+    For the second statement, note that
+    \[0_M = 0_R\cdot x = (1_R + (-1_R))\cdot x = 1_R\cdot x + (-1_R\cdot x) = x+(-1_R\cdot x)\]
+    The statement follows by moving $x$ from LHS to RHS.
+\end{proof}
+
+\begin{pro} [Sub-module criterion] \label{pro: submod cri}
+    Let $M$ be a $R$-module and $N\subseteq M$. We have that $N$ is a sub-module of $M$ if and only if $N$ is non-empty and $x+r\cdot y\in N$ for any $x,y\in N$ and $r\in R$.
+\end{pro}
+\begin{proof}
+    $\br{\implies}$. If $N$ is a sub-module of $M$, then $N$ must not be empty since it must contain the identity element. Moreover, since $N$ is a sub-module, thus for any $y\in N$ and $r\in R$ we must have $r\cdot y\in N$ by closure. It is then obvious that $x+r\cdot y\in N$ for any $x,y\in N$ and $r\in R$.
+
+    $\br{\impliedby}$. Suppose that $N\subseteq M$ is non-empty $x+r\cdot y\in N$ for any $x,y\in N$ and $r\in R$. First note by taking $r=-1$ we see that for any $x,y\in N$ we have $x-y\in N$, thus by the subgroup criterion we see that $N$ is a subgroup of $M$. Next, since $N$ is non-empty, let $n\in N$ and take $r=-1$. By Proposition \ref{pro: 0 and -1 act} we see that 
+    \[0_M = n -n = n+(-1)\cdot n \in R\]
+    Finally, by taking $r=0_R$, we $x=0_M$ we see that for any $r\in R$ and $y\in N$ we have $r\cdot y\in N$, which establish the closure. This completes the proof.
+\end{proof}
+\begin{re}
+    Note that Proposition \ref{pro: submod cri} can only be used for unital rings. For non-unital rings, we can only prove sub-module via showing that the axioms are true.
+\end{re}
+
+\newpage
+
+\subsection{Algebras and Module Homomorphisms}
+
+\begin{defn} [$R$-Algebra]
+    Let $R$ be a commutative (unital) ring. An $R$-algebra $A$ is a (unital) ring with ring homomorphism $\varphi:R\to A$ such that $\varphi\br{1_R}=1_A$ and $\varphi\br{R}\subset Z\br{A}$, where $Z\br{A}$ is the center of the multiplicative group of $A$.
+\end{defn}
+
+\medskip
+
+\begin{ex}
+    Let $A=R[X]$ where $R$ is any ID or even a field. Define the ring homomorphism $\varphi:R\to R[X],\ r\mapsto r$. Then $R[X]$ is an $R$-algebra.
+\end{ex}
+
+\medskip
+
+\begin{pro}
+    $R$-algebra $A$ is a $R$-module via the binary operation $r\cdot a:= \varphi\br{r}a$ where $\varphi$ is the ring homomorphism that embeds $R$ to the center of $A$.
+\end{pro}
+\begin{proof}
+    We just have to verify the axioms of modules: for any $r,s\in R$ and $a,b\in A$ we have
+    \begin{enumerate}
+        \item $\br{r+s}\cdot a = \varphi\br{r+s}a = \br{\varphi\br{r}+\varphi\br{s}}a = \varphi\br{r}a + \varphi\br{s}a = r\cdot a + s\cdot a$.
+        \item $r\cdot \br{s\cdot a} = \varphi(r)\varphi\br{s}a = \varphi\br{rs}a = \br{rs}\cdot a$
+        \item $r\cdot \br{a+b} = \varphi\br{r}\br{a+b}=\varphi\br{r}a + \varphi\br{r}b = r\cdot a + r\cdot b$
+        \item $1_R\cdot a = \varphi\br{1_R}a = 1_Aa = a$.
+    \end{enumerate}
+    This completes the proof.
+\end{proof}
+
+\medskip
+
+\begin{defn} [Algebra homomorphism]
+    Let $\br{A,\cdot}$ and $\br{B,\star}$ be $R$-algebra and $\varphi:A\to B$ be a ring homomorphism. We then say $\varphi$ is an algebra homomorphism from $A$ to $B$ if $\varphi\br{1_A}=1_B$ and $\varphi\br{r\cdot a}=r\star \varphi(a)$. An algebra isomorphism is then a bijective algebra homomorphism.
+\end{defn}
+
+\medskip
+
+\begin{ex} [Group algebra]
+    Let $G$ be a group and $R$ be a commutative ring. Define $RG$ (or sometimes $R[G]$) to be the set
+    \[RG:= \sbr{\text{formal finite sum of the form }\sum_{g\in G}r_g g \text{ where }r_g\in R}\]
+    together with the operating rules
+    \[\sum r_g g + \sum s_g g = \sum\br{r_g+s_g}g\]
+    and 
+    \[\br{\sum r_g g}\br{\sum s_g g} = \sum t_g g,\ t_g := \sum_{h\in G}r_{gh}s_{h^{-1}}\]
+    Then $RG$ is an $R$-algebra and is called the group algebra of $G$ over $R$.
+\end{ex}
+
+\medskip
+
+\begin{defn} [Module homomorphism]
+    Let $V,W$ be $R$-module. The map $\varphi:V\to W$ is a $R$-module homomorphism if it is a group homomorphism and satisfies $\varphi\br{r\cdot v} = r\cdot \varphi\br{v}$ for all $r\in R$ and $v\in V$. An $R$-module isomorphism is then an $R$-module homomorphism which is also a group isomorphism.
+\end{defn}
+
+\medskip
+
+\begin{ex} [Kernel and image]
+    Let $\varphi:V\to W$ be $R$-module homomorphism. Then we define
+    \[\ker\varphi := \sbr{v\in V:\varphi\br{v}=0}\]
+    \[\im \varphi := \sbr{\varphi\br{v}\in W:v\in V}\]
+    Then $\ker \varphi$ and $\im\varphi$ is a sub-module of $V$ and $W$ respectively.
+\end{ex}
+
+\medskip
+
+
+\begin{ex}
+    Let $V,W$ be $R$-module. The hom set from $V$ to $W$ over $R$ is defined to be
+    \[\h_R\sbr{V,W}:=\sbr{\text{$R$-module homomorphism from $V$ to $W$}}\]
+\end{ex}
+
+\medskip
+
+
+\begin{ex}
+    \hfill
+    
+    \begin{enumerate}
+        \item Let $R:= \R[x]$ and define $\varphi:R\to R$ where $\sum a_ix^i\mapsto \sum a_ix^{2i}$. Then $\varphi$ is a ring homomorphism but not $R$-module homomorphism. If not, then it must satisfy $\varphi\br{x\cdot 1}=x$ but $\varphi\br{x\cdot 1}=\varphi\br{x}=x^2$.
+        \item Let $\pi_i:R^n \to R$ where $\br{r_1,\dots,r_n}\mapsto r_i$. Then $\pi_i$ is an $R$-module homomorphism since
+        \[\pi_i\br{r\cdot\br{r_1,\dots, r_n}}=\pi_i\br{rr_1, \dots, rr_n} = rr_i = r\cdot \pi_i\br{r_1, \dots, r_n}\]
+        A partial converse is as follow: let $\tau_i:R\to R^n$ where $x\mapsto \br{0,\dots, 0,x, 0,\dots, 0}$ where $x$ is at the $i$-th position. Then $\tau$ is an $R$-module homomorphism.
+        \item For $V,W$ are $R$-modules, the trivial map is defined to be the $R$-module homomorphism $\varphi:V\to W$ where $v\mapsto 0_W$.
+        \item If $R$ is a field, then $R$-module homomorphism is equivalent to linear transformation.
+        \item If $R=\Z$, then $R$-module homomorphism is equivalent to abelian group homomorphism.
+    \end{enumerate}
+\end{ex}
+
+\medskip
+
+\begin{pro}
+    Let $U,V,W$ be $R$-module. We have the following
+    \begin{enumerate}
+        \item $\varphi:U\to V$ is an $R$-module homomorphism $\iff$ $\varphi\br{rx+y}=r\varphi\br{x}+\varphi\br{y}$ for all $r\in R$ and $x,y\in U$
+        \item $\h_R\br{U,V}$ is an abelian group where for $\varphi,\psi\in \h_R\br{U,V}$ we define $\br{\varphi+\psi}\br{u}=\varphi\br{u}+\psi\br{u}$ for all $u\in U$. Moreover, if $R$ is commutative, then $\h_R\br{U,V}$ is an $R$-module with $\br{r\cdot \varphi}\br{u}=\varphi\br{ru}$.
+        \item If $\varphi\in \h_R\br{U,V}$ and $\psi\in \h_R\br{V,W}$, then $\psi\circ\varphi\in \h_R\br{U,W}$.
+        \item $\operatorname{End}_R\br{U}:= \h_R\br{U,U}$ is a unital ring with multiplicative operation defined to be the composition, i.e. $\varphi\circ \psi$. Moreover, if $R$ is commutative, then $\operatorname{End}_R\br{U}$ is an $R$-algebra.
+    \end{enumerate}
+\end{pro}
+\begin{proof}
+    \hfill
+    \begin{enumerate}
+        \item The forward direction simply follows from the definition, thus omitted. For the backward direction, take $r=1$ we obtain $\varphi\br{x+y}=\varphi(x) + \varphi(y)$, showing that it is a homomorphism. Take $y=0$ we get $\varphi\br{rx}=r\varphi\br{x}$, showing that it a $R$-module homomorphism.
+        \item Tutorial question.
+        \item $\br{\psi\circ\varphi}\br{ru} = \func{\psi}{\func{\varphi}{ru}}=\func{\psi}{r\func{\varphi}{u}}=r\func{\psi}{\func{\varphi}{u}}=r\func{\br{\psi\circ\varphi}}{u}$
+        \item We have to prove that it is a unital ring. Let $\varphi,\alpha,\beta,\gamma\in \operatorname{End}_R\br{U}$,
+        \begin{itemize}
+            \item Define map $\mathds 1:U\to U$ be the identity map. Clearly $\varphi\circ \mathds 1 = \mathds 1\circ \varphi = \varphi$.
+            \item $\br{\alpha+\beta}\circ\gamma(u) = \alpha\br{\gamma(u)}+\beta\br{\gamma(u)} = \br{\alpha\circ\gamma} (u) + \br{\beta\circ\gamma}(u)$. This shows that $\br{\alpha + \beta}\circ \gamma = \alpha\circ \gamma + \beta \circ \gamma$
+            \item Similarly for $\alpha\circ\br{\beta +\gamma} = \alpha \circ \beta + \alpha\circ \gamma$
+        \end{itemize}
+        To show that it is an $R$-algebra when $R$ is commutative, define $f:R\to \operatorname{End}_R\br{U}$ where $r\mapsto r\mathds 1$ where $r\mathds 1:u\mapsto ru$. It is clear that $r\mathds1 = r\cdot \mathds 1$. We now show that it is an algebra:
+        \begin{itemize}
+            \item $(r\mathds1)\cdot \func{\varphi}{u} = (r\mathds1)(\varphi(u)) = r\varphi(u) = \varphi(ru) = \varphi\circ(r\mathds1)(u)$. This shows that $(r\mathds1)\circ\varphi = \varphi \circ (r\mathds1)$
+            \item $\func{f}{r+s} = (r+s)\mathds1 = r\mathds1 + s\mathds1 = \func{f}{r} + \func{f}{s}$
+        \end{itemize}
+    \end{enumerate}
+    This completes the proof.
+\end{proof}
+
+\medskip
+
+\begin{re}
+    Let $R,S$ be rings. An $\br{R,S}$-bimodule $_RM_S=\br{_RM,M_S}$ where $\br{rm}s = r\br{ms}$. Suppose we have $_RM_S$ and $_RN$. Then $\h_R\br{M,N}$ is an $S$-module where $\br{s\cdot \varphi}\br{m}:=\varphi\br{ms}$.
+\end{re}
+
+\medskip
+
+\begin{ex}
+    Let $G$ be a group and $F$ be a field. Consider $R=FG$ and let $M$ be a left $R$-module. Then the right action defined to be $m*g := g^{-1}m$ makes it a right module.
+\end{ex}
+
+\medskip
+
+\begin{pro}
+    Let $N\subseteq M$ be $R$-modules. Then $M/N$ is an $R$-module where $r\cdot \br{m+N}:= rm+N$. We have a canonical surjective $R$-module homomorphism $\pi:M\to M/N$.
+\end{pro}
+
+\medskip 
+
+\begin{ex}
+    Let $V_1,\dots, V_m$ be submodules of $V$.
+    \begin{enumerate}
+        \item $V_1+\dots + V_m = \sbr{v_1\pd v_m :v_i\in V_i}$ is a submodule of $V$.
+        \item Let $A\subseteq V$. We define
+        \[\langle A\rangle := RA = \sbr{r_1a_1 \pd r_na_n:r_1,\dots ,r_n \in R,\ a_1, \dots, a_n \in A,n\in \Z^+}\]
+        Then we say $\langle A \rangle$ is the submodule generated by $A$, and it is the smallest sub-module of $V$ containing $A$.
+
+        \medskip
+        
+        It is clear that $R\emptyset = \sbr{0}$. Also, if $A=U$ is a submodule of $V$, then $RU = U$.
+    \end{enumerate}
+\end{ex}
+
+\medskip
+
+\begin{defn} [Finitely generated]
+    Let $U$ be a submodule of $V$. We say that $U$ is finitely generated as an $R$-module if there exists a finite set $A\subseteq U$ such that $U=RA$.
+\end{defn}
+
+\medskip
+
+\begin{defn} [Cyclic]
+    Let $U$ be a submodule of $V$. We say that $U$ is cyclic if $U=RA$ where $A=\sbr{a}\subseteq U$ only contains one element.
+\end{defn}
+
+\medskip
+
+\begin{defn}[Minimal generating set]
+    Let $V$ be a finitely generated module. By definition there exists a non-negative integer $d$ such that $V=RA$ with $|A|=d$. Then we say that $A$ is the minimal generating set of $V$.
+\end{defn}
+
+\medskip
+
+\begin{re}
+    In linear algebra, every vector space has a unique dimension. This means that any basis of the fixed vector space has the same cardinality. However, this is not true for the case of module. Therefore, there exists finitely generated module such that its two generating set has different cardinality.
+\end{re}
+
+\medskip
+
+\begin{ex}
+    \hfill
+    \begin{enumerate}
+        \item The generating set of $\Z$-module is equivalent to the generating set as abelian group.
+        \item The cyclic sub-module of a regular module $_RR$ is equivalent to a principal left ideal of $R$. Moreover, if $R$ is a PID, then we have the following chain of equivalence:
+        \[\text{submodules of $_RR$} \equiv \text{cyclic submodules} \equiv \text{ideals} \equiv \text{principal ideals}\]
+        \item The submodule of a finitely generated module need not be finitely generated. For example, let $F$ be a field and define $R=F[X_1,X_2,\dots]$ and $U=\sbr{f\in R:\deg f\ge 1}$. Note that $_RR=R1$ is finitely generated as a regular module. However $U$ is not finitely generated. If not, then there exists $A\subseteq U$ such that $U=RA$ where $|A|<\infty$. But the finiteness of $A$ implies that only finite number of polynomial are chosen, and thus only finite number of variables are involve, contradicting to the fact that there are infinitely many variables in $U$, since $\sbr{X_1,X_2, \dots}\in U$.
+        \item Let $V=R^n$, then $\Omega:= \sbr{e_i=\br{0,\dots,0,1,0,\dots,0}:1\leq i\leq n}$ is a generating set of $V$. Additionally, if $R$ is commutative, then $\Omega$ is the minimal generating set.
+    \end{enumerate}
+\end{ex}
+
+\medskip
+
+\begin{defn} [Invariant basis number property]
+    Let $R$ be a ring. We say $R$ has the invariant basis number (IBN) property if every finitely generated $R$-module has a well-defined rank, i.e. any generating set of a finitely generated $R$-module has the same cardinality.
+\end{defn}
+
+\medskip
+
+\begin{thm} [Isomorphism Theorems of Modules]
+    \hfill
+    \begin{enumerate}
+        \item Let $\varphi:M\to N$ be $R$-module homomorphisms. Then $M/\ker\varphi \cong \im\varphi$
+        \item Let $U,V$ be submodules of $W$. Then $(U+V)/V \cong U/(U\cap V)$.
+        \item Let $U\subseteq V\subseteq W$ be $R$-modules. Then $W/V = (W/U) /(V/U)$.
+        \item Let $U\subseteq V$ be $R$-modules. Then there exists an one-to-one correspondence between the following sets:
+        \[\sbr{\text{Submodules of $V$ containing U}}\longleftrightarrow \sbr{\text{submodules of $V/U$}}\]
+        The correspondence is given by $W\mapsto \func{\pi}{W}$ where $\pi$ is the canonical map.
+    \end{enumerate}
+\end{thm}
+
+\medskip

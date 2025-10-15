@@ -1,0 +1,470 @@
+\begin{defn} [Extension of scalars]
+    Suppose that $M$ is an $R$-module and $R$ is a subring of $S$. The extension of scalar from $R$ to $S$ on $M$ is defined to be $S\ten_R M$, which is an $S$-module by previous proposition.
+\end{defn}
+
+\medskip
+
+\begin{thm} [Universal property of extension of scalar] \label{thm: uni prop ext sca}
+     Let $\varphi: R\to S$ be a unital ring homomorphism and consider $_RN$. Define $j:N\to S\ten_R N$ where $n\mapsto 1\ten n$. For any $_SL$ and $R$-module homomorphism $\gamma:N\to L$, there exists a unique $S$-module homomorphism $\Phi:S\ten_R N\to L$ such that the following diagram commutes:
+    \[\begin{tikzcd}
+	N && {S\ten_R N} \\
+	\\
+	&& L
+	\arrow["j", from=1-1, to=1-3]
+	\arrow["\gamma"', from=1-1, to=3-3]
+	\arrow["\Phi", dashed, from=1-3, to=3-3]
+    \end{tikzcd}\]
+\end{thm}
+\begin{proof}
+	We define:
+	\begin{itemize}
+		\item $\iota:S\times N \to S\ten_R N$ where $(s,n)\mapsto s\ten n$
+		\item $\beta:S\times N\to L$ where $(s,n)\mapsto s\gamma(n)$.
+	\end{itemize}
+	We claim that $\beta$ is $R$-balanced: First
+	\[\beta(s,n+n') = s\gamma(n+n') = s\gamma(n) + s\gamma(n') = \beta(s,n) + \beta(s,n')\]
+	Then:
+	\[\beta(s+s',n) = (s+s')\gamma(n) = s\gamma(n) + s'\gamma(n) = \beta(s,n) + \beta(s',N)\]
+	Next, note that since $R$ is a subring of $S$, we see $S$ as an $R$-module by $s\cdot r:= s\varphi(r)$. We have
+	\[\beta(s\cdot r, n) = (s\cdot r)\gamma(n) = (s\varphi(r))\gamma(n)=s(\varphi(r)\gamma(n)) = s(r*\gamma(n)) = \beta(s, r*\gamma(n))\]
+	So $\beta$ is $R$-balanced. By the universal property of tensor product there exists a unique group homomorphism $\Phi:S\ten_R N\to L$ where $\Phi\circ \iota = \beta$.
+	\[\begin{tikzcd} [sep=small]
+	S\times N && {S\ten_R N} \\
+	\\
+	&& L
+	\arrow["\iota", from=1-1, to=1-3]
+	\arrow["\beta"', from=1-1, to=3-3]
+	\arrow["\Phi", dashed, from=1-3, to=3-3]
+    \end{tikzcd}\]
+	We claim that $\Phi$ is an $S$-module homomorphism:
+	\[\Phi(s(s'\ten n)) = \Phi(ss'\ten n) = ss'\gamma(n) = s(s'\gamma(n)) = s\Phi(s'\ten n)\]
+	so $\Phi$ is indeed an $S$-module homomorphism. Finally, we claim that $\Phi$ is the required $S$-module homomorphism such that $\Phi\circ j = \gamma$:
+	\[(\Phi\circ j)(n) = \Phi(j(n)) = \Phi(1\ten n) = 1\cdot \gamma(n) = \gamma(n)\]
+	Thus $\Phi\circ j = \gamma$, this completes the proof.
+\end{proof}
+The following corollary implies that the kernel is the obstruction for $N$ to be embedded in an $S$-module:
+\begin{cor}
+    Let $\varphi:R\to S$ be an inclusion map. Let $j:N\to S \ten_R N$ where $n\mapsto 1\ten n$. Then $N/\ker j$ is the unique largest quotient of $N$ such that it can be embedded into an $S$-module. In particular, $N$ can be embedded into an $S$-module if $\ker j$ is trivial.
+\end{cor}
+\begin{proof}
+    We first show that $j$ is an $R$-module homomorphism: firstly
+	\[j(n+n') = 1\ten (n+n') = 1\ten n + 1\ten n' = j(n) + j(n')\]
+	Secondly:
+	\[j(rn) = 1\ten (rn) = (1\cdot r)\ten n = \varphi(r) \ten n = r(1\ten n) = r j(n)\]
+	So $j$ is an $R$-module homomorphism. Next, consider $K\subseteq N$ such that $\gamma:N/K \to L$ is an injective $R$-module homomorphism, that is, we are embedding quotient of $N$ into an $R$-module. Define
+	\begin{itemize}
+		\item $\pi:N\to N/K$ be the canonical surjection.
+		\item $\beta:N\to L$ defined by $\beta = \gamma\circ \pi$. Note that $\ker \beta = K$.
+	\end{itemize}
+	Since $\gamma$ and $\pi$ are $R$-module homomorphism, so is $\beta$. By the universal property of extension of scalar, there exists a unique $S$-module homomorphism $\Phi:S\ten_R N\to L$ such that $\Phi \circ j = \beta$:
+	\[\begin{tikzcd} [sep=small]
+	 N && {S\ten_R N} \\
+	\\
+	&& L
+	\arrow["j", from=1-1, to=1-3]
+	\arrow["\beta"', from=1-1, to=3-3]
+	\arrow["\Phi", dashed, from=1-3, to=3-3]
+    \end{tikzcd}\]
+	Now let $x\in \ker j$, so $j(x) = 0$, and note that 
+	\[\beta(x) = (\Phi \circ j)(x) = \Phi(j(x)) = \Phi(0) = 0\]
+	and so $x\in \ker \beta$. This shows that $\ker j\subseteq \ker \beta = K$, thus $N/K \subseteq N/\ker \beta \subseteq N/\ker j$. This shows that $N/\ker j$ is the largest possible quotient of $N$ that can be embedded into an $S$-module. And since $j$ is given, so it must be unique. This completes the proof.
+\end{proof}
+
+\begin{ex}
+    \hfill
+    \begin{enumerate}
+        \item Consider $_RN$ and we claim that $R\ten_R N \cong N$. To see this, let $\varphi:R\to R$ where $r\mapsto r$ and define $\iota:N\to R\ten_R N$ where $n\mapsto 1\ten n$. It is clear that $\varphi$ is a $R$-module homomorphism. We thus have the following diagram
+        \[\begin{tikzcd}[sep=small]
+	n & N && {R\ten_R N} & {1\ten n} \\
+	\\
+	&&& N
+	\arrow["{\in }"{description}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-24pt}, maps to, from=1-1, to=1-5]
+	\arrow["\iota", from=1-2, to=1-4]
+	\arrow["\varphi"', from=1-2, to=3-4]
+	\arrow["\ni"{description}, draw=none, from=1-4, to=1-5]
+	\arrow["\Phi", dashed, from=1-4, to=3-4]
+\end{tikzcd}\]
+    where by Theorem \ref{thm: uni prop ext sca} $\Phi \circ \iota = \id_N = \varphi$.
+
+    We claim that $\iota$ is an $R$-module isomorphism. Firstly $\iota$ is injective since $\Phi\iota = \id_N$. Next $\iota$ is surjective since $r\ten n = 1\ten \br{rn} = \iota\br{rn}$. Thus the claim is proved.
+    \item Let $N$ be a finite abelian group, and so $N$ is a $\Z$-module. We claim that $\Q\ten_\Z N = 0$. To see this, let $\varphi : \Z\to \Q$ and denote $n:= |N|$. Note that
+    \[\frac{r}{s}\ten x=\frac{r}{sn}\cdot n \ten x = \frac{r}{sn}\ten nx = \frac{r}{sn}\ten 0 = 0 \]
+    This means that to extend the scalar of $N$ from $\Z$ to $\Q$, the only possible embedding is the zero map. In other words, any quotient of $N$ that can be embedded into a $\Q$-module is the zero quotient.
+    \item We claim that $\Q\ten_\Z \Z\cong \Q$. Similarly to the method in first bullet we have the following commutative diagram:
+    \[\begin{tikzcd}[sep=small]
+	n & \Z && {\Q\ten_\Z \Z} & {1\ten n} \\
+	&& \\
+	&&& \Q \\
+	&&& {\frac{n}{1}}
+	\arrow["{\in }"{description}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-24pt}, maps to, from=1-1, to=1-5]
+	\arrow[from=1-1, to=4-4]
+	\arrow["\iota", from=1-2, to=1-4]
+	\arrow["\beta"', from=1-2, to=3-4]
+	\arrow["\ni"{description}, draw=none, from=1-4, to=1-5]
+	\arrow["\Phi", dashed, from=1-4, to=3-4]
+	\arrow["{\in }"{marking, allow upside down}, draw=none, from=4-4, to=3-4]
+\end{tikzcd}\]
+    We claim that $\Phi$ is isomorphism. First to see surjectivity:
+    \[\frac{n}{m} = \frac{1}{m}\cdot \frac{n}{1} = \frac{1}{m}\func{\beta}{n} = \frac{1}{m}\Phi(1\ten n) = \func{\Phi}{\frac{1}{m}\ten n}\]
+    To see injectivity, note that an element in $\Q \ten_\Z \Z$ takes the form $\sum \br{q_i\ten n_i}$ where $q_i\in \Q$ and $n_i\in \Z$. We can rewrite such element as the following:
+    \[\sum\br{q_i\ten n_i} = \sum\br{q_in_i\ten 1} = \br{\sum\br{q_in_i}}\ten 1 = q\ten 1\]
+    where the last equality is to rename the chunky sum into some element $q\in \Q$. We now prove injectivity by showing that the $\ker \Phi$ is trivial: let $q=a/b$ where $q\ten 1\in \ker \Phi$, then
+    \begin{align*}
+        \func{\Phi}{q\ten 1} = 0 
+        &\implies b\cdot\Phi \br{q\ten 1} = b\cdot0 \\
+		&\implies \Phi(a\ten 1) = 0\\
+		&\implies a\Phi(1\ten 1) = 0\\
+        &\implies a\Phi\br{\iota(1)} = 0\\
+        &\implies a \beta(1) = 0\\
+        &\implies a \cdot \frac{1}{1} = 0 \\
+        &\implies a = 0
+    \end{align*}
+    and thus $q\ten 1 = 0 \ten 1 = 0$. This shows that $\ker \Phi$ is trivial, so $\Phi$ is injective.
+    \end{enumerate}
+\end{ex}
+
+The following definition, as suggested in its name, is the generalization of bi-linearity in linear algebra:
+\begin{defn} [$R$-bilinear]
+    Let $R$ be a commutative ring and let $L, M, N$ be $R$-modules. A map $\beta:M\times N\to L$ is said to be $R$-bilinear if all the following holds:
+    \begin{enumerate}
+        \item $\beta(rm+r'm', n) = r\beta(m,n) + r'\beta(m', n)$
+        \item $\beta(m, rn+r'n') = r\beta(m,n) + r'\beta(m,n')$
+    \end{enumerate}
+\end{defn}
+It is immediate from the definition that $R$-bilinear implies $R$-balanced. Conversely, if an $R$-balanced map is, in a sense, 'two-sided $R$-balanced', then the map is $R$-bilinear.
+
+\medskip
+
+\begin{cor}
+    Let $R$ be a commutative ring, $M$ and $N$ be $R$-modules. Then $M\ten _R N$ is an $R$-module and $\iota:M\times N \to M\ten_R N$ where $\br{m,n}\mapsto m\ten n$ is bilinear. Furthermore, if $L$ is an $R$-module, we have a bijection between the sets:
+    \[\sbr{R\text{-bilinear maps }\beta:M\times N \to L} \longleftrightarrow \sbr{R\text{-module homomorphisms } \Phi: M\ten_R N \to L}\]
+    where the bijection is given by the relation $\Phi \circ \iota = \beta$.
+\end{cor}
+\begin{proof}
+    It has been shown that $M\ten_R N$ is indeed an $R$-module by some previous statement. Also, we have proven that $\iota$ is a left $R$-balanced map. Since $R$ is commutative, the same can be concluded that $\iota$ is a right $R$-balanced map. It remains to show that $\Phi:M\ten_R N \to L$ defined by the relation $\Phi\circ \iota = \beta$ is indeed a $R$-module homomorphism.
+
+    First, note that we have the following commutative diagram:
+    \[\begin{tikzcd}[sep=small]
+	{(m,n)} & {M\times N} && {M \ten_R N} & {m\ten n} \\
+	\\
+	&&& L
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-18pt}, maps to, from=1-1, to=1-5]
+	\arrow["\iota", from=1-2, to=1-4]
+	\arrow["\beta"', from=1-2, to=3-4]
+	\arrow["\ni"{marking, allow upside down}, draw=none, from=1-4, to=1-5]
+	\arrow["\Phi", dashed, from=1-4, to=3-4]
+\end{tikzcd}\]
+    By Theorem \ref{thm: uni prop tens}, the map $\Phi$ exists and it is a group homomorphism. We show that $\Phi$ respects the action of $R$:
+    \begin{align*}
+        \Phi(r(m\ten n)) 
+        &= \Phi(rm \ten n)\\
+        &= \Phi(\iota(rm,n))\\
+        &= \beta(rm,n) \\
+        &= r \beta(m,n)\\
+        &= r \Phi(\iota(m,n) \\
+        &= r \Phi(m\ten n)
+    \end{align*}
+    This completes the proof.
+\end{proof}
+
+\medskip
+
+\begin{ex}
+    Define commutative ring homomorphism $\varphi: R\to S$. We have seen that $S \ten_R R \cong S$ as a left $S$-module. In fact we have that $R\ten_R S\cong S$ as right $S$-module.
+\end{ex}
+
+\medskip
+
+\begin{thm} [Tensor product of $R$-module homomorphisms]
+    Let $M_R, M'_R, _RN, _RN'$ be $R$-modules. Let $\alpha: M\to M'$ and $\beta:N\to N'$ be $R$-module homomorphisms. Then we have the following:
+    \begin{enumerate}
+        \item There exists a unique group homomorphism $\alpha\ten \beta: M\ten_R N\to M' \ten_R N'$ where $\func{\br{\alpha\ten \beta}}{m\ten n} = \func{\alpha}{m}\ten \func{\beta}{n}$.
+        \item If $M$ and $M'$ are $\br{S,R}$-bimodule, then $\alpha\ten \beta$ is a $S$-module homomorphism.
+        \item Suppose further that we have $M''_R$ and $_RN''$ as $R$-modules. Let $\lambda:M'\to M''$ and $\mu:N'\to N''$ be $R$-module homomorphisms. Then we have $(\lambda\alpha)\ten(\mu\beta) = (\lambda\ten \mu) \circ (\alpha\ten \beta)$.
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    Let $\gamma:M\times N \to M'\ten_R N'$ such that $(m,n)\mapsto \alpha(m)\ten \beta(n)$. We first show that $\gamma$ is $R$-balanced. Note
+    \begin{enumerate}
+        \item $\gamma(mr,n)  = \alpha(mr)\ten\beta(n) = \alpha(m)r \ten \beta(n) = \alpha(m) \ten r\beta(n) = \alpha(m) \ten \beta(rn) = \gamma(m,rn)$
+        \item $\gamma(m+m',n) = \alpha(m+m')\ten \beta(n) = \br{\alpha(m)+\alpha(m')} \ten \beta(n) = (\alpha(m) \ten\beta(n)) +(\alpha(m')\ten\beta(n)) = \gamma(m,n) + \gamma(m',n)$
+        \item $\gamma(m,n+n') = \alpha(m)\ten \beta(n+n') = \alpha(m)\ten(\beta(n) + \beta(n'))= (\alpha(m) \ten\beta(n)) +(\alpha(m)\ten\beta(n')) = \gamma(m,n) + \gamma(m,n')$
+    \end{enumerate}
+    And thus we obtain the following commutative diagram:
+    \[\begin{tikzcd}[sep=small]
+	{(m,n)} & {M\times N} && {M\ten_R N} & {m\ten n} \\
+	\\
+	&&& {M' \ten_R N'} \\
+	&&& {\alpha(m) \ten \beta(n)}
+	\arrow["{\in }"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-12pt}, maps to, from=1-1, to=1-5]
+	\arrow[maps to, from=1-1, to=4-4]
+	\arrow["\iota", from=1-2, to=1-4]
+	\arrow["\gamma"', from=1-2, to=3-4]
+	\arrow["{\exists! \Phi}", dashed, from=1-4, to=3-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-5, to=1-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-4, to=3-4]
+    \end{tikzcd}\]
+    where the existence of the group homomorphism $\Phi$ is ensured by Theorem \ref{thm: uni prop tens}. This proves the first statement.
+
+    For the second statement, suppose that $M$ and $M'$ are $(S,R)$-bimodules. To show that $\Phi$ is an $S$-module homomorphism, we see that
+    \begin{align*}
+        \Phi(s(m\ten n)) 
+        &= \Phi(sm\ten n )\\
+        &= \Phi(\iota(sm,n)) \\
+        &= \gamma(sm,n)\\
+        &= \alpha(sm)\ten \beta(n) \\
+        &= s\alpha(m) \ten \beta(n)\\
+        &= s(\alpha(m) \ten \beta(n)) \\
+        &= s\Phi(m\ten n)
+    \end{align*}
+    This proves the second statement.
+
+    For the third statement, note that $\lambda\alpha:M\to M''$ is well-defined, where $m\mapsto \lambda(\alpha(m))$. Similarly we have that $\mu\beta:N\to N''$ is well-defined. Define $\gamma:M\times N\to M''\times N''$ such that $(m,n)\mapsto (\lambda\alpha)(m)\ten (\mu \beta)(n)$. We shall prove that $\gamma$ is $R$-balanced, but is omitted here for the sake of readability. Similarly we have the following commutative diagram:
+    \[\begin{tikzcd}[sep=small]
+	{(m,n)} & {M\times N} && {M\ten_R N} & {m\ten n} \\
+	\\
+	&&& {M'' \ten_R N''} \\
+	&&& {(\lambda\alpha)(m) \ten (\mu\beta)(n)}
+	\arrow["{\in }"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-12pt}, maps to, from=1-1, to=1-5]
+	\arrow[maps to, from=1-1, to=4-4]
+	\arrow["\iota", from=1-2, to=1-4]
+	\arrow["\gamma"', from=1-2, to=3-4]
+	\arrow["{\exists! \Phi}", dashed, from=1-4, to=3-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-5, to=1-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-4, to=3-4]
+\end{tikzcd}\]
+    We will show that $(\lambda\alpha)\ten(\mu\beta)=(\lambda\ten\mu)\circ(\alpha\ten\beta)$ using the uniqueness of $\Phi$. First note that 
+    \[\Phi(m\ten n) = \Phi(\iota(m,n)) = \gamma(m,n) = (\lambda\alpha)(m) \ten (\mu\beta)(n)\]
+    Next, we see that
+    \begin{align*}
+       ((\lambda\ten\mu)\circ (\alpha\ten\beta))(\iota(m,n))
+        &= ((\lambda\ten\mu)\circ (\alpha\ten\beta))(m\ten n)\\
+        &= (\lambda\ten \mu)(\alpha(m)\ten \beta(n))\\
+        &= \lambda(\alpha(m))\ten \mu(\beta(n)) \\
+        &= (\lambda\alpha \ten \mu\beta)(m\ten n) \\
+        &= (\lambda\alpha \ten \mu\beta)(\iota(m,n)) \\
+        &= \Phi(\iota(m,n))
+    \end{align*}
+    Since $\Phi$ is unique, we see that $(\lambda\alpha)\ten(\mu\beta) = (\lambda\ten \mu) \circ (\alpha\ten \beta)$ must hold. This completes the proof.
+\end{proof}
+
+\begin{thm} [Associativity of tensor product] \label{thm: assoc ten}
+    Consider the modules $M_R, _RN_S$ and $_SL$. Then there exists a unique module isomorphism such that 
+    \[(M\ten_R N) \ten_S L \cong M\ten_R (N\ten_S L)\]
+    where $\Phi\br{(m\ten_R n) \ten_S \ell} = m\ten_R(n\ten_S \ell)$. Furthermore, if $M$ is a $(T,R)$-bimodule, then $\Phi$ is a $T$-module isomorphism.
+\end{thm}
+\begin{proof}
+    Fix $\ell\in L$. Define $\iota:M\times N\to M\ten_R N$ such that $(m,n)\mapsto m\ten n$. Also define $\beta:M\times N\to M\ten_R (N\ten_S L)$ where $(m,n)\mapsto m\ten (n\ten \ell)$. We prove that $\beta$ is $R$-balanced:
+    \begin{enumerate}
+        \item $\beta(mr, n) = mr\ten (n\ten \ell) = m\ten r(n\ten \ell) = m\ten (rn\ten \ell) = \beta(m,rn)$
+        \item $\beta(m+m', n) = (m+m')\ten n = (m\ten n) + (m'\ten n) = \beta(m,n) + \beta(m',n)$
+        \item $\beta(m,n+n') = m \ten (n+n') = (m\ten n) + (m\ten n') = \beta(m,n) + \beta(m,n')$
+    \end{enumerate}
+    And so we have the following commutative diagram:
+    \[\begin{tikzcd}[sep=small]
+	{(m,n)} & {M\times N} && {M\ten_R N} & {m\ten n} \\
+	\\
+	&&& {M\ten_R (N\ten_S L)} \\
+	&&& {m\ten(n\ten \ell)}
+	\arrow["{\in }"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-20pt}, maps to, from=1-1, to=1-5]
+	\arrow[maps to, from=1-1, to=4-4]
+	\arrow["\iota", from=1-2, to=1-4]
+	\arrow["\beta"', from=1-2, to=3-4]
+	\arrow["{\exists! \Phi_\ell}", dashed, from=1-4, to=3-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-5, to=1-4]
+	\arrow[curve={height=-20pt}, maps to, from=1-5, to=4-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-4, to=3-4]
+\end{tikzcd}\]
+    where the existence of the group homomorphism $\Phi_\ell$ is ensured by, again, Theorem \ref{thm: uni prop tens}. Note that since $\ell$ is fixed, so $\Phi_\ell$ is with respect to the choice of $\ell$. 
+
+    Next, define $\iota':(M\ten_R N) \times L \to (M\ten_R N)\ten_S L$ where $(m\ten n, \ell) \mapsto (m\ten n)\ten \ell$. Also, define $\Phi:(M\ten_R N)\times L \to M\ten_R(N\ten_S L)$ where $(m\ten n, \ell)\mapsto \Phi_\ell(m\ten n)$. We claim that $\Phi$ is an $S$-homomorphism, since for $s\in S$ we have
+    \[\func{\Phi}{(m\ten n)s, \ell} = \Phi(m\ten ns, \ell) = \Phi_\ell(m\ten ns) = m\ten (ns\ten \ell) = m\ten (n\ten s\ell) = \Phi_{s\ell}(m\ten n) = \Phi(m\ten n, s\ell)\]
+    And thus we obtain the following commutative diagram:
+    \[\begin{tikzcd}[sep=small]
+	{(m\ten n, \ell)} & {(M\ten_R N)\times L} && {(M\ten_R N)\ten_S L} & {(m\ten n) \ten \ell} \\
+	\\
+	&&& {M\ten_R(N\ten_S L)} \\
+	&&& {\Phi_\ell (m\ten n)}
+	\arrow["\in"{description}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-18pt}, maps to, from=1-1, to=1-5]
+	\arrow[maps to, from=1-1, to=4-4]
+	\arrow["{\iota'}", from=1-2, to=1-4]
+	\arrow["\Phi"', from=1-2, to=3-4]
+	\arrow["\ni"{description}, draw=none, from=1-4, to=1-5]
+	\arrow["\exists !\Psi", dashed, from=1-4, to=3-4]
+	\arrow[curve={height=-18pt}, maps to, from=1-5, to=4-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-4, to=3-4]
+\end{tikzcd}\]
+where the existence of the $S$-module homomorphism $\Psi$ is unique by Theorem \ref{thm: uni prop ext sca}. Since the diagram is commutative, we see that
+\[\Psi((m\ten n), \ell) = \Phi_\ell(m\ten n) = m \ten (n\ten \ell)\]
+The whole argument can be repeated again, first by fixing $m\in M$ to get $\tilde\Phi_m:M\times(N\ten_SL) \to M\ten_R (N\ten_S L)$ such that $(m,n\ten \ell) \mapsto m\ten(n\ten \ell)$, then to obtain an $S$-module homomorphism $\tilde\Psi:M\ten_R (N\ten_S L)\to (M\ten_R N) \ten_S L$ such that 
+\[\tilde\Psi(m, n\ten \ell) = \tilde\Phi_m(n\ten \ell) = m\ten(n\ten \ell)\]
+In other words, we now obtain two $S$-module homomorphisms such that
+\[\begin{tikzcd}[sep=small]
+	{\Psi:(M\ten_R N)\ten_S L} && {M\ten_R (N\ten_S L): \tilde\Psi}
+	\arrow[shift left,  from=1-1, to=1-3]
+	\arrow[shift left,  from=1-3, to=1-1]
+\end{tikzcd}\]
+To show that $(M\ten_R N)\ten_S L\cong M\ten_R (N\ten_SL)$, it is sufficient to prove that $\tilde\Psi\circ \Psi$ and $\Psi\circ \tilde\Psi$ are identity maps. We only show that first one. Note that
+\[(\tilde\Psi\circ \Psi)(m\ten n, \ell) = \tilde\Psi(m\ten (n\ten \ell)) = (m\ten n)\ten\ell\]
+Since $\tilde\Psi$ and $\Psi$ are both $S$-module homomorphism, it is immediate that $\tilde\Psi \circ \Psi$ is an $S$-module homomorphism as well. We thus obtain the following commutative diagram by the universal property of tensor product:
+\[\begin{tikzcd}[sep=small]
+	{(m\ten n, \ell)} & {(M\ten_R N)\times L} && {(M\ten_R N)\ten_S L} & {(m\ten n) \ten \ell} \\
+	\\
+	&&& {M\ten_R(N\ten_S L)} \\
+	&&& {(m\ten n)\ten \ell}
+	\arrow["\in"{description}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-18pt}, maps to, from=1-1, to=1-5]
+	\arrow[maps to, from=1-1, to=4-4]
+	\arrow[from=1-2, to=1-4]
+	\arrow["{\tilde\Psi \circ \Psi}"', from=1-2, to=3-4]
+	\arrow["\ni"{description}, draw=none, from=1-4, to=1-5]
+	\arrow["\id", dashed, from=1-4, to=3-4]
+	\arrow[curve={height=-18pt}, maps to, from=1-5, to=4-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-4, to=3-4]
+\end{tikzcd}\]
+where it is clear that the map $\id$ is the only map that takes $(m\ten n)\ten \ell$ to itself. By the uniqueness statement in the universal property, we see that $\tilde\Psi\circ\Psi =\id$. Similar argument can be used to show that $\Psi\circ\tilde\Psi = \id$. This completes the proof.
+\end{proof}
+The following is an immediate corollary of the previous theorem:
+\medskip
+
+\begin{cor}
+    Let $R$ be a commutative ring. Let $M,N,L$ be $R$-modules. Then $(M\ten_R N) \ten_R L \cong M\ten_R (N\ten_R L)$
+\end{cor}
+
+\medskip
+
+\begin{thm} [Distributivity of tensor product]
+    Let $M_R, M'_R, _RN, _RN'$ be $R$-modules. Then there exists a unique module isomorphism $\Phi$ such that 
+    \[M\ten_R (N\oplus N') \cong (M\ten_R N) \oplus(M\ten_R N')\]
+    where $\Phi(m\ten (n,n')) = (m\ten n, m \ten n')$. Similarly, there exists a unique module isomorphism $\Phi'$ such that 
+    \[(M\oplus M') \ten_R N \cong (M\ten_R N) \oplus(M'\ten_R N)\]
+    where $\Phi'((m,m')\ten n) = (m\ten n, m' \ten n)$. 
+\end{thm}
+\begin{proof}
+    We only prove the second statement, where the arguments are very similar to Theorem \ref{thm: assoc ten}, thus some details are omitted. First, obtain the following three diagrams:
+
+    Diagram 1:
+\[\begin{tikzcd}[sep=small]
+	{((m,m'),n)} & {(M\oplus M') \times N} && {(M\oplus M') \ten_R N} & {(m,m')\ten n} \\
+	\\
+	&&& {(M\ten _R N) \oplus (M'\ten_R N)} \\
+	&&& {(m\ten n, m'\ten n)}
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[maps to, from=1-1, to=4-4]
+	\arrow[from=1-2, to=1-4]
+	\arrow["\beta"', from=1-2, to=3-4]
+	\arrow["\ni"{marking, allow upside down}, draw=none, from=1-4, to=1-5]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-4, to=3-4]
+\end{tikzcd}\]
+
+Diagram 2:
+\[\begin{tikzcd}[sep=small]
+	{(m,n)} & {M\times N} && {M\ten_R N} \\
+	\\
+	&&& {(M\oplus M') \ten_R N} \\
+	&&& {(m,0)\ten n}
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[maps to, from=1-1, to=4-4]
+	\arrow[from=1-2, to=1-4]
+	\arrow["\gamma"', from=1-2, to=3-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-4, to=3-4]
+\end{tikzcd}\]
+
+Diagram 3:
+\[\begin{tikzcd}[sep=small]
+	{(m',n)} & {M'\times N} && {M'\ten_R N} \\
+	\\
+	&&& {(M\oplus M') \ten_R N} \\
+	&&& {(0,m')\ten n}
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[maps to, from=1-1, to=4-4]
+	\arrow[from=1-2, to=1-4]
+	\arrow["\delta"', from=1-2, to=3-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-4, to=3-4]
+\end{tikzcd}\]
+Next, prove that all maps $\beta, \gamma$, and $\delta$ are $R$-balanced, which is omitted here due to tedious work. By Theorem \ref{thm: uni prop tens}, there exists unique group homomorphism $\Phi, \varphi$, and $\varphi'$ respectively for diagram 1, 2, and 3 such that all are them are commutative:
+
+Diagram 1:
+\[\begin{tikzcd}[sep=small]
+	{((m,m'),n)} & {(M\oplus M') \times N} && {(M\oplus M') \ten_R N} & {(m,m')\ten n} \\
+	\\
+	&&& {(M\ten _R N) \oplus (M'\ten_R N)} \\
+	&&& {(m\ten n, m'\ten n)}
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-18pt}, maps to, from=1-1, to=1-5]
+	\arrow[maps to, from=1-1, to=4-4]
+	\arrow[from=1-2, to=1-4]
+	\arrow["\beta"', from=1-2, to=3-4]
+	\arrow["\ni"{marking, allow upside down}, draw=none, from=1-4, to=1-5]
+	\arrow["{\exists ! \Phi}", dashed, from=1-4, to=3-4]
+	\arrow[curve={height=-24pt}, maps to, from=1-5, to=4-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-4, to=3-4]
+\end{tikzcd}\]
+
+Diagram 2:
+\[\begin{tikzcd}[sep=small]
+	{(m,n)} & {M\times N} && {M\ten_R N} & {m\ten n} \\
+	\\
+	&&& {(M\oplus M') \ten_R N} \\
+	&&& {(m,0)\ten n}
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-24pt}, maps to, from=1-1, to=1-5]
+	\arrow[maps to, from=1-1, to=4-4]
+	\arrow[from=1-2, to=1-4]
+	\arrow["\gamma"', from=1-2, to=3-4]
+	\arrow["{\exists ! \varphi}", dashed, from=1-4, to=3-4]
+	\arrow["\ni"{description}, draw=none, from=1-5, to=1-4]
+	\arrow[curve={height=-18pt}, maps to, from=1-5, to=4-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-4, to=3-4]
+\end{tikzcd}\]
+
+Diagram 3:
+\[\begin{tikzcd}[sep=small]
+	{(m',n)} & {M'\times N} && {M'\ten_R N} & {m' \ten n} \\
+	\\
+	&&& {(M\oplus M') \ten_R N} \\
+	&&& {(0,m')\ten n}
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-18pt}, maps to, from=1-1, to=1-5]
+	\arrow[maps to, from=1-1, to=4-4]
+	\arrow[from=1-2, to=1-4]
+	\arrow["\beta"', from=1-2, to=3-4]
+	\arrow["{\exists ! \varphi'}", dashed, from=1-4, to=3-4]
+	\arrow["\ni"{description}, draw=none, from=1-5, to=1-4]
+	\arrow[curve={height=-18pt}, maps to, from=1-5, to=4-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-4, to=3-4]
+\end{tikzcd}\]
+
+We define the map $\Psi:(M\ten _R N)\oplus (M'\ten_R N) \to (M\oplus M')\ten_R N$ such that $((m\ten n), (m'\ten n'))\mapsto \func{\varphi}{m\ten n} + \func{\varphi'}{m'\ten n'}=(m,0)\ten n + (0,m')\ten n'$. Note both $\varphi$ and $\varphi'$ are group homomorphisms, and thus $\Psi$ is a group homomorphism. 
+
+Finally, to show that $(M\ten _R N)\oplus (M'\ten_R N) \cong (M\oplus M')\ten_R N$, we need to show that $\Phi\circ  \Psi$ and $\Psi\circ \Phi$ are identity maps. We only show one, since another follows with the a similar argument:
+\[\Psi(\func{\Phi}{(m,m')\ten n}) = \Psi(m\ten n, m'\ten n) = (m,0)\ten n + (0,m')\ten n = (m,m')\ten n\]
+This (more or less) completes the proof.
+\end{proof}
+
+\begin{cor}
+    Let $f:R\to S$ be a ring homomorphism. Then $S\ten_R R^m \cong S^m$ as a left $S$-module.
+\end{cor}
+\begin{proof}
+    Note
+    \[R^m = \bigoplus_{i=1}^mR\]
+    and so 
+    \[S\ten_R R^m =S\ten_R \bigoplus_{i=1}^m R\cong \bigoplus_{i=1}^m\br{S\ten R} \cong \bigoplus_{i=1}^m S= S^m\]
+    This completes the proof.
+\end{proof}
+
+\begin{cor}
+    Let $R$ be commutative. Then $R^m \ten_R R^n \cong R^{mn}$
+\end{cor}
+\begin{proof}
+    Similar to the previous proof, we note
+    \[R^m \ten_R R^n = \br{\bigoplus_m R} \ten \br{\bigoplus_n R} = \bigoplus_m \br{R\ten_R \bigoplus_n R} = \bigoplus_m \bigoplus_n (R\ten_R R) = \bigoplus_m \bigoplus_n R = R^{mn}\]
+    This completes the proof.
+\end{proof}

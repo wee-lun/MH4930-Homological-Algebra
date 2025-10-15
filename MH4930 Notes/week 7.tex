@@ -1,0 +1,384 @@
+\begin{pro}
+    Let $I$ be an $R$-module. TFAE:
+    \begin{enumerate}
+        \item $I$ is injective.
+        \item For any SES $0\to X\xto\alpha Y\xto \beta Z\to 0$, we have SES 
+        \[0 \to \h_R(X,I) \xto{\beta^*} \h_R(Y,I) \xto{\alpha^*} \h_R(X,I) \to 0\]
+        \item If $I$ is isomorphic with a submodule of $Y$, then the following SES splits:
+        \[0 \to I \to Y\to Y/I \to 0\]
+        And hence $I\mid Y$.
+    \end{enumerate}
+\end{pro}
+\begin{proof}
+    Tutorial questions.
+\end{proof}
+
+\begin{cor}
+    Let $V$ be an $R$-module. Then
+    \[\mathcal F:= \h_R(-, V): R\text{-mod} \to \text{Ab}\]
+    is a left exact contravariant functor, i.e. the SES $0\to X\xto \alpha Y\xto \beta Z\to 0$ gives rise to the exact sequence
+    \[0 \to \h_R(Z,V) \xto {\beta^*} \h_R(Y,V) \xto {\alpha^*} \h_R(X,V)\]
+    Furthermore, the functor $\mathcal F$ is exact if and only if $V$ is injective.
+\end{cor}
+
+\subsection{Flat Modules}
+Let $D$ be a right $R$-module. The operation
+\[\mathcal F := D \ten_R -:R\text{-mod} \to \text{Ab}\]
+where $_RX\mapsto D\ten_R X$ such that $(\alpha:X\to Y)\mapsto \br{(1\ten \alpha):D\ten_R X \to D\ten_R Y, d\ten x \mapsto d\ten \alpha(x)}$. The functor $\mathcal F$ is a covariant functor. 
+
+To see this, we show all the axioms of a covariant functor hold:
+\begin{itemize}
+    \item For any $R$-module $X$, it is clear that $D\ten_R X$ is well-defined and is an abelian group, which lies in the category Ab of abelian group.
+    \item  Define $\mathds{1}_X:X\to X$ be the identity map on $X$. By definition $\mathcal F (\mathds{1}_X) = 1\ten \mathds 1_X$ such that $1\ten \mathds{1}_X:D\ten_R X \to D\ten_R X$ defined by $d\ten x \mapsto d\ten x$. Clearly we see that $\mathcal F (\mathds{1}_X)$ is the identity map on $\mathcal F(X)$. This shows that $\mathcal F(\mathds 1_X) = \mathds 1_{\mathcal F(X)}$.
+    \item Suppose we have commutative diagram
+        \[\begin{tikzcd}[sep=small]
+	        X && Y \\
+	        \\
+	        && Z
+	        \arrow["\alpha", from=1-1, to=1-3]
+	        \arrow["{\beta\circ \alpha}"', from=1-1, to=3-3]
+	        \arrow["\beta", from=1-3, to=3-3]
+        \end{tikzcd}\]
+        Then we have that 
+        \[\begin{tikzcd}[sep=small]
+	        \mathcal F\br{X} && \mathcal F \br{Y} \\
+	        \\
+	        && \mathcal F \br{Z}
+	        \arrow["\mathcal F (\alpha)", from=1-1, to=1-3]
+	        \arrow["\mathcal F \br{\beta\circ \alpha}"', from=1-1, to=3-3]
+	        \arrow["\mathcal F\br{\beta}", from=1-3, to=3-3]
+        \end{tikzcd}\]
+        and we examine that it is commutative. By following definition we see 
+        \[\f(\beta\circ \alpha) = 1\ten(\beta\circ \alpha) = (1\circ 1)\ten (\beta\circ \alpha) = (1\ten \beta) \circ (1\ten \alpha) = \f(\beta)\f(\alpha)\]
+        This shows that the diagram is commutative.
+\end{itemize}
+
+Moreover, if $D$ is a $(S,R)$-bimodule, then $\mathcal F:X\mapsto D\ten_R X$ is a functor that maps from category of $R$-mod to category of $S$-mod.
+
+\medskip
+
+\begin{thm}
+    Let $D$ be an $(S,R)$-bimodule and $X$, $Y$, $Z$ be left $R$-module. If $ X\xto\alpha Y\xto\beta Z$ is exact, then 
+    \begin{equation} \label{eqn: thm: flat mod exact}
+        D\ten_R X\xto {1\ten \alpha} D\ten_R Y\xto {1\ten\beta} D\ten_R Z \to 0
+    \end{equation}
+    is exact. Moreover  $X\xto\alpha Y\xto\beta Z$ is exact if and only if (\ref{eqn: thm: flat mod exact}) is exact for all $D$.
+\end{thm}
+\begin{proof}
+    Assume as supposed in the statement. For the first statement we show the following:
+    \begin{enumerate}
+        \item $(1\ten \beta)$ is surjective. Let $d\ten z\in D\ten_R Z$. By assumption $\beta$ is surjective, so there exists $y\in Y$ such that $\beta(y) = z$. Observe then that $(1\ten\beta)(d\ten y) = d\ten \beta(y) = d\ten z$.
+        \item $\im (1\ten \alpha)\subseteq \ker(1\ten \beta)$. First observe that by definition $\beta\circ \alpha = 0$. Thsu $(1\ten \beta) (1\ten\alpha) = 1\ten (\beta\circ \alpha) = 1\ten 0 = 0$. This shows that $\im(1\ten \alpha) \subseteq \ker (1\ten \beta)$.
+        \item $\ker (1\ten \beta)\subseteq \im(1\ten \alpha)$. To prove this, recall we have proved that $\im(1\ten \alpha) \subseteq \ker(1\ten \beta)$, this implies that we have the surjection: 
+        \[\pi: (D\ten_R Y)/\im(1\ten \alpha) {\twoheadrightarrow} (D\ten_R Y)/\ker(1\ten \beta)\cong D\ten_R Z\]
+        Our goal is to show that $\pi$ is injective. First, by assumption $\beta$ is surjective, so for each $z\in Z$ we define $y_z\in Z$ be such that $\beta(y)=z$. Next define the map $\gamma:D\times Z\to (D\ten_R Y)/\im(1\ten\alpha)$ where $(d,z)\mapsto (d\ten y_z) + \im(1\ten \alpha) =: \overline{d\ten y_z}$.
+        \begin{itemize}
+            \item We claim that $\pi$ is well-defined. Let $y'$ and $y$ be such that $\beta(y') = z = \beta(y)$. Note then $y-y'\in \ker\beta = \im\alpha$ due to exactness. Thus $d\ten y- d\ten y' = d\ten (y-y') \in \im(1\ten \alpha)$. This shows that regardless of the choice of $y_z$ is $y$ or $y'$, we always have that 
+            \[ \overline{d\ten y}  = \gamma(d,z) = \overline{d\ten y'}\]
+            \item Next we show that $\gamma$ is $R$-balanced. If $\beta(y_z)=z$, then $\beta(ry_z) = rz$, and so $y_{rz} = ry_z$. Thus
+            \[\gamma(d,rz) = \overline{d\ten y_{rz}}= \overline{d\ten r y_z}= \overline{dr\ten y_z}= \gamma(dr, z)\]
+            For the second axiom, simply prove that 
+            \[\gamma(d+d', z) = \overline{(d+d')\ten y_z} = \overline{d\ten y_z + d'\ten y_z} = \overline{d\ten y_z} + \overline{d'\ten y_z} =\gamma(d,z) + \gamma(d',z) \]
+            For the third axiom, if $\beta(y_z)=z$ and $\beta(y_{z'}) = z'$, then $\beta(y_z + y_{z'}) = z+z'$, so $y_{z+z'} = y_z + y_{z'}$. Thus
+            \[\gamma(d, z+z') = \overline{d\ten y_{z+z'}} = \overline{d\ten (y_z + y_{z'})} = \overline{d\ten y_{z}} + \overline{d\ten y_{z'}} = \gamma(d,z) + \gamma(d,z')\]
+            This shows that $\gamma$ is $R$-balanced.
+        \end{itemize}
+        Therefore, by the Universal Property of Tensor Product, there exists $\pi' :D\ten_R Z \to (D\ten_R Y)/\im(1\ten \alpha)$ where $d\ten z \mapsto \overline{d\ten y_z}$.
+
+        Define $\varphi: (D\ten_R Y)/\im(1\ten \alpha): D\ten_R Z$ by $(d\ten y)\mapsto d\ten \beta(y)$. We show that $\pi'\circ \varphi$ and $\varphi \circ \pi'$ are identity maps (on respective domain). 
+        \begin{itemize}
+            \item $(\pi'\circ \varphi)(\overline{d\ten y}) = \pi' (d\ten \beta(y)) = \overline{d\ten y}$
+            \item $(\varphi\circ \pi')(d\ten z)=\varphi(\overline{d\ten y_z}) = d\ten \beta(y_z) = d\ten z$
+        \end{itemize}
+        This shows that $\varphi$ and $\pi$ are inverses of each other, implying that they are isomorphisms. This shows that $\im(1\ten \alpha) = \ker(1\ten\beta)$.
+    \end{enumerate}
+
+    For the second statement, the forward direction is proved, so supposed that (\ref{eqn: thm: flat mod exact}) is exact for all $(S,R)$-bimodule $D$. Take $D=R$. Recall $R\ten_R X \cong X$ and this holds similarly for $Y$ and $Z$. We then have the following diagram: 
+    \[\begin{tikzcd} [sep = small]
+	{R\ten_R X} && {R\ten_R Y} && {R\ten_R Z} && 0 \\
+	\\
+	X && Y && Z && 0
+	\arrow["{1\ten \alpha}", from=1-1, to=1-3]
+	\arrow[tail reversed, from=1-1, to=3-1]
+	\arrow["{1\ten \beta}", from=1-3, to=1-5]
+	\arrow[tail reversed, from=1-3, to=3-3]
+	\arrow[from=1-5, to=1-7]
+	\arrow[tail reversed, from=1-5, to=3-5]
+	\arrow["\alpha", from=3-1, to=3-3]
+	\arrow["\beta", from=3-3, to=3-5]
+	\arrow[from=3-5, to=3-7]
+    \end{tikzcd}\]
+    where the isomorphism between $R\ten_R X$ and $X$ is given by $1\ten x \mapsto x$ (similarly for $Y$ and $Z$). We show that we have commutativity in the first and second square. First, let $1\ten x\in R\ten_R X$, then sending along the upper route to $Y$ we obtain 
+    \[1\ten x \overset{1\ten \alpha}{\mapsto} 1\ten\alpha(x) \mapsto \alpha(x) \]
+    If sending along the lower route to $Y$ we obtain 
+    \[1\ten x \mapsto x \overset{\alpha}{\mapsto} \alpha(x)\]
+    This shows we have commutativity in the first square. Similarly we have comutativity in the second square. This gives commutativity in the whole diagram. Since the first row is commutative and we have isomorphisms map, we conclude that the second row is commutative. This completes the proof.
+\end{proof}
+
+\begin{ex}
+    $\Z \overset{\alpha}{\hookrightarrow} \Q$. Take $D= \Z/2Z$. Then $D\ten_\Z \Z\cong D = \Z/2\Z$. But $D\ten_\Z\Q\cong 0$, since
+    \[x\ten \frac{r}{s} = x\ten \frac{2r}{2s} = 2x \ten \frac{r}{2s} = 0\]
+    since $2x= 0$ in $D$.
+\end{ex}
+
+\medskip
+
+\begin{pro} \label{pro: defn of flat mod}
+    Let $D$ be a right $R$-module. TFAE:
+    \begin{enumerate}
+        \item If we have SES $0 \to X \to Y \to Z \to 0$, then we have $0 \to D\ten_R X \to D\ten_R Y \to D\ten_R Z \to 0$ is exact.
+        \item if $0\to X\to Y$ is exact, then $0 \to D\ten_RX \to D\ten_R Y$ is exact. 
+    \end{enumerate}
+    In any of these cases, we say that $D$ is a flat $R$-module.
+\end{pro}
+
+\medskip
+
+\begin{cor}
+    Let $D$ be a right $R$-module. The functor $\mathcal F:D\ten_R -: R\text{-mod} \to \text{Ab}$ is right exact covariant. Moreover $\mathcal F$ is exact if and only if $D$ is flat. If $D$ is a $(S,R)$-bimodule, then $\mathcal F: D\ten_R -$ is a functor that sends from $R$-module to $S$-module.
+\end{cor}
+
+\medskip
+
+\begin{thm}
+    Projection (and hence free) modules are flat.
+\end{thm}
+\begin{proof}
+    We first prove the special case for free modules. Let $F$ be a free $R$-module and $\alpha:X\to Y$ be an injective $R$-module homomorphism. To show that $F$ is flat, by Proposition \ref{pro: defn of flat mod} we show that if $0 \to X \xto{\alpha} Y$ is exact, then $0\to D\ten_R X \xto{1\ten\alpha} D\ten_R Y$ is exact. This is equivalent to showing that the injection $\alpha:X\to Y$ implies $1\ten \alpha:F\ten_R X\to F\ten_R Y$ is injective.
+
+    First, since $F$ is free, so we can write $F\cong \bigoplus_{a\in A}R$ where $F$ is free on a subset $A\subseteq F$. Next, in tutorial, we have seen that $(\bigoplus R) \ten_R X\cong \bigoplus(R\ten R X)$. We have also seen previously that $R\ten_R X\cong X$. Altogether we obtain the following commutative diagram:
+    \[\begin{tikzcd}[sep=small]
+	& {F\ten_R X} &&& {F\ten_R Y} \\
+	\\
+	{\sum (\mathds 1_a \ten x_a)} & {\br{\bigoplus R}\ten_R X} &&& {\br{\bigoplus R} \ten_R Y} & {\sum (\mathds 1_a \ten \alpha(x_a))} \\
+	\\
+	{\sum(1\ten x_a)} & {\bigoplus(R\ten_R X)} &&& {\bigoplus(R\ten_R Y)} & {\sum(1\ten \alpha(x_a))} \\
+	\\
+	{\sum x_a} & {\bigoplus_{a\in A} X} &&& {\bigoplus_{a\in A} Y} & {\sum \alpha(x_a)}
+	\arrow["{1\ten \alpha}", from=1-2, to=1-5]
+	\arrow[tail reversed, from=1-2, to=3-2]
+	\arrow[tail reversed, from=1-5, to=3-5]
+	\arrow["\in"{description}, draw=none, from=3-1, to=3-2]
+	\arrow[curve={height=-24pt}, maps to, from=3-1, to=3-6]
+	\arrow[from=3-2, to=3-5]
+	\arrow[tail reversed, from=3-2, to=5-2]
+	\arrow[tail reversed, from=3-5, to=5-5]
+	\arrow["\ni"{description}, draw=none, from=3-6, to=3-5]
+	\arrow[maps to, from=3-6, to=5-6]
+	\arrow[maps to, from=5-1, to=3-1]
+	\arrow["\in"{description}, draw=none, from=5-1, to=5-2]
+	\arrow[from=5-2, to=5-5]
+	\arrow[tail reversed, from=5-2, to=7-2]
+	\arrow[tail reversed, from=5-5, to=7-5]
+	\arrow["\ni"{description}, draw=none, from=5-6, to=5-5]
+	\arrow[maps to, from=5-6, to=7-6]
+	\arrow[maps to, from=7-1, to=5-1]
+	\arrow["\in"{description}, draw=none, from=7-1, to=7-2]
+	\arrow["\varphi", from=7-2, to=7-5]
+	\arrow["\ni"{description}, draw=none, from=7-6, to=7-5]
+    \end{tikzcd}\]
+    where $\mathds 1_a$ denotes the direct sum indexed by $A$ which is only takes value $1$ at the $a$-th position and $0$ otherwise. If $\sum x_a \in \ker \varphi$, then $\sum \alpha(x_a) = 0$. Since this is a direct sum, we must have $\alpha(x_a) = 0$ for all $a$. By assumption $\alpha$ is injective, so $x_a=0$ for all $a$. Therefore $\sum x_a = 0$. This shows that $\varphi$ is injective, and thus $1\ten \alpha$ is injective, showing that any free $R$-module is flat.
+
+    Next, let $P$ be a projective $R$-module. Then $P \oplus P' = F$ for some free $R$-module $F$. Note $(P\oplus P')\ten_R X\cong (P\ten_R X) \oplus (P' \ten_R X)$. We have the following commutative diagram:
+    \[\begin{tikzcd}[sep=small]
+	{a\ten x} & {F\ten_R X} &&& {F\ten_R Y} & {a\ten \alpha(x)} \\
+	\\
+	{(a+0) \ten x} & {(P\oplus P') \ten_R X} \\
+	\\
+	{(a\ten x, 0)} & {(P\ten_R X) \oplus (P' \ten_R X)} &&& {(P\ten_R Y) \oplus (P' \ten_R Y)} & {(a \ten \alpha(x), 0)}
+	\arrow["\in"{description}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-24pt}, maps to, from=1-1, to=1-6]
+	\arrow["{1\ten \alpha}", from=1-2, to=1-5]
+	\arrow[tail reversed, from=1-2, to=3-2]
+	\arrow[tail reversed, from=1-5, to=5-5]
+	\arrow["\ni"{description}, draw=none, from=1-6, to=1-5]
+	\arrow[from=1-6, to=5-6]
+	\arrow[maps to, from=3-1, to=1-1]
+	\arrow["\in"{description}, draw=none, from=3-1, to=3-2]
+	\arrow[tail reversed, from=3-2, to=5-2]
+	\arrow[maps to, from=5-1, to=3-1]
+	\arrow["\in"{description}, draw=none, from=5-1, to=5-2]
+	\arrow[from=5-2, to=5-5]
+	\arrow["\ni"{description}, draw=none, from=5-6, to=5-5]
+    \end{tikzcd}\]
+    By the previous settled special case, since $F$ is free, so $1\ten \alpha$ is injective. By restricting $1\ten\alpha$ to $P\ten_R X$ (and thus is mapped to $P\ten_R Y$) it is also injective.
+\end{proof}
+
+\begin{ex}
+    \hfill
+
+    \begin{enumerate}
+        \item $\Z/2\Z$ is not flat, since $\Z$ injects to $\Q$ yet $\Z/2\Z \ten_\Z \Z \cong \Z/2\Z$ and $\Z/2\Z \ten_\Z \Q \cong 0$, so no injective map is possible after tensoring.
+        \item $\Q$ is not projective but it is flat. Let $\alpha:X\hookrightarrow Y$ be a $\Z$-module homomorphism. Consider $1\ten\alpha:\Q\ten_\Z X \to \Q\ten_\Z Y$. Note for an element in $\Q\ten_\Z X$ takes the form and can be rewriten into
+        \begin{align*}
+            \frac{r_1}{s_1} \ten x_1 + \dots + \frac{r_m}{s_m} \ten x_m 
+            &= \frac{r_1'}{s} \ten x_1 \pd \frac{r_m'}{s} \ten x_m \\
+            &= \frac{1}{s} \ten r'_1x_1 \pd \frac{1}{s}\ten r'_mx_m \\
+            &= \frac{1}{s} \ten x
+        \end{align*}
+        where $s= \operatorname{lcm}(s_1 \many s_m)$. So $1\ten\alpha$ is injective, and $\Q$ is flat.
+        \item We have seen that $\Q/\Z$ is injective. We claim that it is not flat. Let $\varphi:\Z\hookrightarrow\Z$ be defined $n\mapsto 2n$. Recall that $\Q/\Z \ten_\Z \Z \cong \Q/\Z$. Then note
+        \[(1\ten\varphi)\br{\overline{\frac{1}{2}}\ten 1} = \overline{\frac{1}{2}} \ten \varphi(1) = \overline{\frac{1}{2}} \ten 2 = \overline{\frac{1}{2}}\cdot 2 \ten 1 = \overline{1} \ten 1= 0\]
+        since $\overline{1} \in \Z$, which is quotiened out in $\Q/\Z$.
+    \end{enumerate}
+\end{ex}
+
+\medskip
+
+\begin{defn} [Functor adjunction]
+    Let $\mathcal C$ and $\mathcal D$ be categories. Let $X$ and $Z$ be an object of $\mathcal C$ and $\mathcal D$ respectively. Let $\mathcal L:\mathcal C\to \mathcal D$ and $\mathcal R: \mathcal D\to \mathcal C$ be two functors.  We say that $(\mathcal L, \mathcal R)$ is a pair of adjoint functor if $\mor_\mathcal D(\mathcal L(X),Z)\cong \mor_\mathcal C (X,\mathcal R(Z))$.
+\end{defn}
+
+\medskip
+
+\begin{thm} [Tensor-Hom Adjunction] \label{thm: ten-hom adjunct}
+    Let $X$ be a right $R$-module, $Y$ be a $(R,S)$-bimodule, and $Z$ be a right $S$-module. Then $(-\ten_R Y,\ \h_S(Y,-))$ is a pair of adjunct functors. In other words, we have an isomorphism of abelian group:
+    \[\h_S(X\ten_R Y, Z)\cong \h_R(X, \h_S(Y,Z))\]
+\end{thm}
+\begin{proof}
+    Define $f:\h_S(X\ten_R Y, Z) \to \h_R(X, \h_S(Y,Z))$ where 
+    \[f: \varphi \mapsto \tilde\varphi:X\to \h_S(Y,Z)\]
+    and $\tilde\varphi$ is defined by $x\mapsto \tilde\varphi_x(y) := \varphi(x\ten y)$. Our goal is to construct a map $g$ and show that $f\circ g$ and $g\circ f$ are identity map on their respective domain, i.e. they are isomorphisms.
+
+    We first need to show that $f$ is well-defined, which will be broken down into several item. First, we show that $f(\varphi)$ is really an $R$-module homomorphism For any $r\in R$, $x\in X$, and $y\in Y$, we have
+    \begin{align*}
+            ((f(\varphi))(xr))(y) 
+            &= (\tilde\varphi(xr))(y) \\
+            &= \tilde\varphi_{xr}(y) \\
+            &= \varphi(xr\ten y) \\
+            &= \varphi(x\ten ry) \\
+            &= \tilde\varphi_x(ry) \\
+            &= (\tilde\varphi_x\cdot r)(y) \\
+            &= ((f(\varphi))(x)\cdot r)(y)
+        \end{align*}
+    This shows $f(\varphi)$ respects $R$-action. Next show that $(f(\varphi))(x) = \tilde\varphi_x$ is really a $S$-module homomorphism. For any $s\in S$, we have
+    \begin{align*}
+            ((f(\varphi))(x))(ys) 
+            &= \tilde\varphi_x(ys) \\
+            &= \varphi(x\ten ys)\\
+            &= \varphi(x\ten y) s \\
+            &= \tilde\varphi_x(y) s\\
+            &= ((f(\varphi))(x))(y) s
+        \end{align*}
+    This shows that $(f(\varphi))(x) = \tilde\varphi_x$ respect $S$-action.
+
+    Suppose given $\psi\in \h_R(X, \h_S(Y,Z))$. We define $\beta: X\times Y \to Z$ by 
+    \[\beta: (x,y)\mapsto (\psi(x))(y)\]
+    We claim that $\beta$ is $R$-balanced, where one just have to verify all the axioms for $R$-balanced:
+    \[\beta(xr,y) = (\psi(xr))(y) = (\psi(x)\cdot r)(y) = (\psi(x))(ry) = \beta(x,ry)\]
+    and
+    \[\beta(x+x',y) = (\psi(x+x'))(y) = (\psi(x) + \psi(x'))(y) = (\psi(x))(y) + (\psi(x'))(y) = \beta(x,y) + \beta(x',y)\]
+    and 
+    \[\beta(x,y+y') = (\psi(x))(y+y') = (\psi(x))(y) + (\psi(x))(y') = \beta(x,y) + \beta(x,y')\]
+    Since $\beta:X\times Y\to Z$ is an $R$-balanced map, by the universal property of tensor product, there exists $R$-homomorphism $\psi':X\ten_R Y\to Z$ such that $x\ten y \mapsto (\psi(x))(y)$. Thus, for all $\psi\in \h_R(X, \h_S(Y,Z))$ we are able to get a respective $\psi'$.
+    
+    We then define $g:\h_R(X, \h_S(Y,Z))\to\h_S(X\ten_R Y, Z)$ where 
+    \[g: \psi \mapsto \psi' :X\ten_R Y \to Z\]
+    where $\psi':x\ten y \mapsto \psi'(x\ten y) = (\psi(x))(y)$. We claim that $f$ and $g$ are invserses of each other. To see this, we first show $(f\circ g)(\psi) = \psi$. For the sake of readability, we write $(f\circ g)(\psi) = f(g(\psi))= f(\psi') = \tilde{\psi'}$ 
+    \[(((f\circ g)(\psi))(x))(y) = (\tilde{\psi'}(x))(y) = \psi'_x(y) = \psi' (x\ten y) = (\psi(x))(y)\]
+    Next, we have to show $(g\circ f)(\varphi) = \varphi$.
+    \[((g\circ f)(\varphi))(x\ten y) = (f(\varphi))'(x\ten y) = ((f(\varphi))(x))(y) = \tilde\varphi_x(y) = \varphi(x\ten y)\] 
+    Thus we have shown that $f$ and $g$ are isomorphisms. This completes the proof.
+\end{proof}
+
+\begin{re}
+    The intuition of the defined map $f$ is as follow: for $f$, a homomorphism $\varphi$ that initially maps $x\ten y$ to $\varphi(x\ten y)$, is separated into stages: first an element $x$ of $X$ determines the image map, then it takes all $y$ to $\varphi(x\ten y)$.
+    \[f:\varphi\mapsto (x\mapsto (y\mapsto \varphi(x\ten y)))\]
+    For $g$, a homomorphism $\psi$ works as follow: given an $x\in X$, it defines another homomorphism $\psi(x)$, and this homomorphism sends $y$ to $(\psi(x))(y)$. This is exactly the image of $x\ten y$ mapped by $g$.
+    \[\psi \mapsto (x\ten y \mapsto (\psi(x))(y))\]
+\end{re}
+
+\medskip
+
+\begin{cor}
+    Let $R$ be a commutative ring. Then the tensor product of two projective $R$-module is projective.
+\end{cor}
+\begin{proof}
+    Let $R$ be a commutative ring. Let $P$ and $P'$ be projective $R$-modules. By definition of projective modules, suppose we have $X$ and $Y$ are $R$-modules, let $\beta:X\twoheadrightarrow Y$ and $h:P\ten_R P' \to Y$ be $R$-module homomorphisms where $\beta$ is a surjective $R$-module homomorphism:
+    \[\begin{tikzcd}[sep=small]
+	&& {P\ten_R P'} \\
+	\\
+	X && Y
+	\arrow["{?}"{description}, dashed, from=1-3, to=3-1]
+	\arrow["h", from=1-3, to=3-3]
+	\arrow["\beta"', two heads, from=3-1, to=3-3]
+    \end{tikzcd}\]
+    We want to construct a map from $P\ten_R P' \to X$. First, note that $\beta$ induces the following surjective map
+    \[\beta_* : \h_R(P', X) \twoheadrightarrow \h_R(P',Y)\]
+    where $\alpha\mapsto \beta\circ \alpha$. This further induces a surjective map
+    \[(\beta_*)_*:\h_R(P,\h_R(P',X))\twoheadrightarrow \h_R(P,\h_R(P',Y))\]
+    With this, due to tensor-hom adjunction, we have 
+    \[\begin{tikzcd}[sep=small]
+	& {f(\gamma)} && {(\beta_*)\circ (f(\gamma))} \\
+	& {\h_R(P,\h_R(P',X))} && {\h_R(P,\h_R(P',Y))} \\
+	\\
+	\gamma & {\h_R(P\ten_R P', X)} && {\h_R(P\ten_R, P', Y)} & h
+	\arrow[maps to, from=1-2, to=1-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-2, to=2-2]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-4, to=2-4]
+	\arrow[curve={height=-24pt}, maps to, from=1-4, to=4-5]
+	\arrow["{(\beta_*)_*}", two heads, from=2-2, to=2-4]
+	\arrow["g", from=2-4, to=4-4]
+	\arrow[curve={height=-24pt}, maps to, from=4-1, to=1-2]
+	\arrow["\in"{description}, draw=none, from=4-1, to=4-2]
+	\arrow[curve={height=30pt}, maps to, from=4-1, to=4-5]
+	\arrow["f", from=4-2, to=2-2]
+	\arrow["\ni"{description}, draw=none, from=4-5, to=4-4]
+    \end{tikzcd}\]
+    where $f$ and $g$ are as defined in Theorem \ref{thm: ten-hom adjunct}. Here the element $\gamma$ is explicit defined according to the following argument:
+    \begin{itemize}
+        \item Due to tensor-hom adjunction, there must be an isomorphic copy of $h$ in $\h_R(P,\h_R(P',Y))$.
+        \item Since $(\beta_*)_*$ is surjective, there must be a pre-image of the isomorphic copy of $h$,
+        \item Again, due to tensor-hom adjunction, there must be an isomorphic copy of the pre-image of isomorphic copy of $h$. We define it to be $\gamma$.
+    \end{itemize}
+    We claim that $\beta\circ \gamma = h$. We want to show that for any $s\in P$ and $t\in P'$, we must have $(\beta\circ\gamma)(s\ten t) = h(s\ten t)$. Note that 
+    \begin{align*}
+        h(s\ten t)
+        &= (g(\beta_* \circ f(\gamma)))(s\ten t) \\
+        &= (g(\beta_* \circ \tilde\gamma))(s\ten t)\\
+        &= (\beta_* \circ \tilde\gamma)'(s\ten t)\\
+        &= ((\beta_* \circ \tilde\gamma)(s)) (t) \\
+        &= (\beta_* (\tilde\gamma_s))(t) \\
+        &= (\beta\circ \tilde\gamma_s)(t) \\
+        &= \beta(\tilde\gamma_s(t)) \\
+        &= \beta(\gamma(s\ten t)) \\
+        &= (\beta\circ \gamma)(s\ten t)
+    \end{align*}
+    This shows that $h= \beta\circ \gamma$, and thus we have shown that $P\ten_R P$ is projective.
+\end{proof}
+
+\newpage
+\section{Chain Complex}
+\subsection{Chain Complex and Homology}
+
+\begin{defn}[Chain complex and cochain complex]
+    A chain complex is a sequence
+    \[\mathcal C := (X_{\bullet}, d_\bullet):\dots \to X_1 \xto {d_1} X_0 \xto{d_0} X_{-1} \xto{d_{-1}} X_{-2} \to \dots\]
+    where $X_i$ are $R$-modules and $d_i$ are $R$-module homomorphism, such that $d_{n-1}\circ d_n = 0$. In other words $\im d_n \subseteq \ker d_{n-1}$.
+
+    Similarly, a cochain complex is a sequence 
+    \[\mathcal D:=(X^{\bullet}, d^\bullet):\dots \ot X^1 \xot {d^1} X^0 \xot{d^0} X^{-1} \xot{d^{-1}} X^{-2} \ot \dots\]
+    where $X^i$ are $R$-modules and $d^i$ are $R$-module homomorphism, such that $d^{n}\circ d^{n-1} = 0$. In other words $\im d^{n-1} \subseteq \ker d^{n}$.
+\end{defn}
+
+\medskip
+
+\begin{defn} [Boundedness]
+    A chain complex is said to be bounded above if there exists $N\in \Z$ such that $X_m=0$ for all $m<N$. Similarly, a cochain complex is said to be bounded below if there exists $M\in \Z$ such that $X^m=0$ for all $m<M$
+\end{defn}
+
+\medskip
+
+\begin{defn} [Homology]
+    Suppose given a chain complex $\mathcal C:=(X_\bullet, d_\bullet)$. The $n$-th homology is defined to be the quotient group
+    \[H_n(\mathcal C):= \frac{\ker d_n}{\im d_{n+1}}\]
+\end{defn}
+
+\begin{defn} [Cohomology]
+    Suppose given a cochain complex $\mathcal D:=(X^\bullet, d^\bullet)$. The $n$-th cohomology is defined to be the quotient group
+    \[H^n(\mathcal D):= \frac{\ker d^{n+1}}{\im d^{n}}\]
+\end{defn}
+
+\begin{re} [(Co)homology and exactness]
+    Homology and cohomology detects failure of exactness. In particular, the $n$-th homology (cohomology) is $0$ if and only if the $n$-th position of the chain (cochain) complex is exact. A (co)chain complex is said to be exact if it is exact at every term. It should be clear that, thus, a (co)chain complex is exact if and only if the (co)homology is always exact.
+\end{re}

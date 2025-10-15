@@ -1,0 +1,302 @@
+\begin{pro} \label{pro: indi sum}
+    Let $N_1, \dots, N_m$ be sub-modules of an $R$-module $M$. TFAE:
+    \begin{enumerate}
+        \item The map $\pi:N_1 \times \dots \times N_m \to N_1 \pd N_m$ where $\br{x_1, \dots, x_m}\mapsto x_1 \pd x_m$ is an isomorphism of $R$-module.
+        \item For every $j\in \sbr{1,\dots, m}$ we have 
+        \[N_j \cap \sum_{i\neq j}N_i = \sbr{0}\]
+        \item For any $x\in N_1\pd N_m$, there exists a unique $x_i\in N_i$ for every $i$ such that $x=x_1 \pd x_m$.
+    \end{enumerate}
+\end{pro}
+\begin{proof}
+    $[1\implies 2]$. Suppose not, say there exists non-zero element $x_j\in N_j \cap \sum_{i\neq j}N_i$. So we can express 
+    \[x_j=x_1 \pd x_{j-1}+x_{j+1}\pd x_m \neq 0\]
+    where $x_i\in N_i$ for all $i=1\many j-1,\ j+1\many m$. This implies that 
+    \[\pi\br{\mathbf{0}, x_j, \mathbf{0}} = \pi\br{x_1 \many x_{j-1},\ x_{j+1}\many x_m}\implies \pi\br{x_1 \many x_{j-1}, -x_j,\ x_{j+1}\many x_m}=0\]
+    So $\br{x_1 \many x_{j-1}, -x_j,\ x_{j+1}\many x_m}\in \ker \pi$. By assumption $\pi$ is isomorphism, so it is injective and has trivial kernel, indicating that $\br{x_1 \many x_{j-1}, -x_j,\ x_{j+1}\many x_m}=(0\many 0)$ and thus $x_j=0$, which is a contradiction.
+
+    $[2\implies 3]$. Let $x_i\in N_i$ and $y_i\in N_i$ be chosen for all $i$ such that
+    \[\sum_{i=1}^m x_i = \sum_{i=1}^m y_i\]
+    Note that for any $j$ we have
+    \[N_j \ni x_j - y_j = \sum_{i\neq j}\br{y_i-x_i}\in \sum_{i\neq j}N_i\]
+    And so we see that $x_j-y_j$ is a common element of 
+    \[N_j \cap \sum_{i\neq j}N_i = \sbr{0}\]
+    and thus implying that $x_j-y_j = 0$, so $x_j = y_j$. Since $j$ is chosen to be arbitrary, we can repeat the procedure and thus showing that there is a unique representation.
+
+    $[3 \implies 1]$. Define $\pi: N_1 \times \dots \times N_m\to N_1 \pd N_m$ such that $\br{x_1, \dots, x_m}\mapsto x_1 \pd x_m$. It is easy to verify that $\pi$ is a $R$-module homomorphism and is surjective. For injectivity, suppose that 
+    \[\pi\br{x_1, \dots, x_m}=\pi\br{y_1, \dots, y_m}\]
+    and so $x_1\pd x_m = y_1 \pd y_m$. By assumption, the representation is unique, and thus we have $x_i = y_i$ for all $i=1, 2, \dots, m$. 
+\end{proof}
+
+\begin{re} [Internal direct sum]
+    In any cases in Proposition \ref{pro: indi sum}, we say that $\sum_{i=1}^m N_i$ is a (internal) direct sum and we denote it by 
+    \[\bigoplus_{i=1}^m N_i\]
+\end{re}
+
+\newpage
+\subsection{Free Module and Tensor Product}
+\begin{defn} [Free on a subset]
+    Let $F$ be an $R$-module. We say that $F$ is free on a subset $A$ of $F$ if for every $x\in F$ there exist unique non-zero elements $r_1, \dots, r_m\in R$ and unique choice of $a_1, \dots, a_m$ such that 
+    \[x= r_1a_1 \pd r_m a_m\]
+    If so, we say that $A$ is a (free) basis of $F$. Also, when $R$ is unital and commutative, the cardinality $|A|$ of $A$ is well-defined, and we define the rank of $F$ be $|A|$.
+\end{defn}
+
+\medskip
+
+\begin{ex}
+    \hfill
+    \begin{enumerate}
+        \item $_RR$ is free on $\sbr{1}$ since for every $r\in R$ we have $r=r\cdot 1$.
+        \item $\bigoplus_RR$ is free on the 'standard free basis' $\sbr{\mathbf{e}_i = \br{\mathbf{0}, 1_i, \mathbf{0}}}_i$.
+        \item Let $R=\Z$. Then the $\Z$-module $\Z/2\Z$ is not free on $\sbr{\bar{1}}$ since $\bar{0}=1\cdot \bar{0}=2\cdot \bar{0}=4\cdot \bar{0}$.
+    \end{enumerate}
+\end{ex}
+
+\medskip
+
+\begin{defn} [Free on a set]
+    Let $A$ be a set and $F$ be an $R$-module. We say that $F$ is free on $A$ if there exists an injective map $\iota: A\to F$ such that for any $R$-module $M$ and map of set $\varphi:A\to M$, there exists a unique $R$-module homomorphism $\Phi:F\to M$ such that the the following diagram commutes:
+    \[\begin{tikzcd}
+	   A && F \\
+	   \\
+	   && M
+	   \arrow["\iota", hook, from=1-1, to=1-3]
+	   \arrow["\varphi"', from=1-1, to=3-3]
+	   \arrow["{\exists! \Phi}", dashed, from=1-3, to=3-3]
+    \end{tikzcd}\]
+\end{defn}
+
+\medskip
+
+\begin{lem} [Universal property of free modules]
+    If $F$ is a free $R$-module on $A$ a subset of $F$, then $F$ is free on set $A$ where the map $\iota:A \hookrightarrow F$ is the inclusion map.
+\end{lem}
+\begin{proof}
+    Let $M$ be an $R$-module and $\varphi:A\to M$ is a given map of set. Suppose that $F$ is free on a subset $A\subseteq F$, which means that any $x\in F$ has unique representation with respect to $A$. Write $x= r_1a_1 \pd r_m a_m$ to denote its unique representation.
+
+    We define a map $\Phi:F\to M$ such that $x=r_1a_1 \pd r_ma_m \mapsto r_1\varphi(a_1) \pd r_m\varphi(a_m)$. We claim that $\Phi$ is an $R$-module homomorphism. Let $y=r'_1a'_1 \pd r'_ma'_m$ be an element of $F$. So $x+y = r_1a_1 \pd r_ma_m + r'_1a'_1 \pd r'_ma'_m$ and thus
+    \[\Phi(x+y) = r_1\varphi(a_1) \pd r_m\varphi(a_m) + r'_1\varphi(a'_1) \pd r'_m\varphi(a'_m) = \Phi(x) + \Phi(y)\]
+    Also, let $r\in R$, and so $rx = rr_1 a_1 \pd rr_ma_m$, we have
+    \[\Phi(rx) = rr_1 \varphi(a_1)\pd rr_m \varphi(a_m) = r(r_1 \varphi(a_1)\pd r_m \varphi(a_m)) = r\varphi(x)\]
+    This shows that $\Phi$ is indeed an $R$-module homomorphism. 
+    
+    We now check if commutativity holds, i.e. $\Phi\circ \iota = \varphi$. Let $a\in A\subseteq F$, by definition $\iota(a) = a\in F$. Since $F$ is free on the subset $A$, so the unique representation of $a$ is $a$. Thus $(\Phi\circ\iota)(a) = \Phi(a) = \varphi(a)$, thus commutativity holds.
+
+    To check uniqueness, suppose that $\Psi:F\to M$ is an $R$-module homomorphism such that $\Psi\circ \iota = \varphi$. But we know that $\Psi\circ \iota = \varphi$, so $\Psi\circ \iota = \Phi \circ \iota$, implying that $\Psi = \Phi$ on $A\subseteq F$. But $F$ is free on the subset $A$, so the equality of the $R$-module homomorphisms $\Psi$ and $\Phi$ can be extended to the whole $F$. Thus $\Psi = \Phi$, showing that $\Phi$ is indeed unique. This completes the proof.
+\end{proof}
+
+\begin{thm}
+    Let $A$ be a set and $R$ be a ring. Define
+    \[F(A):= \sbr{f:A\to R \mid  f(a)\neq 0 \text{ for finitely many }a\in A}\]
+    Then $F(A)$ is free on set $A$ with group operation
+    \[\br{f+g}\br{a} = \func{f}{a} + \func{g}{a}\]
+    and ring action
+    \[\func{\br{r\cdot f}}{a}:= \func{rf}{a}\]
+    where $\iota:A\to \func{F}{A}$ is defined to be $a\mapsto \varepsilon_a$ where
+    \[\varepsilon_a:b\mapsto 
+    \begin{cases}
+        0 & ,b\neq a\\
+        1 & , b=a
+    \end{cases}\]
+\end{thm}
+\begin{proof}
+    It is clear that $F(A)$ with the defined group operation and ring action is an $R$-module. Before the proof, we claim that $F(A)$ is free on the subset $\iota(A)$. To see this, for any $f\in F(A)$ we claim that the unique representation of $f$ over $\iota(A)$ is 
+    \[f(x) =\sum_{a\in A} f(a)\varepsilon_a(x)\]
+    \begin{enumerate}
+        \item We first show that the declared linear combination is true. Let $x=b\in A$, then 
+        \[\sum_{a\in A}f(a) \varepsilon_a(b) = \sum_{\substack{a\in A\\ a\neq b}}f(a) \varepsilon_a(b) + f(b) \varepsilon_b(b) = 0 + f(b)=f(b)\]
+        since $\varepsilon_a(b)=0$ for all $a\neq b$ and $\varepsilon_b(b) = 1$. This shows that the declared identity holds.
+        \item We show that it is indeed unique. Suppose we can write $f$ into 
+        \[f(x) = \sum_{a\in A}r_a \varepsilon_a(x)\]
+        Then we have 
+        \[ f(b) = \sum_{a\in A} r_a \varepsilon_a(b) = r_b\varepsilon_b(b) = r_b\]
+        for any $b\in A$. Thus the declared representation is unique.
+    \end{enumerate}
+    This shows that $F(A)$ is free on the subset $\iota(A)$. 
+
+    Next, suppose given $M$ is an $R$-module and $\varphi:A\to M$ is a map of sets. Define $\varphi':\iota(A)\to M$ where $\varepsilon_a\mapsto \varphi(a)$, then we have the following commutative diagram:
+    \[\begin{tikzcd}
+	   A && \iota(A) \\
+	   \\
+	   && M
+	   \arrow["\iota", hook, from=1-1, to=1-3]
+	   \arrow["\varphi"', from=1-1, to=3-3]
+	   \arrow["{\varphi'}", from=1-3, to=3-3]
+    \end{tikzcd}\]
+    On the other hand, since $F(A)$ is free on the subset $\iota(A)$, so we have the following commutative diagram:
+    \[\begin{tikzcd}
+	   \iota(A) && F \\
+	   \\
+	   && M
+	   \arrow["j", hook, from=1-1, to=1-3]
+	   \arrow["\varphi'"', from=1-1, to=3-3]
+	   \arrow["{\exists! g}", dashed, from=1-3, to=3-3]
+    \end{tikzcd}\]
+    where $j$ is the inclusion map, and the existence of $g$ is ensured by the universal property of free modules. Glueing the two obtained commutative diagram together we get
+    \[\begin{tikzcd}
+	   A && \iota(A) && F\\
+	   \\
+	   && M
+	   \arrow["\iota", hook, from=1-1, to=1-3]
+	   \arrow["\varphi"', from=1-1, to=3-3]
+	   \arrow["{\varphi'}", from=1-3, to=3-3]
+       \arrow["j", from=1-3, to=1-5]
+       \arrow["g", dashed, from=1-5, to=3-3]
+    \end{tikzcd}\]
+    Since $\varphi = \varphi'\circ \iota$ and $\varphi' = g\circ j$, altogether we get $\varphi = g \circ (j\circ \iota)$. This shows that $F(A)$ is free on set $A$.
+\end{proof}
+
+\begin{cor}
+    \hfill
+    \begin{enumerate}
+        \item Let $F_1$ and $F_2$ be $R$-modules free on a set $A$ with inclusion maps $\iota:A\to F_1$ and $j:A\to F_2$. Then there exists a unique isomorphism $\Phi:F_1\to F_2$ such that $\Phi\circ\iota = j$.
+        \item If $F$ is an $R$-module free on $A$, then $F\cong F(A)$.
+    \end{enumerate}
+\end{cor}
+\begin{proof}
+    Let $F_1$ and $F_2$ be $R$-modules free on a set $A$ with inclusion maps $\iota:A\to F_1$ and $j:A\to F_2$. Consider the following commutative diagram 
+    \[\begin{tikzcd}
+	   A && F_1 \\
+	   \\
+	   && F_2
+	   \arrow["\iota", hook, from=1-1, to=1-3]
+	   \arrow["j"', from=1-1, to=3-3]
+	   \arrow["{\exists! \Phi}", dashed, from=1-3, to=3-3]
+    \end{tikzcd}\]
+    where the existence of $\Phi$ is ensured by the universal property of free module. Similarly we have
+    \[\begin{tikzcd}
+	   A && F_2 \\
+	   \\
+	   && F_1
+	   \arrow["j", hook, from=1-1, to=1-3]
+	   \arrow["\iota"', from=1-1, to=3-3]
+	   \arrow["{\exists! \Psi}", dashed, from=1-3, to=3-3]
+    \end{tikzcd}\]
+    Note that $j = \Phi \circ \iota$ and $\iota = \Psi \circ j$. We claim that $\Psi$ and $\Phi$ are isomorphisms pair of $F_1$ and $F_2$, that is, we show that $\Psi \circ \Phi = \id_{F_1}$ and $\Phi \circ \Psi = \id_{F_2}$. Simply note that 
+    \[\Phi \circ \iota = j \implies \Psi\circ (\Phi \circ \iota) = \Psi \circ j = \iota \implies (\Psi \circ \Phi)(\iota(a)) =\iota(a)\quad  \forall a\in A\]
+    This implies $\Psi\circ \Phi$ fixes $\iota(A)\subseteq F_1$. But since $F_1$ is free on set $A$, so it can be extend into whole $F_1$, thus $\Psi \circ \Phi = \id_{F_1}$. We can use the similar argument to show $\Phi \circ \Psi = \id_{F_2}$, and is thus omitted.
+
+    We have proven that $F(A)$ is an $R$-module that is free on set $A$. If $F$ is an $R$-module free on $A$, it follows directly from the first statement that $F\cong F(A)$. This completes the proof.
+\end{proof}
+
+The following definition extends the notion of linear map from linear algebra into the realm of module:
+\begin{defn} [$R$-balanced map]
+    Let $_RN, M_R, L$ be abelian groups. Let $\beta:M\times N\to L$ be a map. We say that $\beta$ is an $R$-balanced map if it satisfies all the following for any $m, m'\in M$, $n, n'\in N$ and $r\in R$
+    \begin{enumerate}
+        \item $\beta\br{m+m',n}=\func{\beta}{m,n}+ \func{\beta}{m',n}$
+        \item $\func{\beta}{m,n+n'} = \func{\beta}{m,n} + \func{\beta}{m,n'}$
+        \item $\func{\beta}{mr,n} = \func{\beta}{m,rn}$
+    \end{enumerate}
+\end{defn}
+
+\medskip
+
+\begin{defn} [Tensor product]
+    Let $M_R$ and $_RN$ be $R$-module. Let $\func{F}{M\times N}$ be the free $\Z$-module on the set $M\times N$. Let $H$ be a subgroup of $\func{F}{M\times N}$ generated by elements of the form:
+    \begin{itemize}
+        \item $\br{m+m', n}-\br{m,n}-\br{m', n}$
+        \item $\br{m, n+n'}-\br{m,n}-\br{m, n'}$
+        \item $\br{m\cdot r, n}-\br{m, r\cdot n}$
+    \end{itemize}
+    for all $m,m'\in M$, $n,n'\in N$ and $r\in R$.
+
+    The tensor product of $M$ and $N$ with respect to $R$ is defined to be the quotient group
+    \[M\otimes _R N:= \func{F}{M\times N}/H\]
+    where the tensor product of two elements $m\in M$ and $n\in N$ is defined to be
+    \[m\otimes n := \br{m,n}+H\]
+    Then the map $\iota:M\times N \to M\otimes_R N$ where $\br{m,n}\mapsto m\otimes n$ is an $R$-balanced map.
+\end{defn}
+
+\medskip
+
+\begin{thm} [Universal property of tensor product] \label{thm: uni prop tens}
+    Let $M_R$ and $_RN$ be $R$-modules, and consider their tensor product $M\ten_R N$ with the map $\iota:M\times N\to M\ten_RN$ where $\br{m,n}\mapsto m\ten n$. Then
+    \begin{enumerate}
+        \item For every abelian group $L$ and every $R$-balanced map $\beta:M\times N\to L$, there exists a unique group homomorphism $\Phi: M\ten_R N\to L$ such that the following diagram commutes:
+            \[\begin{tikzcd}
+	           M\times N && M\ten_R N \\
+	           \\
+	           && L
+	           \arrow["\iota", hook, from=1-1, to=1-3]
+	           \arrow["\beta"', from=1-1, to=3-3]
+	           \arrow["{\exists! \Phi}", dashed, from=1-3, to=3-3]
+            \end{tikzcd}\]
+        \item Conversely, for every abelian group homomorphism $\Phi:M\ten_R N\to L$, then the map $\beta:M\times N\to L$ where $\beta:= \Phi\circ \iota$ is $R$-balanced. In particular, we have a bijection between the following sets:
+        \[\sbr{R \text{-balanced map where }\beta: M\times N\to L}\leftrightarrow \sbr{\text{group homomorphism } \Phi:M\ten_R N \to L}\]
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    Let $j:M\times N \to F(M\times N)$ be the inclusion map. Then the universal property of free modules implies the existence of $\zeta:F(M\times N)\to L$ such that $\zeta\circ j = \beta$:
+    \[\begin{tikzcd} [sep=small]
+	           M\times N && F(M\times N) \\
+	           \\
+	           && L
+	           \arrow["j", hook, from=1-1, to=1-3]
+	           \arrow["\beta"', from=1-1, to=3-3]
+	           \arrow["{\exists! \zeta}", dashed, from=1-3, to=3-3]
+    \end{tikzcd}\]
+    Let $H$ be the subgroup of $F(M\times N)$ as defined in the definition of tensor product. We claim that $H\subseteq \ker \zeta$, specifically we show that all the generators are mapped to $0$ by $\zeta$:
+    \begin{align*}
+        \zeta((m+m', n)-(m,n)-(m',n))
+        &= (\zeta\circ j)((m+m', n)-(m,n)-(m',n))\\
+        &= \beta((m+m', n)-(m,n)-(m',n))\\
+        &= 0
+    \end{align*}
+    where the last equality is because $\beta$ is an $R$-balanced maps. Similarly we can show for the other two forms of generators, and thus is omitted here. This shows that $H\subseteq \ker\zeta$.
+
+    Thus $\zeta$ induces a group homomorphism $\Phi: F(M\times N)/H \to L$ such that $\Phi(m\ten n) := \zeta(m,n)$.
+    \[\begin{tikzcd} [sep=small]
+	           M\times N && F(M\times N)/H \\
+	           \\
+	           && L
+	           \arrow["\iota", hook, from=1-1, to=1-3]
+	           \arrow["\beta"', from=1-1, to=3-3]
+	           \arrow["{\exists! \Phi}", dashed, from=1-3, to=3-3]
+    \end{tikzcd}\]
+    We check the commutativity:
+    \[(\Phi\circ \iota)((m,n)) = \Phi(m\ten n) = \zeta((m,n)) = \zeta(j(m,n)) = (\zeta\circ j)(m,n) = \beta((m,n)) \]
+    This shows that $\Phi\circ \iota = \beta$. Next we show that $\Phi$ is uniquely determined. Note that every element of $M\ten_R N$ takes the form $\sum(m_i\ten n_i)$. Then 
+    \[\Phi\br{\sum (m_i \ten n_i)} = \sum\br{\Phi(m_i \ten n_i)} = \sum \Phi(\iota((m_i,n_i))) = \sum(\Phi\circ \iota)((m_i,n_i)) = \sum\beta((m_i,n_i))\]
+    This shows that $\Phi$ is determined by $\beta$. If we have another group homomorphism $\Psi$ such that $\Psi\circ \iota = \beta$, then again we have
+    \[\Psi\br{\sum(m_i\ten n_i)} = \sum\beta((m_i, n_i))\]
+    which implies that $\Phi = \Psi$, showing $\Phi$ is indeed uniquely defined.
+
+    For the second statement, suppose given an abelian group homomorphism $\Phi:M\ten_R N\to L$, we check that $\beta:= \Phi\circ \iota$ is $R$-balanced (which is omitted here, since it simply follows from $R$-balanceness of tensor product). For the correspondence, we claim that the declared map $\beta$ is a one-to-one correspondence to $\Phi$. Suppose not, then there exists $\Psi$ such that $\Psi \circ \iota = \beta$, but then
+    \[\Psi \circ \iota = \beta = \Phi \circ \iota \implies \Psi(m\ten n) = \Phi(m\ten n) \forall (m,n)\in M\times N\]
+    This shows that $\Psi = \Phi$.
+\end{proof}
+
+\begin{re}
+    Note that the tensor product $M\ten_R N$ is defined as a quotient group, and thus any defined map on the tensor product must be examined to be well-defined. This is practically infeasible due to the complicated structure of the quotient group. This is where Theorem \ref{thm: uni prop tens} can come useful, since everything is already settled in the proof, and the only job remain for us to do is to prove that $\beta$ is an $R$-balanced map in order to apply this statement.
+\end{re}
+
+\medskip
+
+\begin{defn} [Bimodule]
+    Let $R$ and $S$ be rings. An $\br{R,S}$-bimodule $M$ is both $_RM$ and $M_S$ satisfying $(rm)s = r(ms)$, where the ring action notation is dropped for the sake of readability, for every $r,s\in R$ and $m\in M$. In this case, we denote $M$ as $_RM_S$.
+\end{defn}
+
+\medskip
+
+\begin{ex}
+    \hfill
+    \begin{enumerate}
+        \item Let $S, T$ be sub-rings of $R$. Then $_SR_T$ is a bimodule.
+        \item Let $I$ be an ideal of $R$. Then $_{R/I}(R/I)_R$ is a bimodule.
+        \item for every $R$-module $M$ where $R$ is commutative, the induced right action $m*r:= r\cdot m$ gives rise to bimodule $_RM_R$.
+        \item Consider modules $_RY_S$ and $Z_S$. We have seen that $M:=\h_S\br{Y_S, Z_S}$ is an abelian group where $\func{\br{\alpha + \beta}}{y}:= \func{\alpha}{y} + \func{\beta}{y}$. Then $M$ is a $R$-module with ring action $\func{(\alpha\cdot r)}{y}:= \func{\alpha}{r\cdot y}$ 
+        \item Consider $_RM$ be a $R$-module. If $S$ is contained in the center $\func{Z}{R}$, then we have bimodule $_RM_S$.
+    \end{enumerate}
+\end{ex}
+
+\medskip
+
+\begin{pro}
+    If we have modules $_SM_R$ and $_RN$, then $M\ten_R N$ is a left $S$-module.
+\end{pro}
+\begin{proof}
+    Define $\func{s}{m,n} = \br{sm,n}$ to be an action of $S$ on $\func{F}{M\times N}$. We need to show that $H\subseteq \func{F}{M\times N}$ is an $S$-submodule, which we will be omitted here. After showing that $H$ is an $S$-submodule, then by definition
+    \[M \ten _R N = \func{F}{M\times N}/H\]
+    and so $M\ten_R N$ is an $S$-module.
+\end{proof}
+
+\medskip

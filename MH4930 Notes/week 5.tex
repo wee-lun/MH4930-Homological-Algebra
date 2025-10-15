@@ -1,0 +1,336 @@
+\begin{pro} \label{pro: inj implies inj}
+    Let $X, Y$ and $V$ be $R$-modules. Let $\beta:X\to Y$ be an $R$-module homomorphism. The map $\beta_*: \h_R(V,X)\to \h_R(V,Y)$ where $f\mapsto \beta\circ f$ is as abelian group homomorphism. Furthermore, if $\beta$ is injective, then so is $\beta_*$. In other words, the SES
+    \[0\to X \xrightarrow{\beta} Y\]
+    implies that we have the SES
+    \[0 \to \h_R(V,X)\xrightarrow{\beta_*} \h_R(V,Y)\]
+\end{pro}
+
+\begin{proof}
+    Suppose $\beta$ is injective. Let $f\in \h_R(V,X)$ such that $\beta\circ f = 0$ for every $v\in V$. Then for any $v\in V$ we have
+    \[(\beta\circ f)(v)=0 \implies \beta(f(v)) = 0 \implies f(v)=0\]
+    since $\beta$ is injective. This shows that $f$ is a zero map, so $\beta_*$ is injective.
+\end{proof}
+\begin{re}
+    In general $\beta_*$ is not surjective even if $\beta$ is surjective.
+\end{re}
+
+\medskip
+
+\begin{thm} \label{thm: all exact}
+    Let $V, X, Y, Z$ be $R$-modules and
+    \begin{equation}\label{eqn: short seq}
+        0\to X \xrightarrow{\alpha} Y\xrightarrow{\beta} Z
+    \end{equation}
+    be a short sequence where $\alpha$ and $\beta$ are $R$-module homomorphisms. 
+    \begin{enumerate}
+        \item If the above short sequence \ref{eqn: short seq} is exact, then the following is exact:
+    \[0 \to \h_R(V,X)\xrightarrow{\alpha_*}\h_R(V,Y)\xrightarrow{\beta_*}\h_R(V,Z)\]
+        \item $0 \to \h_R(V,X)\xrightarrow{\alpha_*}\h_R(V,Y)\xrightarrow{\beta_*}\h_R(V,Z)$ is exact for all $V$ if and only if $0\to X \xrightarrow{\alpha} Y\xrightarrow{\beta}Z$ is exact.
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    For the first statement, suppose that the short sequence \ref{eqn: short seq} given exists. Then $\alpha$ is injective, and thus $\alpha_*$ is injective by Proposition \ref{pro: inj implies inj}. We now prove that $\im \alpha_* = \ker \beta_*$. Firstly, let $f\in \h_R(V,X)$. Since 
+    \[(\beta_*\circ \alpha_*)(f) = \beta \circ \alpha \circ f = 0 \circ f = 0\]
+    This implies that $\im\alpha_*\subseteq \ker\beta_*$. Next, to show $\ker\beta_*\subseteq \im \alpha_*$, let $g\in \ker \beta_*$, so for any $v\in V$ we have
+    \[(\beta_*(g))(v) = \beta(g(v))=0\]
+    Note it implies that $g(v) \in \ker \beta = \im\alpha$ due to the exactness of SES \ref{eqn: short seq}. So there exists $x_v\in X$ such that $\alpha(x_v) = g(v)$. Next, define the map $f:V\to X$ such that $v\mapsto x_v$. The map $f$ is well-defined since $\alpha$ is injective by assumption. We claim that $f$ is a $R$-module homomorphism. Indeed, for any $v,v'\in V$, let $\alpha(x_v) = g(v)$ and $\alpha(x_{v'}) = g(v')$. Then 
+    \[\alpha(x_v + x_{v'}) = \alpha(x_v) + \alpha(x_{v'}) = g(x_v) + g(x_{v'}) = g(x_v + x_{v'}) \]
+    This proves that $f(v+v) = x_{v+v'} = x_v + x_{v'} = f(v) + f(v')$. Next, let $r\in R$, then 
+    \[\alpha(rx_v) = r\alpha(x_v) = rg(v) = g(rv)\]
+    This proves that $f(rv) = x_{rv} = rx_v = rf(v)$, and so $f$ is really an $R$-module homomorphism. Finally, note that
+    \[(\alpha_*(f))(v) = (\alpha\circ f) (v) = \alpha(f(v)) = \alpha(x_v) = g(v)\]
+    Since $v\in V$ is arbitrary, we conclude that $\alpha_*(f)=g$. This proves that $\ker\beta_*\subseteq \im \alpha_*$, which also proved the first statement.
+
+    For the second statement, note that the backward direction is equivalent to the first statement, which we have proven it to be true. For the forward direction, suppose that 
+    \[0 \to \h_R(V,X)\xrightarrow{\alpha_*}\h_R(V,Y)\xrightarrow{\beta_*}\h_R(V,Z)\]
+    is exact for all $V$. It suffices to take $V=R$, since we have that $\h_R(R, X) \cong X$ where the isomorphism is given by $f\mapsto f(1)$ This is similar for $Y$ and $Z$. Thus we have the following diagram:
+    \[\begin{tikzcd}[sep=small]
+	0 && {\h_R(R,X)} && {\h_R(R,Y)} && {\h_R(R,Z)} && 0 \\
+	\\
+	0 && X && Y && Z && 0
+	\arrow[from=1-1, to=1-3]
+	\arrow["{\alpha_*}", from=1-3, to=1-5]
+	\arrow[tail reversed, from=1-3, to=3-3]
+	\arrow["{\beta_*}", from=1-5, to=1-7]
+	\arrow[tail reversed, from=1-5, to=3-5]
+	\arrow[from=1-7, to=1-9]
+	\arrow[tail reversed, from=1-7, to=3-7]
+	\arrow[from=3-1, to=3-3]
+	\arrow["\alpha"', from=3-3, to=3-5]
+	\arrow["\beta"', from=3-5, to=3-7]
+	\arrow[from=3-7, to=3-9]
+    \end{tikzcd}\]
+    where the linking between both sequences is the isomorphism defined above. We claim that the diagram is commutative. We only prove the commutativity between $\h_R(R,X)- \h_R(R,Y)-Y-X$, i.e. the first square. Let $f\in \h_R(R,X)$. Sending $f$ along the upper path we get $(\alpha_* (f))(1) = (\alpha\circ f)(1) = \alpha(f(1))$. On the other hand, sending $f$ along the lower path we get $\alpha(f(1))$. This shows commutativity in the first square. Same argument can be applied to show commutativity in the second square.
+    
+    We need to show that $\im \alpha = \ker \beta$. We first show $\im\alpha \subseteq
+     \ker \beta$. Let $x\in X$, so there exists $f_x\in \h_R(R,X)$ such that $f_x(1) = x$. Sending $f_x$ along the first row, and due to exactness we have that 
+    \[(\beta_*\circ \alpha_*)(f_x) = 0 \implies \beta\circ \alpha \circ f_x = 0\]
+    Therefore $(\beta\circ \alpha \circ f_x)(1) = \beta(\alpha(f_x(1))) = \beta(\alpha(x)) = 0$. This proves that $\alpha(x)\in \ker\beta$, implying that $\im\alpha \subseteq \ker\beta$.
+    
+    Next, to show $\ker \beta \subseteq \im \alpha$, let $y\in \ker \beta$, i.e. $\beta(y) = 0$. Then there exists $f_y\in \h_R(R,Y)$ such that $f_y(1)= y$. Note that 
+    \[(\beta_*(f_y))(1) = \beta(f_y(1)) = \beta(y) = 0 \in Z\]
+    But $\beta_*(f_y)\in \h_R(R,Z)$, and there is an isomorphism between $\h_R(R,Z)$ and $Z$. Since $(\beta_*(f_y))(1) = 0 = 0(1)$, we see that $\beta_*(f_y)$ must be the zero map due to the injectivity of the isomorphism. This further implies that $f_y\in \ker \beta_*$, and by exactness in first row we get $f_y\in \im \alpha_*$. So, there exists $g_x\in \h_R(R,X)$ where $g_x(1):= x$ such that $\alpha_*(g_x) = f_y$. Thus 
+    \[(\alpha_*(g_x))(1) = f_y(1)\implies (\alpha\circ g_x)(1) = y \implies \alpha(g_x(1)) = \alpha(x) = y\]
+    Therefore $y\in \im \alpha$, which proves that $\ker \beta\subseteq \im \alpha$. This completes the proof.
+\end{proof}
+
+\begin{pro}
+    Let $X, Y, Z$ be $R$-module. Then
+    \begin{enumerate}
+        \item $\h_R(X, Y\oplus Z)\cong \h_R(X,Y)\oplus \h_R(X,Z)$
+        \item $\h_R(X\oplus Y, Z)\cong \h_R(X,Z)\oplus \h_R(Y,Z)$
+    \end{enumerate}
+\end{pro}
+\begin{proof}
+    We only prove the first statement. Consider a map from $\h_R(X, Y\oplus Z)$ to $\h_R(X,Y)\oplus \h_R(X,Z)$ such that 
+    \[f\mapsto (\pi_Y\circ f, \pi_Z\circ f)\]
+    This is an isomorphism of abelian groups.
+\end{proof}
+
+\begin{re}
+    The above can be generalized to infinite direct sum, where we have that
+    \[\h_R\br{\bigoplus_{i\in I}X_i, Y}\cong \prod_{i\in I} \h_R(X_i, Y)\]
+\end{re}
+
+\newpage
+
+
+\subsection{Projective Modules and Introduction to Categories}
+
+\begin{pro} [Equivalent Condition of Projective Module] \label{pro: Proj Mod}
+    Let $P$ be an $R$-module. TFAE:
+    \begin{enumerate}
+        \item \textbf{Any} SES $0 \to X\xrightarrow{\alpha} Y\xrightarrow{\beta} Z\to 0$ gives rise to a SES 
+        \[0 \to \h_R(P,X)\xrightarrow{\alpha_*}\h_R(P,Y)\xrightarrow{\beta_*}\h_R(P,Z)\to 0\]
+        \item For any surjective $R$-module homomorphism $\beta:Y\to Z$ and any $R$-module homomorphism $f:P\to Z$, there exists $R$-module homomorphism $g: P\to Y$, which is called a lift, such that $\beta \circ g = f$, i.e.
+        \[\begin{tikzcd}[sep=small]
+	&& P \\
+	\\
+	Y && Z && 0
+	\arrow["{\exists g}"', dashed, from=1-3, to=3-1]
+	\arrow["f", from=1-3, to=3-3]
+	\arrow["\beta"', from=3-1, to=3-3]
+	\arrow[from=3-3, to=3-5]
+\end{tikzcd}\]
+        \item Every SES $0\to X\to Y\to P\to 0$ splits. In this case $P$ is a direct summand of $Y$, that is there exists an $R$-module $Y'$ such that $Y\cong Y'\oplus P$. We write $P\mid Y$.
+        \item $P$ is a direct summand of a free $R$-module.
+    \end{enumerate}
+    If $P$ satisfies any of these equivalent conditions, we call $P$ a projective module.
+\end{pro}
+\begin{proof}
+    $[1.\implies 2.]$ Consider the SES 
+    \[0 \xto{} \ker \beta \xto{} Y \xto{\beta} Z\xto{}0\]
+    By assumption this gives rise the folliowing SES:
+    \[0 \xto{} \h_R(P,\ker \beta)\xto{} \h_R(P,Y) \xto{\beta_*} \h_R(P,Z) \xto{} 0\]
+    where $\beta_*: g\mapsto\beta\circ g$. Note by second statement of Theorem \ref{thm: all exact} says that $\beta_*$ is surjective. Thus for any $f\in \h_R(P,Z)$ there exists a $g_f\in \h_R(P, Y)$ such that $\beta_*(g) = \beta\circ g = f$.
+
+    $[2. \implies 3.]$ Suppose as stated by the statement. Consider the following diagram:
+    \[\begin{tikzcd}[sep=small]
+	&&&&&& P \\
+	\\
+	0 && X && Y && P && 0
+	\arrow["{\exists g}"', dashed, from=1-7, to=3-5]
+	\arrow["{\id_P}", tail reversed, from=1-7, to=3-7]
+	\arrow[from=3-1, to=3-3]
+	\arrow["\iota", from=3-3, to=3-5]
+	\arrow["\pi", from=3-5, to=3-7]
+	\arrow[from=3-7, to=3-9]
+\end{tikzcd}\]
+    where the existence of $g$ is ensure by the assumption and that $\pi\circ g = \id_P$. By the second statement of Proposition \ref{pro: SES splits}, the existence of $g$ implies that the SES splits.
+    
+    $[3. \implies 4.]$ Suppose as stated in the statement. Since every $R$-module is a quotient of a free module, define $F(S)$ be a free module such that $F(S)$ surjects to $P$ via map $\pi$. Then consider the SES
+    \[0 \to \ker \pi \to F(S) \xto{\pi} P \to 0\]
+    By the assumption, the above SES splits, and thus $F(S) = \ker\pi \oplus P$, showing that $P\mid F(S)$. 
+
+    $[4.\implies 1.]$. Suppose as stated in the statement. Assume that we have an SES $0 \to X \xto{\alpha} Y \xto{\beta} Z\to 0$, and consider the short sequence
+    \[0 \to \h_R(P,X)\xto{\alpha_*} \h_R(P,Y) \xto{\beta} \h_R(P,Z)\to 0\]
+    Immediately by Theorem \ref{thm: all exact} we have that $\alpha_*$ is injective, so it suffices to show that $\beta_*$ is surjective. Take $f\in \h_R(P,Z)$. By assumption $F(S) \cong P \oplus P'$ for some free module $F(S)$ and $P'\subseteq F(S)$ is an $R$-module. Consider the following diagram:
+    \[\begin{tikzcd}[sep=small]
+	s && s \\
+	S && {F(S)} \\
+	&& P \\
+	Y && Z
+	\arrow[maps to, from=1-1, to=1-3]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-1, to=2-1]
+    \arrow["\in"{marking, allow upside down}, draw=none, from=1-3, to=2-3]
+	\arrow[hook, from=2-1, to=2-3]
+	\arrow["\pi", two heads, from=2-3, to=3-3]
+	\arrow["\iota"', shift right=2, curve={height=12pt}, from=3-3, to=2-3]
+	\arrow["f", from=3-3, to=4-3]
+	\arrow["\beta"', from=4-1, to=4-3]
+    \end{tikzcd}\]
+    where $\pi$ is the canonical map from $F(S)$ to $P$ and $\iota$ is the inclusion map from $P$ to $F(S)$. Note that $\pi\circ \iota = \id_P$. Next, define the map $\varphi:S \to Y$ where $s\mapsto m_s$ if $\beta(m_S) = (f\circ \pi)(s)$. The map $\varphi$ is inded well-defined since $\beta$ is surjective. Thus we now have the following diagram:
+    \[\begin{tikzcd}[sep=small]
+	& s && s \\
+	& S && {F(S)} \\
+	&&& P \\
+	{m_s} & Y && Z & {(f\circ \pi)(s) = \beta(m_s)}
+	\arrow[maps to, from=1-2, to=1-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-2, to=2-2]
+	\arrow[curve={height=12pt}, maps to, from=1-2, to=4-1]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-4, to=2-4]
+	\arrow[curve={height=-12pt}, maps to, from=1-4, to=4-5]
+	\arrow[hook, from=2-2, to=2-4]
+	\arrow["\varphi"', from=2-2, to=4-2]
+	\arrow["\pi", two heads, from=2-4, to=3-4]
+	\arrow["{\exists g}", dashed, from=2-4, to=4-2]
+	\arrow["\iota"', shift right=2, curve={height=12pt}, from=3-4, to=2-4]
+	\arrow["f", from=3-4, to=4-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-1, to=4-2]
+	\arrow[curve={height=18pt}, maps to, from=4-1, to=4-5]
+	\arrow["\beta"', from=4-2, to=4-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-5, to=4-4]
+    \end{tikzcd}\]
+    where the existence of $g$ follows from the universal property of free module. In the diagram, the upper-triangular part is commutative, and we claim that the lower-triangular part is also commutative, i.e. $\beta\circ g = f\circ \pi$. 
+
+    We first show that $\beta\circ g = f\circ \pi$ when restricted to $S$, or more precisely, the image of $S$ in $F(S)$. This is easy, since for any $s\in S$ we have
+    \[(\beta\circ g)(s) = \beta(g(s)) = \beta(\varphi(s))=\beta(m_s) = (f\circ \pi)(s)\]
+    Next, consider the following commutative diagram:
+    \[\begin{tikzcd}[sep=small]
+	s && s \\
+	S && {F(S)} \\
+	\\
+	&& Z
+	\arrow[maps to, from=1-1, to=1-3]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-1, to=2-1]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-3, to=2-3]
+	\arrow[hook, from=2-1, to=2-3]
+	\arrow["{f\circ \pi = \beta \circ g}"', shift right=2, from=2-1, to=4-3]
+	\arrow["{f\circ \pi}"', shift right=2, from=2-3, to=4-3]
+	\arrow["{\beta\circ g}", shift left, from=2-3, to=4-3]
+    \end{tikzcd}\]
+    where the commutativity follows from the proven statement that $\beta \circ g = f \circ \pi$ when restricted on $S$. Then, by the uniqueness of the universal property of free module $F(S)$, we must have that $\beta\circ g = f \circ \pi$ on $F(S)$. This proves our claim. 
+
+    Recall that we need to prove that $\beta_*$ is surjective, in particular we have been given $f\in \h_R(P,Z)$ and we want to look for its pre-image under $\beta_*$. Consider $g\circ \iota:P\to Y$, so $g\circ \iota \in \h_R(P,Y)$. Then
+    \[\beta_*(g\circ \iota) = \beta\circ g \circ \iota \overset{(*)}{=} f\circ \pi \circ \iota \overset{(**)}{=} f\circ \id_P = f\]
+    where in $(*)$ we use the fact that $\beta\circ g = f\circ \pi$ and in $(**)$ we use the fact that $\pi\circ \iota = \id_P$. We have shown that $g\circ \iota$ is the pre-image of $f$ under $\beta_*$, thus showing that $\beta_*$ is surjective. The proof is then completed. 
+\end{proof}
+
+\begin{re}
+    As shown and stated previously in Proposition \ref{pro: inj implies inj}, if $\beta: X \to Y$ is exact, then $\beta_*: \h_R(V,X) \to \h_R(V,Y)$ is exact for any $V$, but this statement need not holds when we replace injectivity with surjectivity.  In particular, we have the statement: Let $V$ be an $R$-module. Then TFAE
+    \begin{itemize}
+        \item $V$ is projective.
+        \item the SES $Y \xto{\beta} Z \to 0$ gives rise to the SES $\h_R (V,Y) \xto{\beta_*} \h_R(V,Z)\to 0$.
+    \end{itemize}
+    which is a direct consequence of the first statement of Proposition \ref{pro: Proj Mod}.
+\end{re}
+
+\medskip
+
+\begin{cor}
+    \hfill
+
+    \begin{enumerate}
+        \item Free modules are projective.
+        \item A (finitely generated) $R$-module is projective if and only if it is a direct summand of a (finitely generated) free module.
+        \item Direct sum of projective module is projective.
+        \item Every module is a quotient of projective module. 
+    \end{enumerate}
+\end{cor}
+\begin{proof}
+    For the first statement, if $F$ is a free module, since $F\cong F\oplus 0$, so $F$ is projective.
+
+    For the second statement, the statement is true by Proposition \ref{pro: Proj Mod}(4.). We check the finitely generated part. Suppose that $P$ is finitely generated, then there exists $S$ finite cardinality such that $F(S)$ surjects onto $P$, so $P\mid F(S)$. For the converse, if $P\mid F(S)$ where $S$ has finite cardinality, then $F(S)$ surjects to $P$ by the canonical map, $\pi$, so $P$ is finitely generated by the image of $\pi(S)$.
+
+    Third statement is a tutorial question.
+
+    For fourth statement, every module is a quotient of free module, and is thus a quotient of projective module.
+\end{proof}
+
+\begin{re}
+    Projective module is nice. One of the reasons is that, according to Proposition \ref{pro: Proj Mod}, for a projective module $P$, it suffices to only discuss on its $\h$ set, i.e. we only have to talk about maps. It might seems complicated, but this provides us a huge space to carry out abstraction. In the light of this, we introduce some basic categorical notation.
+\end{re}
+
+\medskip
+
+\begin{defn} [Category]
+    A category $\cat$ consists of the following:
+    \begin{enumerate}
+        \item A class of objects $\obj(\mathcal C)$
+        \item For any two objects $X$ and $Y$, we have a class of morphisms (i.e. maps) $\mor_\cat(X,Y)$
+        \item For any objects $X$, $Y$, and $Z$, we have a binary operation $\mor_\cat(X,Y)\times \mor_\cat (Y,Z)\to \mor_\cat(X,Z)$ such that $(f,g)\mapsto g\circ f$, such that
+        \begin{itemize}
+            \item the operation is associative
+            \item $\mor_\cat(X,X)$ contains an identity $1_X$ such that for any $g\in \mor_\cat(X,Y)$ and $h\in \mor_\cat(Z,X)$, we have $g\circ 1_X = g$ and $1_X\circ h = h$
+        \end{itemize}
+    \end{enumerate}
+\end{defn}
+
+\medskip 
+
+\begin{defn} [Covariant functor]
+    Let $\cat$ and $\mathcal D$ be a categories. A covariant functor $\f:\cat \to \mathcal D$ consists of the following things:
+    \begin{enumerate}
+        \item For any object $X\in \obj(\cat)$, we have an object $\f(X)\in \mathcal D$
+        \item For any morphism $\alpha:X\to Y$ of $\cat$, we have a morphism $\f(\alpha):\f(X)\to \f(Y)$ of $\mathcal D$ such that the following holds:
+        \begin{itemize}
+            \item $\f(1_X) = 1_{\f(X)}$
+            \item If we have the commutative diagram
+            \[\begin{tikzcd}[sep=small]
+	        X && Y \\
+	        \\
+	        && Z
+	        \arrow["\alpha", from=1-1, to=1-3]
+	        \arrow["{\beta\circ \alpha}"', from=1-1, to=3-3]
+	        \arrow["\beta", from=1-3, to=3-3]
+            \end{tikzcd}\]
+            then we have the commutative diagram:
+            \[\begin{tikzcd}[sep=small]
+	        {\f(X)} && {\f(Y)} \\
+	        \\
+	        && {\f(Z)}
+	        \arrow["{\f(\alpha)}", from=1-1, to=1-3]
+	        \arrow["{\f(\beta\circ \alpha) = \f(\beta) \circ \f(\alpha)}"', shift right=2, from=1-1, to=3-3]
+	        \arrow["{\f(\beta)}", from=1-3, to=3-3]
+            \end{tikzcd}\]
+        \end{itemize}
+    \end{enumerate}
+\end{defn}
+
+\medskip 
+
+\begin{defn} [Contravariant functor]
+    Let $\cat$ and $\mathcal D$ be a categories. A contravariant functor $\f:\cat \to \mathcal D$ consists of the following things:
+    \begin{enumerate}
+        \item For any object $X\in \obj(\cat)$, we have an object $\f(X)\in \mathcal D$
+        
+        \item For any morphism $\alpha:X\to Y$ of $\cat$, we have a morphism $\f(\alpha):\f(Y)\to \f(X)$ of $\mathcal D$ such that the following holds:
+        \begin{itemize}
+            \item $\f(1_X) = 1_{\f(X)}$
+            \item If we have the commutative diagram
+            \[\begin{tikzcd}[sep=small]
+	        X && Y \\
+	        \\
+	        && Z
+	        \arrow["\alpha", from=1-1, to=1-3]
+	        \arrow["{\beta\circ \alpha}"', from=1-1, to=3-3]
+	        \arrow["\beta", from=1-3, to=3-3]
+            \end{tikzcd}\]
+            then we have the commutative diagram:
+            \[\begin{tikzcd}[sep=small]
+	        {\f(X)} && {\f(Y)} \\
+	        \\
+	        && {\f(Z)}
+	        \arrow["{\f(\alpha)}"', from=1-3, to=1-1]
+	        \arrow["{\f(\beta\circ \alpha) = \f(\alpha) \circ \f(\beta)}", shift left=2, from=3-3, to=1-1]
+	        \arrow["{\f(\beta)}"', from=3-3, to=1-3]
+            \end{tikzcd}\]
+        \end{itemize}
+    \end{enumerate}
+\end{defn}
+
+\medskip
+
+\begin{cor}
+    For any $R$-module $V$ the following
+    \[\f:=\h_R(V,-):R\text{-}mod \to Ab\]
+    is a left exact covariant functor. Moreover, the functor is exact if and only if $V$ is projective.
+\end{cor}
+
+\begin{proof}
+    Let $X$ be an $R$-module and consider $\h_R(V,X)$. Let $\alpha:X\to Y$ be an $R$-module homomorphism and denote $\f(\alpha)= \alpha_*: \h_R(V,X)\to \h_R(V,Y)$. We prove the axiom for a covariant functor. Suppose we have $X\xto\alpha Y \xto\beta Z$, and so we have $\beta\circ \alpha: X\to Z$. As shown previously, this gives the following sequence:
+    \[\h_R(V,X)\xto {\alpha_*} \h_R (V,Y)\xto {\beta_*} \h_R(V,Z)\]
+    where clearly $\beta_*\circ \alpha_* = (\beta\circ \alpha)_*$. This proves the second axiom. Next, for the first axiom, define $\id_X:X\to X$ be the identity map of $X$. Then $(\id_X)_*: f\mapsto \id\circ f = f$, which shows that $(\id_X)_* = \id_{\h_R(X,X)}$. Therefore $\f$ is a covariant functor.
+
+    For the second part of the statement, it follows directly from the definition of projective modules. This completes the proof.
+\end{proof}

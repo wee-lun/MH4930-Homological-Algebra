@@ -1,0 +1,173 @@
+\documentclass{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Packages %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+\usepackage{tikz, quiver}
+
+% font package
+\usepackage{amsfonts, dsfont}
+\usepackage[T1]{fontenc}
+
+% math packages
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+
+% for better cross-reference workflow
+%\usepackage{showlabels}
+
+% for better list and enumeration
+\usepackage[shortlabels]{enumitem}
+
+% to-do notes
+\usepackage{todonotes}
+
+% Removes paragraph indent and adds spacing between paragraphs
+\usepackage[parfill]{parskip} 
+\usepackage{setspace}
+
+% Darkmode
+\usepackage{darkmode}
+%\enabledarkmode
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Environment %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{pro}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{re}[thm]{Remark}
+\newtheorem{ex}[thm]{Exercise}
+\newtheorem{qn}[thm]{Question}
+\newtheorem{pr}[thm]{Problem}
+
+\newenvironment{answer}{\proof[Answer]}{\endproof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Symbol %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\ten}{\otimes_\Z}
+\newcommand{\tens}{\otimes}
+\renewcommand{\a}{\overline{a}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% New Command %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Rounded brackets
+\newcommand{\br}[1]{\left(#1\right)}
+
+% Curly Brackets
+\newcommand{\sbr}[1]{\left\{#1\right\}}
+
+% Functions
+\newcommand{\func}[2]{#1 \br {#2}}
+
+% Inverse functions
+\newcommand{\inv}[1]{^{#1}}
+
+% Compact list
+\setlist[itemize]{itemsep=3pt, topsep=2pt}
+\setlist[enumerate]{itemsep=3pt, topsep=2pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Size %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Spacing %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\parskip}{0.5\baselineskip} 
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+Name: Loo Wee Lun
+
+\medskip
+
+\textbf{Exercise 36} Let $D$ be a right $\Z$-module and $m\in \Z$. We aim to prove that
+    \[D\ten (\Z/m\Z) \cong D/mD\]
+    where $mD = \sbr{md:d\in D}$.
+    \begin{enumerate}
+        \item Define a map $\beta: D\times (\Z/m\Z)\to D/mD$ by $\beta(d,\a) = ad + mD$. Prove that $\beta$ is well-defined and $\Z$-balanced.
+        \item By the Universal Property of Tensor Product, we have a group homomorphism $\Phi: D\ten (\Z/m\Z)\to D/mD$ such that $\Phi(d\tens \a) = ad + mD$. Prove that $\Phi$ is an isomorphism.
+    \end{enumerate}
+\begin{proof}
+    \hfill
+
+    Define $\beta: D\times (\Z/m\Z) \to D/mD$ by $\beta(d,\a) = ad + mD$. It is clear that $mD$ is a right $\Z$-submodule of $D$. We first show that $\beta$ is well-defined. Let $a_1, a_2\in \Z$ such that $\a_1 = \a_2$ in $\Z/m\Z$. We claim that $\beta(d, \a_1) = \beta(d,\a_2)$. Note 
+    \begin{align*}
+        \a_1 = \a_2 
+    &\implies a_1 -a_2 \in m\Z  \\
+    &\implies a_1 d - a_2 d = (a_1-a_2)\ d \in mD\ \forall d\in D\\
+    &\implies a_1d + mD = a_2 d + mD\\
+    &\implies \beta(d, \a_1) = \beta(d,\a_2)
+    \end{align*}
+    This shows that $\beta$ is well-defined.
+
+    Next we show that $\beta$ is $\Z$-balanced. First, additivity in the first argument:
+    \begin{align*}
+        \beta(d_1 + d_2, \a) 
+        &= a(d_1 + d_2) + mD = (ad_1 + ad_2) + mD \\
+        &= (ad_1 + mD) + (ad_2 + mD) \\
+        &= \beta(d_1, \a) + \beta(d_2, \a)
+    \end{align*}
+    Next, note that $\a_1 + \a_2 = \overline{a_1 + a_2}$. We then show additivity in the second argument:
+    \begin{align*}
+        \beta(d, \a_1 + \a_2) 
+        &= \beta(d, \overline{a_1 + a_2})\\
+        &= (a_1+a_2)d + mD \\
+        &= (a_1d + a_2d) + mD\\ 
+        &= (ad_1 + mD) + (ad_2 + mD) \\
+        &= \beta(d_1, \a) + \beta(d_2, \a)
+    \end{align*}
+    Thirdly, to show compatibility with scalar multiplication, by applying additivity in the first and second argument, which we have proved to be true, we see that
+    \begin{align*}
+        \beta(d\cdot n, \a) 
+        &= \beta(nd, \a) \\
+        &= \beta(\underbrace{d + \dots + d}_{n\text{ times }}, \a) \\
+        &= \underbrace{\beta(d, \a) + \dots +  \beta(d, \a)}_{n \text{ times}} \\
+        &= \beta(d, \underbrace{\a, \dots, \a}_{n\text{ times }}) \\
+        &= \beta(d, n \a)\\
+        &= \beta(d, n\cdot \a)
+    \end{align*}
+    Altogether, this shows that $\beta$ is $\Z$-balanced, which proves the first statement.
+
+    For the second statement, as mentioned in the statement, by the Universal Property of Tensor Product we have a group homomorphism $\Phi: D\ten (\Z/m\Z)\to D/mD$ such that $\Phi(d \tens \a) = ad + mD$. We will show that it is an isomorphism. Firstly, note that $\Phi$ is already well-defined by the statement of Universal Property of Tensor Product.
+
+    Showing injectivity of $\Phi$ is equivalent to showing that it has a trivial kernel, i.e. $\ker \Phi = \sbr{0}$. First note that since $\ten$ is $\Z$-balanced, we have that
+    \begin{equation} \label{eqn1}
+        \sum_i (d_i \tens \a_i) = \sum_i (d_i\tens (a_i\cdot \overline{1})) = \sum_i ((d_i\cdot a_i) \tens \overline{1}) = \sum_i (a_id_i \tens \overline{1})
+    \end{equation}
+    Suppose $\sum_i (d_i\tens \a_i)\in \ker \Phi$ where $i$ is finite, then 
+    \[\func{\Phi}{\sum_i (d_i\tens \a_i)} = \func{\Phi}{\sum_i (a_id_i\tens \overline 1)} = \sum_i a_id_i + mD = 0+mD\]
+    This implies that $\sum_i a_id_i\in mD$, so write $\sum_i a_id_i= md$ for some $d\in D$. Substituting back to Equation \ref{eqn1}, we get that
+    \[\sum_{i} (d_i \tens \a_i) = \sum_i (a_id_i \tens \overline 1) \overset{(*)}{=} \br{\sum_i a_id_i} \tens \overline 1 = md \tens \overline 1 = d\tens \overline{m} \]
+    where at $(*)$ we apply the additivity in the first argument, one of the property of tensor product being $\Z$-balanced. Note $\overline{m} = \overline{0}$ in $\Z/m\Z$. To conclude, we have that
+    \[d\tens \a = d \tens \overline{0} = 0\]
+    This shows that $\ker\Phi$ is trivial, and thus $\Phi$ is injective.
+
+    Next, for surjectivity, suppose given $ad + mD\in D/mD$. Then simply consider $d\tens \a\in D\ten (\Z/m\Z)$ and see that
+    \[\Phi(d\tens \a) = ad + mD\]
+    This proves surjectivity of $\Phi$. 
+
+    Altogether, we have shown that $\Phi$ is an isomorphism, and thus 
+    \[D\ten (\Z/m\Z) \cong D/mD\]
+    as required.
+\end{proof}
+
+
+\end{document}

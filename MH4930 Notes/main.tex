@@ -1,0 +1,156 @@
+\documentclass{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Packages %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{quiver}
+
+% math packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts, dsfont}
+\usepackage[T1]{fontenc}
+
+% for better cross-reference workflow
+%\usepackage{showlabels}
+\usepackage[bookmarks=True]{hyperref}
+\usepackage{bookmark}
+
+% for better list and enumeration
+\usepackage[shortlabels]{enumitem}
+
+% to-do notes
+\usepackage{todonotes}
+
+% Removes paragraph indent and adds spacing between paragraphs
+\usepackage[parfill]{parskip} 
+\usepackage{setspace}
+
+% darkmode
+\usepackage{darkmode}
+%\enabledarkmode
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Environment %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{thm}{Theorem}[subsection]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{pro}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{re}[thm]{Remark}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{ex}[thm]{Example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Symbol %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Q}{{\mathbb Q}}
+
+\newcommand{\op}{\operatorname{op}}
+\newcommand{\ann}{\operatorname{Ann}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\h}{\operatorname{Hom}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\obj}{\operatorname{Obj}}
+\newcommand{\mor}{\operatorname{Mor}}
+\newcommand{\f}{\mathcal F}
+\newcommand{\cat}{\mathcal C}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\ext}{\operatorname{Ext}}
+
+\newcommand{\xto}[1]{\xrightarrow{#1}}
+\newcommand{\ot}{\leftarrow}
+\newcommand{\xot}[1]{\xleftarrow{#1}}
+
+\newcommand{\pd}{+\dots+}
+\newcommand{\many}{,\dots, }
+\newcommand{\ten}{\otimes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% New Command %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Rounded brackets
+\newcommand{\br}[1]{\left(#1\right)}
+
+% Curly Brackets
+\newcommand{\sbr}[1]{\left\{#1\right\}}
+
+% Functions
+\newcommand{\func}[2]{#1 \br {#2}}
+
+% Inverse functions
+\newcommand{\invfunc}[3]{#1^{-#2} \br {#3}}
+
+% Compact list
+\setlist[itemize]{itemsep=3pt, topsep=2pt}
+\setlist[enumerate]{itemsep=3pt, topsep=2pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Size %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Spacing %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\parskip}{0.5\baselineskip} 
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\begin{titlepage}
+        \centering
+        \hfill\par
+        \vspace{4\baselineskip}
+        {\Huge 
+        MH4930: Special Topics in Mathematics \par Homological Algebra}
+        \vspace{4\baselineskip}
+        
+        {by \Large\textsc{Loo Wee Lun}\par}
+        \vfill
+        \em Taken during AY 25/26 at\par
+        {\em School of Physical and Mathematical Sciences} \par
+        {\em Nanyang Technological University}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+\setcounter{section}{-1}
+\section{Preface and Disclaimer}
+This note is written by me, a student who taken the course MH4930: Special Topics in Mathematics under Dr. Lim Kay Jin during academic year 25/26 at the School of Physical and Mathematical Sciences of Nanyang Technological University in Singapore. 
+
+I hereby disclaim that contents this note is only for my own use, and the note are not originally produced by me, except for the presentation of the written proofs. I do not take responsible for any grammatical and mathematical errors in the note. The note might or might not be complete, and, once completing the course, I will not update the note due to any reason.
+
+
+\newpage
+\section{Module Theory}
+\input{week 1}
+\input{week 2}
+\input{week 3}
+\input{week 4}
+\input{week 5}
+\input{week 6}
+\input{week 7}
+\input{week 8}
+%\input{week 9}
+%\input{week 10}
+%\input{week 11}
+%\input{week 12}
+%\input{week 12}
+
+
+
+
+\end{document}
