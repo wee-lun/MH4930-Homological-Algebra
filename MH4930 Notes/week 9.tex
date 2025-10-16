@@ -1,0 +1,98 @@
+\begin{ex}
+    \hfill
+
+    \begin{enumerate}
+        \item We compute $\ext^n_\Z(\Z/m\Z, D)$ for any abelian group $D$, where $m\geq 2$. From previous proposition we know 
+        \[\ext_\Z^0(\Z/m\Z, D)\cong \h_\Z(\Z/m\Z, D)\]
+        Let $\varphi\in \h_\Z(\Z/m\Z, D)$. By definition 
+        \[m(\varphi(\overline{1})) = \varphi(\overline{m}) = 0\]
+        Thus we know 
+        \[\ext_\Z^0(\Z/m\Z, D)\cong \h_\Z(\Z/m\Z, D) \cong \sbr{d\in D:m\cdot d = 0}\]
+        where we will denote it as $_mD$. To investigate the general case, we have to come up with the projective resolution:
+        \[\dots \to 0\to \Z\xto{\times m}\Z \xto{\bmod m} \Z/m\Z \to 0\]
+        This is indeed a free resolution of $\Z/m\Z$ (one can verify the exactness easily). Thus taking $\hom$ we get
+        \[0\to \h_\Z(\Z,D) \xto{(\times m)^*}\h_\Z(\Z,D)\to 0 \to \dots\]
+        And it is clear that $\ext^2_\Z(\Z/m\Z, D)=0$ for all $n\geq 2$. We compute the $\ext^1$ as follow: note $\h_\Z(\Z, D)\cong D$ with isomorphism given by $\varphi\mapsto \varphi(1)$. Thus:
+        \[\begin{tikzcd} [sep = small]
+	&& \varphi && {m\varphi} \\
+	0 && {\h_\Z(\Z, D)} && {\h_\Z(\Z, D)} && 0 && \dots \\
+	\\
+	0 && D && D && 0 && \dots \\
+	&& {\varphi(1)} && {m\varphi(1) = \varphi(m)}
+	\arrow[maps to, from=1-3, to=1-5]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-3, to=2-3]
+	\arrow[curve={height=18pt}, maps to, from=1-3, to=5-3]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-5, to=2-5]
+	\arrow[curve={height=-30pt}, maps to, from=1-5, to=5-5]
+	\arrow[from=2-1, to=2-3]
+	\arrow["{(\times m)^*}", from=2-3, to=2-5]
+	\arrow[from=2-3, to=4-3]
+	\arrow[from=2-5, to=2-7]
+	\arrow[from=2-5, to=4-5]
+	\arrow[from=2-7, to=2-9]
+	\arrow[from=4-1, to=4-3]
+	\arrow[from=4-3, to=4-5]
+	\arrow[from=4-5, to=4-7]
+	\arrow[from=4-7, to=4-9]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=5-3, to=4-3]
+	\arrow[from=5-3, to=5-5]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=5-5, to=4-5]
+    \end{tikzcd}\]
+        and $\ext_\Z^1(\Z/m\Z, D)\cong D/mD$.
+    \item \todo{explain on how to construct}
+    \end{enumerate}
+\end{ex}
+
+\medskip
+
+\begin{re}
+    The above example is not rigorous enough, in the sense that, we cannot assume that we still get the same result if starting from another projective resolution. In fact, we have that the result obtained is independent of the projective resolution.
+\end{re}
+
+\medskip
+
+\begin{pro} [Comparison Theorem]
+    Let $f:V\to V'$ be an $R$-module homomorphism and $P_\bullet\twoheadrightarrow V$ be a projective resolution of $V$ and $P'_\bullet \twoheadrightarrow V'$ be an exact complex, where it need not to be a projective resolution of $V'$. Then there exists $f_n:P_n\to P_n'$ such that the following commute:
+    \todo{insert diagram}
+    Futhermore, given two such maps $f_n:P_n \to P_n'$ and $g_n:P_n\to P_n'$, there exists $s_n:P_n \to P_{n+1}'$ such that $f_n-g_n=\delta_{n+1}s_n + s_{n-1}d_n$.
+\end{pro}
+\begin{proof}
+    Idea: use projective to get a map, and do induction.
+
+    Part 2: Changing between straight square and slanted square, use projective module's property to get a lifting map, and perform induction.
+
+    \todo{proof}
+\end{proof}
+
+\begin{defn}[Homotopic and homotopy equivalence]
+    \hfill
+
+    \begin{enumerate}
+        \item Let $f,g: X^\bullet \to Y^\bullet$ be morphisms of complexes. We say that $f$ and $g$ are homotopic, denoted by $f\simeq g$, if there exists $s_n: X^n \to Y^{n+1}$ such that $f-g = ds + sd$.
+        \item The complexes $X^\bullet$ and $Y^\bullet$ are homotopy equivalent if there exists $f:X^\bullet \to Y^\bullet$ and $':Y^\bullet \to X^\bullet$ such that $f\circ f' \simeq \id_{Y^\bullet}$ and $f'\circ f \simeq \id_{X^\bullet}$. 
+    \end{enumerate}
+\end{defn}
+
+\medskip
+
+\begin{pro}
+    \hfill
+
+    \begin{enumerate}
+        \item Suppose that $f,g:X^\bullet \to Y^\bullet$ are homotopic. We have 
+        \[f^* = g^* : H^n (X^\bullet) \to H^n(Y^\bullet)\]
+        \item If $X^\bullet$ and $Y^\bullet$ are homotopy equivalent, then $H^n(X^\bullet)\cong H^n(Y^\bullet)$.
+    \end{enumerate}
+\end{pro}
+\begin{proof}
+    \todo{proof}
+
+\end{proof}
+
+\begin{thm}
+    The $n$-th cohomology group $\ext^n_R(V,W)$ is independent, up to isomorphism, of the choice of the projective residue of $V$.
+\end{thm}
+\begin{proof}
+    \todo{proof}
+\end{proof}
+

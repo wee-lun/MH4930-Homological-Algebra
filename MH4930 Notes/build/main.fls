@@ -362,6 +362,11 @@ INPUT ./week 8.tex
 INPUT ./week 8.tex
 INPUT ./week 8.tex
 INPUT week 8.tex
+INPUT ./week 9.tex
+INPUT ./week 9.tex
+INPUT ./week 9.tex
+INPUT ./week 9.tex
+INPUT week 9.tex
 INPUT build/main.aux
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb

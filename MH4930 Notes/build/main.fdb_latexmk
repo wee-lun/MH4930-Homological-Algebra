@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1760501141.65974 "/Users/weelun/Documents/Y4S1/MH4930 Homological Algebra/MH4930 Notes/main.tex" "build/main.pdf" "main" 1760501143.92949 0
-  "/Users/weelun/Documents/Y4S1/MH4930 Homological Algebra/MH4930 Notes/main.tex" 1760156441.80695 4075 15b35f663007c8d9b8c971fd026ef2a7 ""
+["pdflatex"] 1760601576.12128 "/Users/weelun/Documents/Y4S1/MH4930 Homological Algebra/MH4930 Notes/main.tex" "build/main.pdf" "main" 1760601578.46411 0
+  "/Users/weelun/Documents/Y4S1/MH4930 Homological Algebra/MH4930 Notes/main.tex" 1760596196.23928 4074 5b28e13a1316d9a78fc31fd15190d4c5 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -206,9 +206,9 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1757671103 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1757671080 3345740 e4de162bc7f131754d19d115081aa641 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "build/main.aux" 1760501143.84787 7309 3c249a99556b8ee35a7a83a9387c42bc "pdflatex"
-  "build/main.toc" 1760501143.84917 1085 5ef373f6808f2999f0aff1eb87a410df "pdflatex"
-  "main.tex" 1760156441.80695 4075 15b35f663007c8d9b8c971fd026ef2a7 ""
+  "build/main.aux" 1760601578.3846 8438 1348a93296d2fa0e710b13447dc1e3ea "pdflatex"
+  "build/main.toc" 1760601578.38604 1085 5ef373f6808f2999f0aff1eb87a410df "pdflatex"
+  "main.tex" 1760596196.23928 4074 5b28e13a1316d9a78fc31fd15190d4c5 ""
   "week 1.tex" 1759646736.4401 17970 5b73886af4c7967601259cc683045054 ""
   "week 2.tex" 1759815954.0028 18355 92833da71bcf7b4b583547cb3b931291 ""
   "week 3.tex" 1759825846.36572 26172 9cfe0e8cb341e021eccddf4145095477 ""
@@ -216,7 +216,8 @@
   "week 5.tex" 1759734276.88047 20301 8c03595e9ba93b950bf2d919566e6bad ""
   "week 6.tex" 1759899289.05442 20640 e08873fb5a6897c2092ac2a940877477 ""
   "week 7.tex" 1760073389.45605 24218 3849fea3c080257aa60c9301166a6e57 ""
-  "week 8.tex" 1760501141.56363 13999 5046fd8b99979a276b12252f457ab2e5 ""
+  "week 8.tex" 1760596910.8001 14007 0eb378f383d42fc02f0a6ff4423a60e1 ""
+  "week 9.tex" 1760601573.66793 4351 2f7ff7fa1c73b80b062074ea1cc29151 ""
   (generated)
   "build/main.aux"
   "build/main.log"
