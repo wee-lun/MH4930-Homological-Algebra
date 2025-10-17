@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1760677566.79577 "/Users/weelun/Documents/Y4S1/MH4930 Homological Algebra/MH4930 Notes/main.tex" "build/main.pdf" "main" 1760677569.2114 0
+["pdflatex"] 1760682575.03279 "/Users/weelun/Documents/Y4S1/MH4930 Homological Algebra/MH4930 Notes/main.tex" "build/main.pdf" "main" 1760682577.42311 0
   "/Users/weelun/Documents/Y4S1/MH4930 Homological Algebra/MH4930 Notes/main.tex" 1760677245.72121 4074 5b28e13a1316d9a78fc31fd15190d4c5 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
@@ -206,8 +206,8 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1757671103 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1757671080 3345740 e4de162bc7f131754d19d115081aa641 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "build/main.aux" 1760677569.13297 9400 d160e0f06e95df65684ac9607b371e39 "pdflatex"
-  "build/main.toc" 1760677569.13444 1085 5ef373f6808f2999f0aff1eb87a410df "pdflatex"
+  "build/main.aux" 1760682577.34323 9400 ea3d78d71e0c2a2a6869bc10fa229b97 "pdflatex"
+  "build/main.toc" 1760682577.34472 1085 5ef373f6808f2999f0aff1eb87a410df "pdflatex"
   "main.tex" 1760677245.72121 4074 5b28e13a1316d9a78fc31fd15190d4c5 ""
   "week 1.tex" 1759646736.4401 17970 5b73886af4c7967601259cc683045054 ""
   "week 2.tex" 1759815954.0028 18355 92833da71bcf7b4b583547cb3b931291 ""
@@ -217,7 +217,7 @@
   "week 6.tex" 1759899289.05442 20640 e08873fb5a6897c2092ac2a940877477 ""
   "week 7.tex" 1760073389.45605 24218 3849fea3c080257aa60c9301166a6e57 ""
   "week 8.tex" 1760677245.72155 14007 0eb378f383d42fc02f0a6ff4423a60e1 ""
-  "week 9.tex" 1760677564.27917 5244 7dafc356cf61da31b5e0d39535e23bfa ""
+  "week 9.tex" 1760682572.51518 5253 1f4fd4566f00f9a8b0bf6729c769ffbd ""
   (generated)
   "build/main.aux"
   "build/main.log"
