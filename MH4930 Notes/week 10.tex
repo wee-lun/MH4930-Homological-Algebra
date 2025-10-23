@@ -1,0 +1,184 @@
+\begin{thm}
+    Let $0\to U \xto{\alpha} V \xto{\beta} W \to 0$ be a SES of $R$-modules and $D$ be any $R$-module. Then we have a LES 
+    \[0 \to \h_R(D,U) \to \h_R(0,V)\to \h_R(D,W)\]
+    \[\to \ext_R^1 (D,U)\to \ext_R^1(D,V)\to \ext_R^1(D,W)\to \ext_R^2(D,U)\to \dots\]
+\end{thm}
+\begin{proof}
+    \todo{proof}
+\end{proof}
+
+\begin{re}
+    Similarly, note that since $\h_R(X,D)\cong \ext_R^0(X,D)$, thus the whole LES above is a LES of $\ext$ groups.
+\end{re}
+
+\medskip
+
+\begin{re}
+    Since $\h_R(D,-)$ is a left exact covariant functor, we obtained a right covariant derived functor $\ext_R^m(D,-):\text{R-mod} \to \text{Ab}$. This is 'dual' to that the relation between $\h_R(-,D)$ and $\ext_R^n(-,D)$.
+\end{re}
+
+\medskip
+
+\begin{thm}
+    Let $P$ be an $R$-module. TFAE:
+    \begin{enumerate}
+        \item $P$ is projective.
+        \item $\ext_R^1(P,B)=0$ for all $R$-module $B$.
+        \item $\ext_R^n(P,B)=0$ for all $n\geq 1$ and $R$-module $B$.
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    The proof is left as a tutorial question.
+\end{proof}
+
+\begin{ex}
+    \hfill
+    
+    \begin{enumerate}
+        \item For any free $R$-module $F$, we have $\ext_R^n(F,B)=0$ for any $n\geq 1$ and $R$-module $B$. In particular $\ext_\Z^n(\Z^m,B)=0$ for all $n\geq 1$ and $m\geq 1$.
+        \item We compute $\ext_\Z^n(A,B)$ when $A$ is finitely generated $\Z$-module. Since $\Z$ is a PID, by the classification of finitely generated module over PID, we have 
+        \[A\cong \Z^m \oplus (\Z/d_1\Z) \oplus \dots \oplus (\Z/d_\ell \Z) \]
+        where $d_i\neq 0 $ for all $i$. In tutorial we will prove that
+        \[\ext_R^n\br{\bigoplus V_i}, W\cong \prod \ext_R^n(V_i, W)\]
+        But we have only finite number of items (since finitely generated), so 
+        \[\ext_\Z^n(A,B)\cong \br{\bigoplus_{i=1}^m \ext_\Z^n(\Z,B)} \oplus \br{\bigoplus_{i=1}^\ell\ext_\Z^n(\Z/d_i\Z, B)}\]
+    \end{enumerate}
+    So when $n=0$ we have
+    \[\ext_\Z^0(A,B) \cong \br{\bigoplus_{i=1}^m \h_\Z(\Z,B)} \oplus \br{\bigoplus_{i=1}^\ell\h_\Z(\Z/d_i\Z, B)}\cong B^m \oplus  \bigoplus_{i=1}^\ell\ _{d_i}B\]
+    where $_{d_i}B:= \sbr{b\in B : d_i b = 0}$.
+
+    When $n=1$ we have
+    \[\ext_\Z^1(A,B) \cong 0 \oplus \bigoplus_{i=1}^\ell \ext_\Z^1 (\Z/d_i\Z, B) = \bigoplus B/d_i B\]
+    When $n\geq 2$ we have 
+    \[\ext_\Z^n(A,B)\cong 0 \oplus \bigoplus_{i=1}^\ell \ext_\Z^n(\Z/d_i\Z, B) = 0\]
+\end{ex}
+
+\medskip
+
+\begin{defn} [Injective resolution]
+    An injective resolution of an $R$-module $W$ is an exact sequence 
+    \[0 \to W \to Q_0 \to Q_1 \to \dots\]
+    such that each $Q_i$ is injective $R$-module.
+\end{defn}
+
+\medskip
+
+\begin{pro}
+    Every $R$-module has an injective resolution.
+\end{pro}
+\begin{proof}
+    \todo{proof}
+    Similar to the proof in the case of projective resolution, except that we will be taking the cokernel.
+\end{proof}
+
+\begin{defn} [Alternative definition of $\ext$]
+    Take an injective resolution $W\hookrightarrow Q_\bullet$ of $W$ and take $\h_R(V,-)$. which we get 
+    \[0 \xto{d_0^*} \h_R(V,Q_0) \xto{d_0^*} \h_R(V,Q_0) \xto{d_0^*} \h_R(V,Q_0) \to \dots \]
+    The $n$-th cohomology group of this complex is defined as 
+    \[\ext_R^n(V,W) := \frac{\ker d_{n+1}^*}{\im d_n^*}\]
+\end{defn}
+
+\medskip
+
+\begin{re}
+    Despite we are unable to prove that, but we have the following fact: the Ext group constructed from injective resolution is independent of the choice of the starting injective resolution. Also, the Ext group constructed from injective resolution is isomorphic to if it is constructed from a projective resolution.
+\end{re}
+
+\medskip
+
+\begin{ex}
+    We verify that the $\ext^0_R(V,W)$ constructed from projective resolution and injective resolution is isomorphic. Starting from $0$-th Ext group constructed from an injective resolution:
+    \begin{align*}
+        \ext_R^0(V,W) &= \ker d_1^* \\
+        &= \sbr{f:V\to Q_0:d_1\circ f = 0}\\
+        &= \sbr{f:V\to Q_0:\im f\subseteq \ker d_1}\\
+        &= \sbr{f:V\to Q_0 : \im f\subseteq \im \iota, \iota: W\hookrightarrow Q_0}\\
+        &= \sbr{f:V\to \iota(W)}\\
+        &\cong \h_R(V,W)
+    \end{align*}
+    We have shown that the $0$-th Ext group constructed from projective resolution is also isomorphic to $\h_R(V,W)$, this shows the $0$-th Ext group is independet of the method of construction.
+\end{ex}
+
+\medskip
+
+\begin{re} [Enough projective and enough injective]
+    In fact, all the mentioned theory can be generalized to any category.
+    
+    A category $\mathcal C$ has enough projective if for any object $X$ in $\mathcal C$ there is a projective object $P$ such that $P\to X$ is an epimorphism. Since the definition of projective module is nothing except of lifting of maps, we need not 'module-like' object to define a projective object in the category $\mathcal C$, assuming that we can 'lift' the map.
+
+    Similarly, the category has enough injective if for any object $X$ in $\mathcal C$ there is an injective object $I$ such that $X\to I$ is a monomorphism. Construction of injective object shares the same philosophy, as it just requires construction of maps.
+
+    In the category R-mod, it is nice in the sense that it has both enough projective and enough injective. However, there might be some category where it is only enough projective, or vice versa. In this case, we might be restricted to construct the Ext group only from the projective resolution, or vice versa. The above says that they are equivalent.
+\end{re}
+
+\medskip
+
+\begin{ex}
+    \hfill
+
+    \begin{enumerate}
+        \item Let $A$ and $B$ be abelian groups. We compute $\ext_\Z^n(A,B)$ (again) using the injective resolution of $B$. Let $Q_0$ be an injective $\Z$-module such that $B\subseteq Q_0$. So
+        \[0 \to B\to Q_0 \to Q_0/B \to 0\]
+        Recall that the quotient of injective module is injective, so $Q_0/B$ is injective, and the above is an injective resolution of $B$. Taking hom we have 
+        \[0 \to \h_\Z(A,Q_0) \to \h_\Z(A, Q_0/B) \to 0 \to 0 \to \dots\]
+        We see that $\ext_\Z^n(A,B)=0$ for all $n\geq 2$, even without the assumption that $A$ is finitely genererated.
+        \item Let $A$ be a torsion abelian group, i.e. any $a\in A$ there exists some $n\neq 0$ such that $n\cdot a = 0$. We compute $\ext_\Z^0(A,\Z) = \h_\Z(A,\Z)$, which is $0$, since for any group homomorphism $\varphi:A\to \Z$ and any $a\in A$, let $n\neq 0$ such that $n\cdot a = 0$, and so 
+        \[0 = \varphi(0) = \varphi(na) = n\varphi(a)\]
+        implying that $\varphi(a)=0$. Since $a$ is arbitrary, so $\varphi$ is the zero map, indicating that $\ext_\Z^0(A,\Z)$ is trivial. Next, we consider $\ext_\Z^1(A,\Z)$. Take 
+        \[0 \to \Z \xto{\iota} \Q \xto{\pi} \Q/\Z \to 0\]
+        where $\pi$ is the canonical surjectiion, and $\iota$ is the inclusion map. The above is an injective resolution of $\Z$. Taking hom, we have 
+        \[0 \to \h_\Z(A,\Q)\to \h_\Z(A, \Q/\Z) \to 0 \to 0 \to \dots\]
+        We claim that $\h_\Z(A,\Q)=0$. To see this, take $\varphi:A\to \Q$ be a group homomorphism and let $a\in A$ and $n\neq 0$ such that $n\cdot a = 0$. Note
+        \[0 = \varphi(0) = \varphi(na) = n\varphi(a)\]
+        Similarly, since $a$ is arbitrary, we have that $\varphi$ is trivial, so $\h_\Z(A,\Q)=0$. Lastly, simply take the first cohomology group and we obtained
+        \[\ext_\Z^1 (A,\Z) = \h_\Z(A,\Q/\Z)\]
+        where $\h_\Z(A,\Q/\Z)$ is called the Pontryagin dual group of $A$.
+    \end{enumerate}
+\end{ex}
+
+\medskip
+
+\begin{re}
+    The reason why Ext group has its name is because of the following theorem:
+
+    \medskip
+
+    \begin{thm}
+        $\ext^n_R(V,W)$ is the equivalence classes of $n$-fold extensions of exact sequences that takes the following form 
+        \[0 \to W \to V_{n-1}\to \dots \to V_0 \to V \to 0\]
+    \end{thm}
+
+    When $n=1$, we are considering the equivalence classes of the exact sequences of the form $0\to W \to V_0 \to V \to 0$, which is just SES.
+
+    As an example, take $R=\Z$ and $V=W = \Z/p\Z$. Based on the previous computed example we have that 
+    \[\ext_\Z^1(\Z/p\Z, \Z/p\Z) \cong \frac{\Z/p\Z}{p\cdot (\Z/p\Z)} = \Z/p\Z\]
+    That is to mean that there are $p$ equivalent classes of SES in the form of 
+    \[0 \to \Z/p\Z \to - \to \Z/p\Z \to 0\]
+    In particular, they are either equivalent to 
+    \[0 \to \Z/p\Z \xto{\iota} (\Z/p\Z)\oplus (\Z/p\Z) \xto{\pi} \Z/p\Z \to 0\]
+    or, for any $j=1,2, \dots, p-1$, that 
+    \[0 \to \Z/p\Z \to \Z/p^2\Z \xto{\cdot j} \Z/p\Z \to 0\]
+    where the formal one splits and the latter one doesn't.
+\end{re}
+
+
+\newpage
+\subsection{Tor group}
+\begin{defn} [Tor group]
+    Let $D$ be a right $R$-module, $B$ be a left $R$-module and $P_\bullet \twoheadrightarrow B$ be a projective resolution of $B$:
+    \[\dots \to P_2\xto{d_2} P_1 \xto{d_1} P_0 \xto{\varepsilon} B \to 0 \to \dots\]
+    We then construct the complex by taking tensor product over $R$:
+    \[\dots \xto{1\ten d_3} D\ten_R P_2 \xto{1\ten d_2} D\ten_R P_1 \xto{1\ten d_1} D\ten_R P_0 \to 0\]
+    which is indeed a complex since $(1\ten d_n)\circ (1\ten d_{n+1}) = 1\ten (d_n\circ d_{n+1}) = 0$, but it is not exact. In fact $D\ten_R -$ is a right exact functor. The $n$-th Tor group is defined to be the $n$-th homology group of this complex, i.e.
+    \[\tor_n^R(D,B) := \frac{\ker \br{1\ten d_n}}{\im \br{1\ten d_{n+1}}}\]
+    The functor $\tor_n^R(D, -)$ is the left covariant derived functor of the right covariant functor $D\ten_R -$.
+\end{defn}
+
+\medskip
+
+\begin{pro}
+    $\tor_0^R(D,B)\cong D\ten_R B$.
+\end{pro}
+\begin{proof}
+    \todo{proof}
+\end{proof}
