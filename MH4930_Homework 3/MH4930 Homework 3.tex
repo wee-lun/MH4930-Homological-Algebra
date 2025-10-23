@@ -110,16 +110,58 @@ Name: Loo Wee Lun
 
 \medskip
 
-\textbf{Exercise 61} Thie exericse defines the connecting homomorphism $\delta_n$ in Theorem 17.2 (The Long Exact Sequence in Cohomology). Let $0\to X\xto{\alpha}Y\xto{\beta} Z \to 0 $ be a SES of cochain complexes. Let $\alpha\in H^n(Z)$ and $a=z + \im d_n$ where $z\in \ker d_{n+1} :Z^n \to Z^{n+1}$.
+\textbf{Exercise 61} Thie exericse defines the connecting homomorphism $\delta_n$ in Theorem 17.2 (The Long Exact Sequence in Cohomology). Let $0\to X\xto{\alpha}Y\xto{\beta} Z \to 0 $ be a SES of cochain complexes. Let $a\in H^n(Z)$ and $a=z + \im d_n$ where $z\in \ker d_{n+1} :Z^n \to Z^{n+1}$.
 \begin{enumerate}
     \item Show that there exists $y\in Y^n$ such that $\beta_n(y) = z$ and a unique $x\in \ker d_{n+2}\subseteq X^{n+1}$ such that $\alpha(x) = d(y)$.
-    \item Let $z = \im d_n = z' + \im d_n$, and $y,y', x, x'$ such that $\beta(y)=z, \beta(y')=z', \alpha(x) = d(y)$ and $\alpha(x')=d(y')$. Show that $x + \im d_{n+1} = x' + \im d_{n+1}$.
+    \item Let $z + \im d_n = z' + \im d_n$, and $y,y', x, x'$ such that $\beta(y)=z,\ \beta(y')=z',\ \alpha(x) = d(y)$ and $\alpha(x')=d(y')$. Show that $x + \im d_{n+1} = x' + \im d_{n+1}$.
     \item Conclude that we have a map $\delta_n:H^n(Z) \to H^{n+1}(X)$ defined by $\delta_n(z+\im d_n) = x + \im d_{n+1}$.
     \item Prove that the connecting homomorphism $\delta_n$ is a group homomorphism.
 \end{enumerate}
 
 \begin{proof}
-   
+    \hfill
+
+    1. Since we have SES of cochain complex, so $0 \to X^n \xto{\alpha_n} Y^n \xto{\beta_n} Z^n \to 0$ is a SES. By definition $\im \beta_n = \ker 0 = Z$, implying that $\beta_n$ is surjective. Thus given $z\in \ker d_{n+1} \subseteq Z^n$, there exists $y\in Y^n$ such that $\beta_n(y)=z$.
+
+    Send $y\in Y^n$ along two paths we have 
+    \[\beta_{n+1}(d_{n+1}^Y(y)) = d_{n+1}^Z(\beta_n(y))=d_{n+1}^Z(z)=0\]
+    since $z\in \ker d_{n+1}$. So $d_{n+1}^Y(y) \in \ker \beta_{n+1} = \im \alpha_{n+1}$. Note $\alpha$ is injective, so there exists a unique $x\in X^{n+1}$ such that $\alpha_{n+1}(x)=d_{n+1}^Y(y)$. We now check that $x\in \ker d_{n+2}^X$. Send $x$ along two paths we have
+    \[\alpha_{n+2}(d_{n+2}^X(x)) = d_{n+2}^Y(\alpha_{n+1}(x) = d_{n+2}^Y(d_{n+1}^Y)(y)) = 0\]
+    Note $\alpha$ is injective, so $\ker \alpha$ is trivial, we thus have $d_{n+2}^X(x)= 0$, so $x\in \ker d_{n+2}^X$.
+
+    2. Since $z+\im d_n = z' + \im d_n$, so $z-z'\in \im d_n$. Let $w\in Z^{n-1}$ such that $d_n^Z(w)=z-z'$. Since $\beta$ is surjective, there exists $y_w\in Y^{n-1}$ such that $\beta_{n-1}(y_w)=w$. Send $y_w$ along two paths we have 
+    \[\beta_{n}(d_n^Y(y_z)) = d^Z_{n}(\beta_{n-1}(y_w))= d^Z_{n}(w) = z-z' = \beta_n(y)-\beta_n(y') = \beta_n(y-y')\]
+    Rearranging we see $\beta_n(d_n^Y(y_z) - (y-y'))=0$, so $d_n^Y(y_z) - (y-y')\in \ker \beta_n = \im \alpha_n$. Let $x_z\in X^n$ such that 
+    \[\alpha_n(x_z) = d_n^Y(y_z) - (y-y')\]
+    Lastly, send $x_z$ along two paths we have
+    \begin{align*}
+        \alpha_{n+1}(d_{n+1}^X(x_z)) 
+        &= d_{n+1}^Y(\alpha_n(x_z))\\ 
+        &=d_{n+1}^Y(d_n^Y(y_z) - (y-y')) \\
+        &= 0 -d_{n+1}^Y(y) + d_{n+1}^Y(y')\\
+        &= -\alpha_{n+1}(x) + \alpha_{n+1}(x')\\
+        &= \alpha_{n+1}(x'-x)
+    \end{align*}
+    Since $\alpha$ is injective, we have that $x'-x = d_{n+1}^X(x_z)$, implying that $x'-x \in \im d_{n+1}^X$, so $x + \im d_{n+1} = x' + \im d_{n+1}$.
+
+    3. As suggested, consider the map $\delta_n:H^n(Z)\to H^{n+1}(X)$ defined by $\delta_n(z+\im d_n) = x+\im d_{n+1}$ where $x$ is given as follow:
+    \begin{itemize}
+        \item In part 1, we have shown that by fixing $z$, there correspond some $y$ (need not be unique). Also, there exists a unique $x$ such that $\alpha(x) = d(y)$. Let this $x$ be such that $\delta_n(z+\im d_n) = x+\im d_{n+1}$
+        \item The elements of $H^n(Z)$ do take the form $z+\im d_n$, and the elements of $H^{n+1}(X)$ do take the form $x + \im d_{n+1}$, by the definition of cohomology.
+        \item We have to check well-definedness, which is already settled in part 2.
+        \item Moreover, we claim that $\delta_n(z+\im d_n)$ is independent of the choice of the middleman $y$ where $\beta_n(y) = z$. Fix $z$, if we take two different pre-image of $z$, say $y$ and $y'$ such that $\beta_n(y) = z = \beta_n(y')$ and $\alpha(x)=d(y)$, $\alpha(x')=d(y')$, since we have $z + \im d_n = z + \im d_n$, applying part 2 tells us that $x+ \im d_{n+1} = x' + \im d_{n+1}$, therefore no problem occurs.
+    \end{itemize}
+
+    4. Lastly, we show that the defined map $\delta_n$ is a group homomorphism. Let $z_1 + \im d_n, z_2 + \im d_n \in H^n(Z)$. Futher suppose that $\beta(y_1)=z_1, \beta(y_2)=z_2, \alpha(x_1)=d(y_1), \alpha(x_2)=d(y_2)$, where $x_1, x_2 \in \ker d_{n+2}$. Thus by definition we have 
+    \[\delta_n(z_1+\im d_n) = x_1+\im d_{n+1} \quad \text{and} \quad \delta_n(z_2+\im d_n) = x_2+\im d_{n+1}\]
+    Note $\beta(y_1+y_2) = z_1+z_2$, and $\alpha(x_1+x_2) = d(y_1 + y_2)$. Also $x_1 + x_2 \in \ker d_{n+2}$ since kernel is a subgroup. By definition, we see
+    \begin{align*}
+        \delta_n((z_1+\im d_n) + (z_2+\im d_n))=\delta_n((z_1+z_2)+\im d_n) 
+        &= (x_1 + x_2) + \im d_{n+1}\\
+        &= (x_1 + \im d_{n+1}) + (x_2 + \im d_{n+1})\\
+        &= \delta_n(z_1+\im d_n) + \delta_n(z_2+\im d_n)
+    \end{align*}
+    This shows that $\delta_n$ is indeed a group homomorphism.
 \end{proof}
 
 
