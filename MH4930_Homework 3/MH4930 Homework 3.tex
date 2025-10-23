@@ -1,0 +1,126 @@
+\documentclass{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Packages %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+\usepackage{tikz, quiver}
+
+% font package
+\usepackage{amsfonts, dsfont}
+\usepackage[T1]{fontenc}
+
+% math packages
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+
+% for better cross-reference workflow
+%\usepackage{showlabels}
+
+% for better list and enumeration
+\usepackage[shortlabels]{enumitem}
+
+% to-do notes
+\usepackage{todonotes}
+
+% Removes paragraph indent and adds spacing between paragraphs
+\usepackage[parfill]{parskip} 
+\usepackage{setspace}
+
+% Darkmode
+\usepackage{darkmode}
+%\enabledarkmode
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Environment %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{pro}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{re}[thm]{Remark}
+\newtheorem{ex}[thm]{Exercise}
+\newtheorem{qn}[thm]{Question}
+\newtheorem{pr}[thm]{Problem}
+
+\newenvironment{answer}{\proof[Answer]}{\endproof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Symbol %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\op}{\operatorname{op}}
+\newcommand{\ann}{\operatorname{Ann}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\h}{\operatorname{Hom}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\obj}{\operatorname{Obj}}
+\newcommand{\mor}{\operatorname{Mor}}
+\newcommand{\f}{\mathcal F}
+\newcommand{\cat}{\mathcal C}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\ext}{\operatorname{Ext}}
+\newcommand{\tor}{\operatorname{Tor}}
+
+\newcommand{\xto}[1]{\xrightarrow{#1}}
+\newcommand{\ot}{\leftarrow}
+\newcommand{\xot}[1]{\xleftarrow{#1}}
+
+\newcommand{\pd}{+\dots+}
+\newcommand{\many}{,\dots, }
+\newcommand{\ten}{\otimes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% New Command %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Rounded brackets
+\newcommand{\br}[1]{\left(#1\right)}
+
+% Curly Brackets
+\newcommand{\sbr}[1]{\left\{#1\right\}}
+
+% Functions
+\newcommand{\func}[2]{#1 \br {#2}}
+
+% Inverse functions
+\newcommand{\inv}[1]{^{#1}}
+
+% Compact list
+\setlist[itemize]{itemsep=3pt, topsep=2pt}
+\setlist[enumerate]{itemsep=3pt, topsep=2pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Size %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Spacing %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\parskip}{0.5\baselineskip} 
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+Name: Loo Wee Lun
+
+\medskip
+
+\textbf{Exercise 61} Thie exericse defines the connecting homomorphism $\delta_n$ in Theorem 17.2 (The Long Exact Sequence in Cohomology). Let $0\to X\xto{\alpha}Y\xto{\beta} Z \to 0 $ be a SES of cochain complexes. Let $\alpha\in H^n(Z)$ and $a=z + \im d_n$ where $z\in \ker d_{n+1} :Z^n \to Z^{n+1}$.
+\begin{enumerate}
+    \item Show that there exists $y\in Y^n$ such that $\beta_n(y) = z$ and a unique $x\in \ker d_{n+2}\subseteq X^{n+1}$ such that $\alpha(x) = d(y)$.
+    \item Let $z = \im d_n = z' + \im d_n$, and $y,y', x, x'$ such that $\beta(y)=z, \beta(y')=z', \alpha(x) = d(y)$ and $\alpha(x')=d(y')$. Show that $x + \im d_{n+1} = x' + \im d_{n+1}$.
+    \item Conclude that we have a map $\delta_n:H^n(Z) \to H^{n+1}(X)$ defined by $\delta_n(z+\im d_n) = x + \im d_{n+1}$.
+    \item Prove that the connecting homomorphism $\delta_n$ is a group homomorphism.
+\end{enumerate}
+
+\begin{proof}
+   
+\end{proof}
+
+
+\end{document}
