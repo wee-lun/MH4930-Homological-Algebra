@@ -182,3 +182,165 @@
 \begin{proof}
     \todo{proof}
 \end{proof}
+
+\begin{ex}
+    We compute $\tor_n^\Z(D,\Z/m\Z)$. Let $B= \Z/m\Z$. Consider the projective resolution of $B$:
+    \[0 \to \Z \xto{\cdot m} \Z \xto{\bmod m} \Z/m\Z\to 0\]
+    Note if $m=0$ we have 
+    \[0 \to \Z \xto{\cdot 1} \Z \to 0\]
+    Now, take tensor product we have 
+    \[\dots \to 0 \to D\ten_\Z \Z \xto{(\cdot m)_*} D\ten_\Z \Z \to 0\]
+    which is equivalent to that 
+    \todo{continue example}
+\end{ex}
+
+\medskip
+
+\begin{pro}
+    \hfill
+
+    \begin{enumerate}
+        \item $\tor_n^R(D,B)$ is independent of the choice of the projective resolution of $B$.
+        \item For any $f:B\to B'$, we have an induced map of group homomorphism $f_*:\tor_n^R(D,B) \to \tor_n^R(D,B')$.
+    \end{enumerate}
+\end{pro}
+
+\begin{proof}
+    The first statement is left as an tutorial question.
+
+    For the second statement, 
+    \todo{proof}
+\end{proof}
+
+\begin{thm}
+    Let $0\to A\to B\to C \to 0$ be a SES of left $R$-module and $D$ be a right $R$-module. Then we have a LES (of abelian groups) given by 
+    \[\dots \to \tor_2^R(D,C)\to \tor_1^R(D,A) \to \tor_1^R(D,B)\to \tor_1^R(D,C)\]
+    \[\to D\ten_R A \to D\ten_R B\to D\ten_R C\to 0\]
+\end{thm}
+\begin{proof}
+    \todo{proof}
+\end{proof}
+
+\begin{pro} [Characterization of flat modules]
+    Let $D$ be a right $R$-module. TFAE:
+    \begin{enumerate}
+        \item $D$ is flat.
+        \item $\tor_1^R(D,B)=0$ for all left $R$-module $B$.
+        \item $\tor_n^R(D,B)=0$ for all left $R$-module $B$ and $n\geq 1$.
+    \end{enumerate}
+\end{pro}
+\begin{proof}
+    \todo{proof}
+\end{proof}
+
+\begin{re}
+    Recall when $R$ is commutative a left $R$-module is equivalent to a right $R$-module. In this case, $\tor_n^R(A,B)\cong \tor_n^R(B,A)$. To prove this it requires the use of double complex, which is not covered here, thus the proof is omitted.
+
+    However, we can check that the statement is true when $n=0$. This is indeed true since 
+    \[\tor_0^R(A,B)\cong A\ten_R B \cong B\ten_R A \cong \tor_0^R(B,A)\]
+    Here the tensor product is commutative due to commutativity of $R$.
+\end{re}
+
+\medskip
+
+\begin{ex}
+    It is easy to show that $\tor_n^R(A,\bigoplus B_i) \cong \bigoplus \tor_n^R(A,B_i)$ (this is a tutorial question). We will use this to compute $\tor_n^\Z(A,B)$ where $B$ is a finitely generated $Z$-module. Note
+    \[B\cong Z^m \oplus (\Z/d_1\Z) \oplus \dots \oplus(\Z/d_\ell \Z)\]
+    And thus
+    \[\tor_n^\Z(A,B)\cong \bigoplus_{i=1}^m \tor^\Z_n(A,\Z) \oplus \bigoplus_{i=1}^\ell \tor_n^\Z(A,\Z/d_i\Z)\]
+    Note 
+    \[\tor_n^Z(A,\Z/d_i\Z)=
+    \begin{cases}
+        A/d_iA&, n=0\\
+        _{d_i}A&, n=1\\
+        0&, n\geq 2
+    \end{cases}\]
+    On the other hand,
+    \[\tor_0^\Z(A,\Z)=A\quad \text{ and } \quad \tor_n^\Z(A,\Z)=0\ \forall n\geq 1\]
+    Therefore, in this case, $\tor_n^\Z(A,B)$ is fully known.
+\end{ex}
+
+\newpage
+\subsection{Group Cohomology}
+Recall that $\Z G$ is the set of functions $f$ from $G$ to $\Z$ with finite support. Alternatively, we can think of $\Z G$ as 
+\[\sbr{\sum \lambda_g \cdot g:\lambda_g \in \Z\text{ where $\lambda_g$ are almost all zero}}\]
+For more details (including its operation), refer to Example \ref{ex: group algebra}. Note also that $\Z G$ is commutative if and only if $G$ is abelian.
+
+\medskip
+
+\begin{defn} [$G$-module]
+    Let $G$ be a group (not necessarily abelian) and $A$ be an abelian group. We say $A$ is a $G$-module if there is a group homomorphism $\varphi:G\to \aut{A}$, i.e. $G$ acts on $A$, i.e. $A$ is a $\Z G$-module where $\Z G$ is the group algebra over $\Z$.
+\end{defn}
+
+\medskip
+
+\begin{ex}
+    \hfill
+
+    \begin{enumerate}
+        \item (Trivial $G$-module). $\Z$ is a $G$-module with the trivial $G$-action, i.e. $g\cdot n = n$ for every $g\in G$ and $n\in \Z$. One shall note, however, that this does not mean $\alpha\cdot n = n$ for every $\alpha \in \Z G$, for example
+        \[(1+g)\cdot n = 1\cdot n + g\cdot n = n+n = 2n\]
+        \item Let $A$ be a $G$-module. The fixed point submodule if 
+        \[A^G = \sbr{a\in A : g\cdot a\ \forall g\in G}\leq A\]
+        This is a submodule of $A$ where $G$ acts trivially.
+        \item Let $V$ be a vector space over field $F$. Then $V$ is $\gl(V)$-module, where recall $\gl(V)$ is just the group fo linear transformation from $V$ to $V$. Furthermore, $V^{\gl(V)}= \sbr{\vec 0}$.
+        \item Let $K$ be a Galois extension of $F$ (for example $\Q$). Then $K$ is a $G$-module where $G = \gal(K/F)$. Also $K^G = F$ by the Galois correspondence.
+    \end{enumerate}
+\end{ex}
+
+\medskip
+
+\begin{lem}
+    Let $A$ be a $G$-module. Then $A^G \cong \h_{\Z G}(\Z,A)$ as groups.
+\end{lem}
+\begin{proof}
+    Define $\varphi: A^G \to \h_{\Z G}(\Z, A)$ by $\varphi(a)= \alpha_a$ where $\alpha_a: n \mapsto n\cdot a$ for any $a\in A^G$.
+
+    We first check well-definedness. We check that $\alpha_a \in \h_{\Z G}(\Z,A)$. Since element of $\Z G$ can be expressed as formal sum of $G$, thus it suffices to check that $\alpha_a(g\cdot n) = g\cdot \alpha_a(n)$ 
+    \[\alpha_a(g\cdot n) = \alpha_a(n) = na = n(g \cdot a) = g\cdot (na) = g\cdot \alpha_a(n)\]
+    Next, we check that $\varphi$ is a group homomorphism. To show $\varphi(a+b)= \varphi(a) + \varphi(b)$, we just have to note that 
+    \[\alpha_{a+b}(n) = n(a+b) = na + nb = \alpha_a(n) + \alpha_b(n) = (\alpha_a + \alpha_b)(n)\]
+    We now show that $\varphi$ is a group isomorphism by defining its inverse map. Consider $\phi:\h_{\Z G}(\Z, A) \to A^G$ where $\alpha\mapsto \alpha(1)$. It is easy to check that the composition of $\phi$ and $\varphi$ gives identity map, and is thus omitted here.
+\end{proof}
+
+\begin{pro}
+    Let $F_n := \bigotimes_{i=1}^{n+1} \Z G$. Then
+    \[\dots \to F_n \xto{d_n} F_{n-1} \xto{d_{n-1}} \dots F_1 \xto{d_1} F_0 \xto{\ep} \Z \to 0\]
+    is a free resolution of $\Z$ as $\Z G$-module where
+    \begin{enumerate}
+        \item $F_n$ is $\Z G$-module defined by $g\cdot (g_0 \otimes g_1 \otimes \dots \otimes g_n) := (gg_0) \ten g_1 \ten \dots g_n$.
+        \item $F_n$ is a free $\Z G$-module of rank $|G|^n$, i.e. $F_n \cong \bigoplus_{i=1}^{|G|^n} \Z G$ with a free basis
+        \[\sbr{1\ten g_1 \dots \ten g_n:g_1, \dots, d_n\in G}\]
+        \item $d_0:F_0 \to \Z$ is defined by $d_0(g_0)=1$. For $d_1:F_1\to F_0$ where $d_1(g_0\ten g_1)= g_0(g_1-1)$. For $n\geq 2$, we define
+        \begin{align*}
+            d_n(g_0 \ten g_1 \ten \dots \ten g_n)=
+            &(g_0g_1\ten g_2 \ten \dots \ten g_n)\\ 
+            &+ \sum_{i=1}^{n-1}(-1)^i(g_0\ten g_1 \ten \dots \ten g_{i-1}\ten g_{i}g_{i+1} \ten \dot \ten g_n)\\ 
+            &+ (-1)^n(g_0\ten g_1 \ten \dots \ten g_{n-1})
+        \end{align*}
+    \end{enumerate}
+\end{pro}
+\begin{proof}
+    the proof is tedious and lengthy, thus it is left as a tutorial question.
+\end{proof}
+
+\begin{defn} [Bar resolution / Standard Resolution]
+    The free resolution constructed in the previous proposition is called the bar resolution of $\Z$.
+\end{defn}
+
+\medskip
+
+\begin{re}
+    Historically, instead of writting $(g_0 \ten g_1 \ten \dots \ten g_n)$, it was written as 
+    \[(g_0 \mid g_1 \mid \dots \mid g_n)\]
+    and this is why it is called bar resolution. We shall adapt this style of writting as well.
+\end{re}
+
+\medskip
+
+\begin{defn} [Group cohomology]
+    Let $A$ be a $G$-module. The $n$-th group cohomology of $G$ with coefficient set $A$ is defined to be
+    \[\ext_{\Z G}^n (\Z, A)\]
+    where $\ext_{\Z G}^n (\Z, A)$ is the $n$-th cohomology group of the complex obatined from taking hom on the bar resolution of $\Z$:
+    \[0 \to \h_{\Z G}(F_0, A) \xto{d_1^*} \h_{\Z G}(F_1, A) \xto{d_2^8} \h_{\Z G}(F_2, A) \xto{d_3^*}\]
+\end{defn}

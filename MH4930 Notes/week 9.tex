@@ -53,7 +53,29 @@
 
 \begin{pro} [Comparison Theorem]
     Let $f:V\to V'$ be an $R$-module homomorphism and $P_\bullet\twoheadrightarrow V$ be a projective resolution of $V$ and $P'_\bullet \twoheadrightarrow V'$ be an exact complex, where it need not to be a projective resolution of $V'$. Then there exists $f_n:P_n\to P_n'$ such that the following commute:
-    \todo{insert diagram}
+    \[\begin{tikzcd}[sep=small]
+	{\dots } && {P_3} && {P_2} && {P_1} && {P_0} && V && 0 \\
+	\\
+	\dots && {P_3'} && {P'_2} && {P'_1} && {P'_0} && {V'} && 0
+	\arrow[from=1-1, to=1-3]
+	\arrow["{d_3}", from=1-3, to=1-5]
+	\arrow["{f_3}"', from=1-3, to=3-3]
+	\arrow["{d_2}", from=1-5, to=1-7]
+	\arrow["{f_2}", from=1-5, to=3-5]
+	\arrow["{d_1}", from=1-7, to=1-9]
+	\arrow["{f_1}", from=1-7, to=3-7]
+	\arrow["{d_0}", from=1-9, to=1-11]
+	\arrow["{f_0}", from=1-9, to=3-9]
+	\arrow[from=1-11, to=1-13]
+	\arrow["f", from=1-11, to=3-11]
+	\arrow[from=1-13, to=3-13]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{\delta_3}"', from=3-3, to=3-5]
+	\arrow["{\delta_2}"', from=3-5, to=3-7]
+	\arrow["{\delta_1}"', from=3-7, to=3-9]
+	\arrow["{\delta_0}"', from=3-9, to=3-11]
+	\arrow[from=3-11, to=3-13]
+\end{tikzcd}\]
     Futhermore, given two such maps $f_n:P_n \to P_n'$ and $g_n:P_n\to P_n'$, there exists $s_n:P_n \to P_{n+1}'$ such that $f_n-g_n=\delta_{n+1}s_n + s_{n-1}d_n$.
 \end{pro}
 \begin{proof}
@@ -68,8 +90,8 @@
     \hfill
 
     \begin{enumerate}
-        \item Let $f,g: X^\bullet \to Y^\bullet$ be morphisms of complexes. We say that $f$ and $g$ are homotopic, denoted by $f\simeq g$, if there exists $s_n: X^n \to Y^{n+1}$ such that $f-g = ds + sd$.
-        \item The complexes $X^\bullet$ and $Y^\bullet$ are homotopy equivalent if there exists $f:X^\bullet \to Y^\bullet$ and $':Y^\bullet \to X^\bullet$ such that $f\circ f' \simeq \id_{Y^\bullet}$ and $f'\circ f \simeq \id_{X^\bullet}$. 
+        \item Let $f,g: X^\bullet \to Y^\bullet$ be morphisms of complexes. We say that $f$ and $g$ are homotopic, denoted by $f\simeq g$, if there exists $s_\bullet$ be a collection of map where $s_n: X^n \to Y^{n+1}$ such that $f-g = ds + sd$.
+        \item The complexes $X^\bullet$ and $Y^\bullet$ are homotopy equivalent if there exists $f:X^\bullet \to Y^\bullet$ and $f':Y^\bullet \to X^\bullet$ such that $f\circ f' \simeq \id_{Y^\bullet}$ and $f'\circ f \simeq \id_{X^\bullet}$. 
     \end{enumerate}
 \end{defn}
 
@@ -85,8 +107,20 @@
     \end{enumerate}
 \end{pro}
 \begin{proof}
-    \todo{proof}
+    The map $f:X^\bullet \to Y^\bullet$ induces $f^*: H^n(X^\bullet)\to H^n(Y^\bullet)$ where $[x]\mapsto [f(x)]$. This is similar for $g$. Since $f$ and $g$ are homotopic, there exists some map $s_n:X^n \to Y^{n+1}$ such that $f-g = ds + sd$. Observe that
+    \begin{align*}
+        f^*([x])
+        &= [f(x)] \\
+        &= [g(x)+ds(x) + sd(x)]\\
+        &= [g(x)] + [ds(x)]\\
+        &= [g(x)] + 0\\
+        &= g^*([x])
+    \end{align*}
+    This proves the first statement.
 
+    For the second statement, if $X^\bullet$ and $Y^\bullet$ are homotopy equivalent, it means having $f:X^\bullet\to Y^\bullet$ and $f':Y^\bullet\to X^\bullet$ such that $f\circ f' \simeq \id_{Y^\bullet}$ and $f'\circ f \simeq \id_{X^\bullet}$. These maps induces $f^*:H^n(X^\bullet) \to H^n(Y^\bullet)$ and ${f'}^*:H^n(Y^\bullet) \to H^n(X^\bullet)$. Note
+    \[({f'}^*\circ f^*)([x]) = (f'\circ f)^*([x]) = (\id_{X^\bullet})^*([x]) = [x]\]
+    Thus ${f'}^*\circ f^* = \id_{H^n(X^\bullet)}$. Similarly one can show that ${f}^*\circ {f'}^* = \id_{H^n(Y^\bullet)}$. This shows that $f^*$ is an isomorphism, and so $H^n(X^\bullet)$ and $H^n(Y^\bullet)$ are isomorphic.
 \end{proof}
 
 \begin{thm}
@@ -97,14 +131,76 @@
 \end{proof}
 
 \begin{thm} [Snake Lemma]
-    \todo{statement, proof is left as tutorial exercise}
+    Suppose we have a commutative diagram below with exact rows:
+    \[\begin{tikzcd} [sep = small]
+	0 && X && Y && Z && 0 \\
+	\\
+	0 && {X'} && {Y'} && {Z'} && 0
+	\arrow[from=1-1, to=1-3]
+	\arrow["\alpha", from=1-3, to=1-5]
+	\arrow["f", from=1-3, to=3-3]
+	\arrow["\beta", from=1-5, to=1-7]
+	\arrow["g", from=1-5, to=3-5]
+	\arrow[from=1-7, to=1-9]
+	\arrow["h", from=1-7, to=3-7]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{\alpha'}", from=3-3, to=3-5]
+	\arrow["{\beta'}", from=3-5, to=3-7]
+	\arrow[from=3-7, to=3-9]
+    \end{tikzcd}\]
+    We then have an exact sequence
+    \[0 \to \ker f \xto{\alpha} \ker g \xto\beta \ker h \xto\delta \coker f \xto {\alpha'} \coker g \xto {\beta'} \coker h \to 0\]
+    where cokernel of a map $\phi:A\to B$ is defined as the quotient $\coker \phi = B/\im \phi$.
 \end{thm}
 \begin{proof}
     Left as tutorial exercise.
 \end{proof}
 
 \begin{thm} [Horseshoe Lemma]
-    \todo{statement, proof is left as tutorial exercise}
+    Let $0\to X\to Y \to Z\to 0$ be a SES of $R$-modules and $P_\bullet \twoheadrightarrow X$, $Q_\bullet \twoheadrightarrow Z$ be projective resolutions of $X,Z$ respectively. Then we have an exact commutative diagram:
+    \[\begin{tikzcd} [sep=small]
+	&& 0 && 0 && 0 && 0 \\
+	\\
+	\dots && {P_2} && {P_1} && {P_0} && X && 0 \\
+	\\
+	\dots && {P'_2} && {P'_1} && {P'_0} && Y && 0 \\
+	\\
+	\dots && {Q_2} && {Q_1} && {Q_0} && Z && 0 \\
+	\\
+	&& 0 && 0 && 0 && 0
+	\arrow[from=1-3, to=3-3]
+	\arrow[from=1-5, to=3-5]
+	\arrow[from=1-7, to=3-7]
+	\arrow[from=1-9, to=3-9]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{d_2}", from=3-3, to=3-5]
+	\arrow[from=3-3, to=5-3]
+	\arrow["{d_1}", from=3-5, to=3-7]
+	\arrow[from=3-5, to=5-5]
+	\arrow["{d_0}", from=3-7, to=3-9]
+	\arrow[from=3-7, to=5-7]
+	\arrow[from=3-9, to=3-11]
+	\arrow[from=3-9, to=5-9]
+	\arrow[from=5-1, to=5-3]
+	\arrow[from=5-3, to=5-5]
+	\arrow["{\pi_2}"', from=5-3, to=7-3]
+	\arrow[from=5-5, to=5-7]
+	\arrow["{\pi_1}"', from=5-5, to=7-5]
+	\arrow[from=5-7, to=5-9]
+	\arrow["{\pi_0}"', from=5-7, to=7-7]
+	\arrow[from=5-9, to=5-11]
+	\arrow[from=5-9, to=7-9]
+	\arrow[from=7-1, to=7-3]
+	\arrow["{\delta_2}"', from=7-3, to=7-5]
+	\arrow[from=7-3, to=9-3]
+	\arrow["{\delta_1}"', from=7-5, to=7-7]
+	\arrow[from=7-5, to=9-5]
+	\arrow["{\delta_0}"', from=7-7, to=7-9]
+	\arrow[from=7-7, to=9-7]
+	\arrow[from=7-9, to=7-11]
+	\arrow[from=7-9, to=9-9]
+\end{tikzcd}\]
+In particular, we denote the second non-zero row as $P_\bullet \oplus Q_\bullet$, and it is a projective resolution of $Y$.
 \end{thm}
 \begin{proof}
     Left as tutorial exercise.
@@ -113,10 +209,91 @@
 \begin{thm}
     Let $0\to X\to Y\to Z\to 0$ be a SES of $R$-modules. Then we have a LES of abelian groups 
     \[0 \to \h_R(Z,D) \to \h_R(Y,D) \to \h_R(X,D)\] 
-    \[\to \ext^1_R(Z,D) \to \ext^1_R(Y,D) \to \ext^1_R(X,D) \to \ext^2_R(Z,D)\]
+    \[\to \ext^1_R(Z,D) \to \ext^1_R(Y,D) \to \ext^1_R(X,D) \to \ext^2_R(Z,D)\to \dots\]
 \end{thm}
 \begin{proof}
-    \todo{proof}
+    Take projective resolution $P_\bullet \twoheadrightarrow X$ and $Q_\bullet \twoheadrightarrow Z$. By Horseshoe Lemma, we get the diagram 
+    \[\begin{tikzcd} [sep=small]
+	&& 0 && 0 && 0 && 0 \\
+	\\
+	\dots && {P_2} && {P_1} && {P_0} && X && 0 \\
+	\\
+	\dots && {P'_2} && {P'_1} && {P'_0} && Y && 0 \\
+	\\
+	\dots && {Q_2} && {Q_1} && {Q_0} && Z && 0 \\
+	\\
+	&& 0 && 0 && 0 && 0
+	\arrow[from=1-3, to=3-3]
+	\arrow[from=1-5, to=3-5]
+	\arrow[from=1-7, to=3-7]
+	\arrow[from=1-9, to=3-9]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{d_2}", from=3-3, to=3-5]
+	\arrow[from=3-3, to=5-3]
+	\arrow["{d_1}", from=3-5, to=3-7]
+	\arrow[from=3-5, to=5-5]
+	\arrow["{d_0}", from=3-7, to=3-9]
+	\arrow[from=3-7, to=5-7]
+	\arrow[from=3-9, to=3-11]
+	\arrow[from=3-9, to=5-9]
+	\arrow[from=5-1, to=5-3]
+	\arrow[from=5-3, to=5-5]
+	\arrow["{\pi_2}"', from=5-3, to=7-3]
+	\arrow[from=5-5, to=5-7]
+	\arrow["{\pi_1}"', from=5-5, to=7-5]
+	\arrow[from=5-7, to=5-9]
+	\arrow["{\pi_0}"', from=5-7, to=7-7]
+	\arrow[from=5-9, to=5-11]
+	\arrow[from=5-9, to=7-9]
+	\arrow[from=7-1, to=7-3]
+	\arrow["{\delta_2}"', from=7-3, to=7-5]
+	\arrow[from=7-3, to=9-3]
+	\arrow["{\delta_1}"', from=7-5, to=7-7]
+	\arrow[from=7-5, to=9-5]
+	\arrow["{\delta_0}"', from=7-7, to=7-9]
+	\arrow[from=7-7, to=9-7]
+	\arrow[from=7-9, to=7-11]
+	\arrow[from=7-9, to=9-9]
+\end{tikzcd}\]
+Taking $\h_R(-,D)$ we get 
+\[\begin{tikzcd}[sep=small]
+	&& 0 && 0 && 0 \\
+	\\
+	0 && {\h_R(P_0, D)} && {\h_R(P_1, D)} && {\h_R(P_2, D)} && \dots \\
+	\\
+	0 && {\h_R(P_0 \oplus Q_0, D)} && {\h_R(P_1 \oplus Q_1, D)} && {\h_R(P_2 \oplus Q_2, D)} && \dots \\
+	\\
+	0 && {\h_R(Q_0, D)} && {\h_R(Q_1, D)} && {\h_R(Q_2, D)} && \dots \\
+	\\
+	&& 0 && 0 && 0
+	\arrow[from=3-1, to=3-3]
+	\arrow[from=3-3, to=1-3]
+	\arrow["{d_1^*}", from=3-3, to=3-5]
+	\arrow[from=3-5, to=1-5]
+	\arrow["{d_2^*}", from=3-5, to=3-7]
+	\arrow[from=3-7, to=1-7]
+	\arrow[from=3-7, to=3-9]
+	\arrow[from=5-1, to=5-3]
+	\arrow["{\iota_0^*}"', from=5-3, to=3-3]
+	\arrow["{\gamma_1^*}", from=5-3, to=5-5]
+	\arrow["{\iota_0^*}"', from=5-5, to=3-5]
+	\arrow["{\gamma_2^*}", from=5-5, to=5-7]
+	\arrow["{\iota_0^*}"', from=5-7, to=3-7]
+	\arrow[from=5-7, to=5-9]
+	\arrow[from=7-1, to=7-3]
+	\arrow["{\pi_0^*}"', from=7-3, to=5-3]
+	\arrow["{\delta_1^*}", from=7-3, to=7-5]
+	\arrow["{\pi_0^*}"', from=7-5, to=5-5]
+	\arrow["{\delta_2^*}", from=7-5, to=7-7]
+	\arrow["{\pi_0^*}"', from=7-7, to=5-7]
+	\arrow[from=7-7, to=7-9]
+	\arrow[from=9-3, to=7-3]
+	\arrow[from=9-5, to=7-5]
+	\arrow[from=9-7, to=7-7]
+\end{tikzcd}\]
+
+Lastly, by theorem regarding LES on cohomology, we have 
+\[0\to \h^0(A^\bullet)\]
 \end{proof}
 
 \begin{re}
@@ -134,7 +311,15 @@
     \end{enumerate}
 \end{thm}
 \begin{proof}
-    \todo{proof}
+    $3. \implies 2.$ is trivial.
+
+    For $2. \implies 1.$, suppose given SES $0 \to X\to Y\to Z\to 0$, we have LES on the Ext group
+    \[0 \to \h_R(Z,Q) \to \h_R(Y,Q) \to \h_R(X,Q) \to \ext_R^1(Z,D)=0\to \dots\]
+    This reduces into a SES
+    \[0 \to \h_R(Z,Q) \to \h_R(Y,Q) \to \h_R(X,Q) \to 0\]
+    So $Q$ is injective.
+
+
 \end{proof}
 
 
