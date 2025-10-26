@@ -4,7 +4,50 @@
     \[\to \ext_R^1 (D,U)\to \ext_R^1(D,V)\to \ext_R^1(D,W)\to \ext_R^2(D,U)\to \dots\]
 \end{thm}
 \begin{proof}
-    \todo{proof}
+    Take a projective resolution $P_\bullet \twoheadrightarrow D$ of $D$. Taking $\h_R(-, U), \h_R(-, V)$, and $\h_R(-, W)$ we obtain
+    \[\begin{tikzcd}[sep=small]
+	&& 0 && 0 && 0 \\
+	\\
+	0 && {\h_R(P_0, U)} && {\h_R(P_1, U)} && {\h_R(P_2, U)} && \dots \\
+	\\
+	0 && {\h_R(P_0, V)} && {\h_R(P_1, V)} && {\h_R(P_2, V)} && \dots \\
+	\\
+	0 && {\h_R(P_0, W)} && {\h_R(P_1, W)} && {\h_R(P_2, W)} && \dots \\
+	\\
+	&& 0 && 0 && 0
+	\arrow[from=1-3, to=3-3]
+	\arrow[from=1-5, to=3-5]
+	\arrow[from=1-7, to=3-7]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{d_1^*}", from=3-3, to=3-5]
+	\arrow["{\alpha_*}", from=3-3, to=5-3]
+	\arrow["{d_2^*}", from=3-5, to=3-7]
+	\arrow["{\alpha_*}", from=3-5, to=5-5]
+	\arrow["{d_3^*}", from=3-7, to=3-9]
+	\arrow["{\alpha_*}", from=3-7, to=5-7]
+	\arrow[from=5-1, to=5-3]
+	\arrow["{d_1^*}", from=5-3, to=5-5]
+	\arrow["{\beta_*}", from=5-3, to=7-3]
+	\arrow["{d_2^*}", from=5-5, to=5-7]
+	\arrow["{\beta_*}", from=5-5, to=7-5]
+	\arrow["{d_3^*}", from=5-7, to=5-9]
+	\arrow["{\beta_*}", from=5-7, to=7-7]
+	\arrow[from=7-1, to=7-3]
+	\arrow["{d_1^*}", from=7-3, to=7-5]
+	\arrow[from=7-3, to=9-3]
+	\arrow["{d_2^*}", from=7-5, to=7-7]
+	\arrow[from=7-5, to=9-5]
+	\arrow["{d_3^*}", from=7-7, to=7-9]
+	\arrow[from=7-7, to=9-7]
+    \end{tikzcd}\]
+    where the columns are exact, since $P_0$ is projective. This implies that we get a SES of complexes
+    \[0 \to \h_R(P_\bullet, U) \to \h_R(P_\bullet, V)\to \h_R(P_\bullet, W)\to 0\]
+    We shall denote this SES as $0 \to X_\bullet \to Y_\bullet \to Z_\bullet \to 0$. This induces a LES on the cohomology, i.e.
+    \[0 \to H^1(X_\bullet) \to H^1(Y_\bullet) \to H^1(Z_\bullet) \to H^2(X_\bullet) \to H^2(Y_\bullet) \to H^2(Z_\bullet) \to \dots\]
+    where each cohomology represents their respective Ext groups on either $U,V,$ or $W$. Recall also that the $0$-th Ext group is isomorphic to the hom set. Thus rewriting the above LES gives us
+    \[0 \to \h_R(D,U) \to \h_R(0,V)\to \h_R(D,W)\]
+    \[\to \ext_R^1 (D,U)\to \ext_R^1(D,V)\to \ext_R^1(D,W)\to \ext_R^2(D,U)\to \dots\]
+    as required.
 \end{proof}
 
 \begin{re}
@@ -58,7 +101,7 @@
 \begin{defn} [Injective resolution]
     An injective resolution of an $R$-module $W$ is an exact sequence 
     \[0 \to W \to Q_0 \to Q_1 \to \dots\]
-    such that each $Q_i$ is injective $R$-module.
+    such that each $Q_i$ is injective $R$-module. We denote the injective resolution of $W$ as $Q_\bullet \hookrightarrow W$.
 \end{defn}
 
 \medskip
@@ -67,8 +110,35 @@
     Every $R$-module has an injective resolution.
 \end{pro}
 \begin{proof}
-    \todo{proof}
-    Similar to the proof in the case of projective resolution, except that we will be taking the cokernel.
+    
+    The whole proof is similar to the proof of existence of projective resolution, except that we will be taking the cokernel.
+
+    Recall that previously in the subsection of injective modules, we know that every $R$-module is a submodule of some injective $R$-module. Thus, suppose given $W$ is an $R$-module, let $Q_0$ be an injective $R$-module such that $W\subseteq Q_0$. We have 
+    \[0\to W \xto\iota Q_0\]
+    Next we need to construct $Q_1$ from the existing information. Consider $\coker \iota$, i.e. $Q_0/\im\iota$, we have that $\pi_0: Q_0\twoheadrightarrow \coker \iota$ is the canonical surjection. Note $\coker \iota$ is also an $R$-module, thus it is contained in some injective $R$-module, say $Q_1$. Therefore, we can simply take the composition map of $Q_0$ to $\coker \iota$ and $\coker \iota$ to $Q_1$, giving us:
+    \[\begin{tikzcd}[sep=small]
+	0 && W && {Q_0} && {Q_1} \\
+	\\
+	&&&&& {\coker \iota = Q_0/\im \iota}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-3, to=1-5]
+	\arrow["d_1",dashed, from=1-5, to=1-7]
+	\arrow["\pi_0"',two heads,from=1-5, to=3-6]
+	\arrow[hook, from=3-6, to=1-7]
+    \end{tikzcd}\]
+    Note that since the map from $\coker \iota$ to $Q_1$ is injective, thus $\ker d_1 = \ker \pi_0$, and it is clear that $\ker \pi_0=\im \iota$. This shows that $\ker d_1 = \im \iota$, implying that we have exactness. Repeat the above procedure again we obtain:
+    \[\begin{tikzcd}[sep=small]
+	0 && W && {Q_0} && {Q_1} && {Q_2} \\
+	\\
+	&&&&&&& {\coker d_1= Q_1/\im d_1}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-3, to=1-5]
+	\arrow["{d_1}", from=1-5, to=1-7]
+	\arrow["{d_2}", dashed, from=1-7, to=1-9]
+	\arrow[two heads, from=1-7, to=3-8]
+	\arrow[hook, from=3-8, to=1-9]
+    \end{tikzcd}\]
+    and the exactness can be verfied similarly. Inductively we can construct an exact sequence of injective modules, thus completing the proof.
 \end{proof}
 
 \begin{defn} [Alternative definition of $\ext$]
@@ -76,6 +146,7 @@
     \[0 \xto{d_0^*} \h_R(V,Q_0) \xto{d_0^*} \h_R(V,Q_0) \xto{d_0^*} \h_R(V,Q_0) \to \dots \]
     The $n$-th cohomology group of this complex is defined as 
     \[\ext_R^n(V,W) := \frac{\ker d_{n+1}^*}{\im d_n^*}\]
+
 \end{defn}
 
 \medskip
@@ -180,7 +251,17 @@
     $\tor_0^R(D,B)\cong D\ten_R B$.
 \end{pro}
 \begin{proof}
-    \todo{proof}
+    By definition, we have that 
+    \[\tor_0^R(D,B) = \ker (1\ten d_0) / \im (1\ten d_1)\]
+    A direct observation says that $\ker (1\ten d_0)$ is $D\ten P_0$.
+
+    Next, note that we have the following exact sequence:
+    \[P_1 \xto{d_1} P_0 \xto{\ep} B \to 0\]
+    which induces an exact sequence
+    \[D\ten_R P_1 \xto{1\ten d_1} D\ten_R P_0 \xto{1\ten \ep} D\ten_R B \to 0\]
+    Thus $\im(1\ten d_1) = \ker (1\ten \ep)$. Altogether, we see that 
+    \[\frac{D\ten P_0}{\im (1\ten d_1)} = \frac{D\ten P_0}{\ker(1\ten \ep)}\]
+    By 1st Isomorphism Theorem, the RHS is isomorphic to $\im(1\ten \ep)$, which is $D\ten_R B$. This completes the proof.
 \end{proof}
 
 \begin{ex}
@@ -188,10 +269,13 @@
     \[0 \to \Z \xto{\cdot m} \Z \xto{\bmod m} \Z/m\Z\to 0\]
     Note if $m=0$ we have 
     \[0 \to \Z \xto{\cdot 1} \Z \to 0\]
-    Now, take tensor product we have 
+    In case of $m\neq 0$, remove the term $\Z/m\Z$, and take tensor product. Also, in case of $m=0$, simply take tensor product, 
     \[\dots \to 0 \to D\ten_\Z \Z \xto{(\cdot m)_*} D\ten_\Z \Z \to 0\]
     which is equivalent to that 
-    \todo{continue example}
+    \[\dots \to 0 \to D \xto{\cdot m} D \to 0\]
+    Thus we have $\tor_0^\Z(0,\Z/m\Z) = D\ten_\Z \Z/m\Z \cong D/mD$
+    where the last equality is a tutorial question. Also
+    \[\tor_1^\Z(D,\Z/m\Z) = \ker(\cdot m)/0 =\ _mD = \sbr{d\in D:md=0}\]
 \end{ex}
 
 \medskip
@@ -208,8 +292,56 @@
 \begin{proof}
     The first statement is left as an tutorial question.
 
-    For the second statement, 
-    \todo{proof}
+    For the second statement, let $P_\bullet \twoheadrightarrow B$ and $P'_\bullet \twoheadrightarrow B'$ be projective resolutions of $B$ and $B'$ respectively. Then, by Comparison Theorem, we have
+    \[\begin{tikzcd}[sep=small]
+	\dots && {P_3} && {P_2} && {P_1} && {P_0} && B && 0 \\
+	\\
+	\dots && {P_3'} && {P_2'} && {P_1'} && {P_0'} && {B'} && 0
+	\arrow[from=1-1, to=1-3]
+	\arrow["{d_3}", from=1-3, to=1-5]
+	\arrow["{f_3}", from=1-3, to=3-3]
+	\arrow["{d_2}", from=1-5, to=1-7]
+	\arrow["{f_2}", from=1-5, to=3-5]
+	\arrow["{d_1}", from=1-7, to=1-9]
+	\arrow["{f_1}", from=1-7, to=3-7]
+	\arrow[from=1-9, to=1-11]
+	\arrow["{f_0}", from=1-9, to=3-9]
+	\arrow[from=1-11, to=1-13]
+	\arrow["f", from=1-11, to=3-11]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{d_3'}", from=3-3, to=3-5]
+	\arrow["{d_2'}", from=3-5, to=3-7]
+	\arrow["{d_1'}", from=3-7, to=3-9]
+	\arrow[from=3-9, to=3-11]
+	\arrow[from=3-11, to=3-13]
+    \end{tikzcd}\]
+    Taking tensor with $F$ we have 
+    \[\begin{tikzcd}[sep=small]
+	\dots && {D \ten_R P_2} && {D \ten_R P_1} && {D \ten_R P_0} && 0 \\
+	\\
+	\dots && {D \ten_R P_2'} && {D \ten_R P_1'} && {D \ten_R P_0'} && 0
+	\arrow[from=1-1, to=1-3]
+	\arrow["{d_2}", from=1-3, to=1-5]
+	\arrow["{1\ten f_2}", from=1-3, to=3-3]
+	\arrow["{d_1}", from=1-5, to=1-7]
+	\arrow["{1\ten f_1}", from=1-5, to=3-5]
+	\arrow[from=1-7, to=1-9]
+	\arrow["{1\ten f_0}", from=1-7, to=3-7]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{d_2'}", from=3-3, to=3-5]
+	\arrow["{d_1'}", from=3-5, to=3-7]
+	\arrow[from=3-7, to=3-9]
+    \end{tikzcd}\]
+    We shall denote the first and second row of complexes as $X^\bullet$ and $Y^\bullet$ respectively. We examine commutativity in the above diagram, where note
+    \begin{align*}
+        (1\ten d_n) \circ (1\ten d_{n+1}) 
+        &= 1\ten (f_n \circ d_{n+1}) \\
+        &= 1\ten (d_n\circ f_{n+1}) \\
+        &= (1\ten d_n) \circ (1\ten f_{n+1})
+    \end{align*}
+    Thus we indeed have commutativity. Therefore, this induces maps on the homology group
+    \[\f_* :H_n(X^\bullet) \to H_n(Y^\bullet)\]
+    where $H_n(X^\bullet)$ is $\tor_n^R(D,B)$ and $H_n(Y^\bullet)$ is $\tor_n^R(D,B')$. This completes the proof.
 \end{proof}
 
 \begin{thm}
@@ -218,7 +350,94 @@
     \[\to D\ten_R A \to D\ten_R B\to D\ten_R C\to 0\]
 \end{thm}
 \begin{proof}
-    \todo{proof}
+    Let $P_\bullet \twoheadrightarrow A$ and $Q_\bullet \twoheadrightarrow C$ be projective resolutions of $A$ and $C$ respectively. By Horseshoe Lemma we have
+    \[\begin{tikzcd}[sep=small]
+	{[sep=small]} && 0 && 0 && 0 && 0 \\
+	\\
+	\dots && {P_2} && {P_1} && {P_0} && A && 0 \\
+	\\
+	\dots && {P_2 \oplus Q_2} && {P_1 \oplus Q_1} && {P_0 \oplus Q_0} && B && 0 \\
+	\\
+	\dots && {Q_2} && {Q_1} && {Q_0} && C & \bullet & 0 \\
+	\\
+	&& 0 && 0 && 0 && 0
+	\arrow[from=1-3, to=3-3]
+	\arrow[from=1-5, to=3-5]
+	\arrow[from=1-7, to=3-7]
+	\arrow[from=1-9, to=3-9]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{{d_2}}", from=3-3, to=3-5]
+	\arrow["{\iota_2}"', hook, from=3-3, to=5-3]
+	\arrow["{{d_1}}", from=3-5, to=3-7]
+	\arrow["{\iota_1}"', hook, from=3-5, to=5-5]
+	\arrow["{{d_0}}", from=3-7, to=3-9]
+	\arrow["{\iota_0}"', hook, from=3-7, to=5-7]
+	\arrow[from=3-9, to=3-11]
+	\arrow[from=3-9, to=5-9]
+	\arrow[from=5-1, to=5-3]
+	\arrow[from=5-3, to=5-5]
+	\arrow["{{\pi_2}}"', two heads, from=5-3, to=7-3]
+	\arrow[from=5-5, to=5-7]
+	\arrow["{{\pi_1}}"', two heads, from=5-5, to=7-5]
+	\arrow[from=5-7, to=5-9]
+	\arrow["{{\pi_0}}"', two heads, from=5-7, to=7-7]
+	\arrow[from=5-9, to=5-11]
+	\arrow[from=5-9, to=7-9]
+	\arrow[from=7-1, to=7-3]
+	\arrow["{{\delta_2}}"', from=7-3, to=7-5]
+	\arrow[from=7-3, to=9-3]
+	\arrow["{{\delta_1}}"', from=7-5, to=7-7]
+	\arrow[from=7-5, to=9-5]
+	\arrow["{{\delta_0}}"', from=7-7, to=7-9]
+	\arrow[from=7-7, to=9-7]
+	\arrow[from=7-9, to=7-11]
+	\arrow[from=7-9, to=9-9]
+    \end{tikzcd}\]
+    Taking $D\ten_R -$ we have
+    \[\begin{tikzcd}[sep=small]
+	{[sep=small]} && 0 && 0 && 0 \\
+	\\
+	\dots && {D \ten_R P_2} && {D \ten_R P_1} & 0 & {D \ten_R P_0} && 0 \\
+	\\
+	\dots && {D \ten_R (P_2 \oplus Q_2)} && {D \ten_R (P_1 \oplus Q_1)} && {D \ten_R (P_0 \oplus Q_0)} && 0 \\
+	\\
+	\dots && {D \ten_R Q_2} && {D \ten_R Q_1} && {D \ten_R Q_0} && 0 \\
+	\\
+	&& 0 && 0 && 0
+	\arrow[from=1-3, to=3-3]
+	\arrow[from=1-5, to=3-5]
+	\arrow[from=1-7, to=3-7]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{1 \ten {d_2}}", from=3-3, to=3-5]
+	\arrow["{1 \ten \iota_2}"', from=3-3, to=5-3]
+	\arrow["{1 \ten {d_1}}", from=3-5, to=3-7]
+	\arrow["{1 \ten \iota_1}"', from=3-5, to=5-5]
+	\arrow[from=3-7, to=3-9]
+	\arrow["{1 \ten \iota_0}"', from=3-7, to=5-7]
+	\arrow[from=5-1, to=5-3]
+	\arrow["{1 \ten \gamma_2}", from=5-3, to=5-5]
+	\arrow["{1 \ten {\pi_2}}"', from=5-3, to=7-3]
+	\arrow["{1 \ten \gamma_1}", from=5-5, to=5-7]
+	\arrow["{1 \ten {\pi_1}}"', from=5-5, to=7-5]
+	\arrow[from=5-7, to=5-9]
+	\arrow["{1 \ten {\pi_0}}"', from=5-7, to=7-7]
+	\arrow[from=7-1, to=7-3]
+	\arrow["{1 \ten {\delta_2}}"', from=7-3, to=7-5]
+	\arrow[from=7-3, to=9-3]
+	\arrow["{1 \ten {\delta_1}}"', from=7-5, to=7-7]
+	\arrow[from=7-5, to=9-5]
+	\arrow[from=7-7, to=7-9]
+	\arrow[from=7-7, to=9-7]
+    \end{tikzcd}\]
+    We shall denote the second, third, fourth row of complexes, which are non-zero, as $X_\bullet, Y_\bullet,$ and $Z_\bullet$, and we claim that the column are SES of complexes.
+    
+    To see this, we compute a map $1\ten \zeta_0 :D\ten_R(P_0\oplus Q_0)\to D\ten_R P_0$, which is simply the projection to $D\ten_R P_0$. Note
+    \[(1\ten\zeta_0)\circ (1\ten \iota_0) = 1\ten (\zeta_0 \circ \iota 0) = 1\ten \id_{P_0} = \id _{D\ten_R P_0}\]
+    This implies that $1\ten \iota_0$ must be an injective map. In general $1\ten \iota_\bullet$ is injective. On the other hand, it is clear that $1\ten \pi_\bullet$ is surjective. Thus, we have that the columns of the commutative diagram is SES, i.e.
+    \[0 \to X_\bullet \to Y_\bullet \to Z_\bullet \to 0\]
+    This induces a LES 
+    \[\dots \to H_1(X_\bullet) \to H_1(Y_\bullet) \to H_1(Z_\bullet) \to H_0(X_\bullet) \to H_0(Y_\bullet) \to H_0(Z_\bullet) \to 0\]
+    where these homology groups are the Tor groups. This completes the proof.
 \end{proof}
 
 \begin{pro} [Characterization of flat modules]
@@ -230,7 +449,21 @@
     \end{enumerate}
 \end{pro}
 \begin{proof}
-    \todo{proof}
+    \hfill
+
+    $[3. \implies 2.]$ Trivial.
+
+    $[2. \implies 1.]$ Suppose given SES $0\to A \to B \to B \to C \to 0$. By the previous theorem, we have a LES
+    \[\dots \to \tor_1^R(D,C)=0 \to D\ten_R A \to D\ten_R B\to D\ten_R C\to 0\]
+    This reduces to an SES
+    \[0 \to D\ten_R A \to D\ten_R B\to D\ten_R C\to 0\]
+    Thus $D$ is flat by definition.
+
+    $[1. \implies 3.]$ Let $P_\bullet \twoheadrightarrow B$ be a projective resolution of $B$. Since $D$ is flat, from the LES
+    \[\dots \to P_2 \to P_1 \to P_0 \to B \to 0 \to \dots\]
+    it induces another LES
+    \[\dots \to D_R P_2 \to D \ten_R P_1 \to D \ten_R P_0 \to 0\]
+    where the term $D\ten_R B$ is removed. Since this is a LES, thus all the homology group, i.e. the Tor groups, are trivial. This concludes the proof.
 \end{proof}
 
 \begin{re}
