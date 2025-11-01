@@ -1,0 +1,236 @@
+\medskip
+
+\begin{re}
+    Given group $G$, recall the invariant subgroup $A^G$ of a $G$-module $A$ is defined to be
+    \[A^G:= \sbr{a\in A: ga = a\ \forall g\in G}\]
+    In fact, we can view it as a factor $-^G: \text{Ab} \to G\text{-mod}$. It is a left exact functor. Then, group cohomology is then the right-derived functor of the invariant subgroup functor $-^G$. Roughly speaking, group cohomology measures the failure of being fixed by $G$. For example, if a $G$-module $A$ is invariant under $G$, then it should have trivial group cohomology. 
+\end{re}
+
+\medskip
+
+\begin{ex}
+    We compute the cohomology $\ext_{\Z G}^n (\Z, A)$ of the finite cyclic group $G=C_n = \langle \sigma \rangle$. By definition
+    \[\Z G = \sbr{\sum_{i=0}^{n-1} n_i \sigma^i:n_i\in \Z} \]
+    Consider $N= 1 + \sigma + \sigma^2 \pd \sigma^{n-1}$. We have a free resolution of $\Z$ given by 
+    \[\dots \xto{\cdot (\sigma-1)} \Z G \xto{\cdot N} \Z G \xto{\cdot (\sigma-1)} \Z G \xto{\ep} \Z \to 0\]
+    where 
+    \[\ep(g)=1 \quad \text{and} \quad \ep\br{\sum n_i \sigma^i} = \sum_{i=0}^{n-1} n_i\]
+    Since $G$ is abelian, so $\Z G$ is commutative, thus we have
+    \[(\sigma-1)N = N(\sigma-1) = (1+\sigma \pd \sigma^{n-1})(\sigma-1) = \sigma^n-1=0\]
+    Thus $\im (\cdot (\sigma-1))\subseteq \ker (\cdot N)$, and $\im (\cdot N) \subseteq \ker(\cdot (\sigma-1))$.
+
+    Next, to show that $\ker (\cdot (\sigma-1))\subseteq \im (\cdot N)$, let $\sum n_i \sigma^i\in \ker (\cdot (\sigma-1))$. By definition
+    \[0=(\sigma-1)(\sum n_i \sigma^i) = \sum_{j=0}^{n-1} (n_{j-1} - n_j) \sigma^j\]
+    This means that all coefficients are zero, so $n_{j-1} = n_j$ for all $j$, and thus we have $\sum n_i \sigma^i = \lambda N$ for some $\lambda\in \Z$.
+
+    Also, we have to show that $\ker (\cdot N) \subseteq \im (\cdot (\sigma-1))$. First note that for every $g\in G$, we have 
+    \[\ep((\sigma-1)\cdot g) = \ep (\sigma g - g) = 1-1 = 0\]
+    suggesting that $\im(\cdot (\sigma-1))\subseteq\ker \ep$. Let $\sum n_i \sigma^i \in \ker \ep$, i.e. $\sum n_i = 0$. So
+    \[\ker \ep = \operatorname{span} _\Z \sbr{1-\sigma, \sigma-\sigma^2 \many \sigma^{n-2} - \sigma^{n-1}}\]
+    so $\ker \ep \subseteq \im (\cdot (\sigma-1))$.
+
+    In short, this shows that the above complex is indeed a free resolution. 
+
+    Next, we compute the Ext group. Taking hom and ignore the first term we have
+    \[0 \to \h_{\Z G} (\Z G, A) \xto{(\cdot (\sigma-1))_*}  \h_{\Z G} (\Z G, A) \xto{(\cdot N)_*}  \h_{\Z G} (\Z G, A) \xto{(\cdot (\sigma-1))_*} \]
+    This is equivalent to
+    \[0 \to A \xto{\cdot (\sigma-1)} A \xto{\cdot N} A \xto{\cdot (\sigma-1)} \dots\]
+    We can now compute the Ext group: when $n$ is $0$
+    \[\ext_{\Z G}^0 (\Z, A) \cong A^{\Z G} = A^G\]
+    When $n\neq 0$ is even:
+    \[\ext_{\Z G}^n (\Z, A) = \frac{\ker (\cdot (\sigma -1))}{\im (\cdot N)} = \frac{_{\sigma-1} A}{NA} = \frac{A^G}{NA}\]
+    and when $n$ is odd we have 
+    \[\ext_{\Z G}^n (\Z, A) = \frac{\ker (\cdot N)}{\im (\cdot (\sigma-1))} = \frac{_N A}{(\sigma-1)A}\]
+\end{ex}
+
+\medskip
+
+\begin{defn} [$n$-cochain of $G$ with coefficient in $A$]
+    Let $A$ be a $G$-module. Define $C^0(G,A):= A$, and for all $n\geq 1$ define
+    \[C^n(G,A) := \sbr{\text{maps from $G^n$ to $A$}}\]
+    where maps refer to general maps. These are called the $n$-cochain of $G$ with coefficient in $A$.
+\end{defn}
+
+\medskip
+
+\begin{pro}
+    Let $A$ be a $G$-module. For $n\geq 1$, the $n$-cohcain $C^n(G,A)$ is an abelian group defined by the group operation 
+    \[(\alpha+\beta)(g_1 \many g_n) = \alpha(g_1 \many g_n) + \beta(g_1 \many g_n)\]
+    where $\alpha, \beta\in C^n(G,A)$. In particular, $C^n(G,A)$ is an abelian group for all $n$. 
+
+    Furthermore, we have isomorphism
+    \[\begin{tikzcd}[sep=small]
+	& {(g_1 \many g_n) \mapsto \beta(1| g_1 |\dots | g_n)} && \beta \\
+	{\Phi:} & {C^n(G,A)} && {\h_{\Z G} (F_n, A)} & {: \Psi} \\
+	& \alpha && {\Phi_\alpha:1 |g_1| \dots | g_n \mapsto \alpha(g_1\many g_n)}
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-2, to=2-2]
+	\arrow["\Psi"{description}, maps to, from=1-4, to=1-2]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-4, to=2-4]
+	\arrow[tail reversed, from=2-2, to=2-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=3-2, to=2-2]
+	\arrow["\Phi"{description}, maps to, from=3-2, to=3-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=3-4, to=2-4]
+    \end{tikzcd}\]
+\end{pro}
+\begin{proof}
+    The proof of $C^n(G,A)$ being abelian group is clear, thus omitted.
+
+    For the second part of the statement, we start by first showing that $\Phi$ is well-defined. Let $\alpha\in C^n(G,A)$, so $\alpha:G^n \to A$ is a map. Note $F_n$ has a $\Z G$-basis 
+    \[B:=\sbr{1\mid g_1 \mid \dots \mid g_n : g_1 \many g_n \in G}\]
+    This implies that $F_n$ is a free module. By the universal property of free module, we have the following commutative diagram:
+    \[\begin{tikzcd}[sep=small]
+	{(1\mid g_1 \mid \dots \mid g_n)} & B && {F_n} & {(1\mid g_1 \mid \dots \mid g_n)} \\
+	\\
+	&&& A \\
+	&&& {\alpha(1\mid g_1 \mid \dots \mid g_n)}
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-18pt}, maps to, from=1-1, to=1-5]
+	\arrow[maps to, from=1-1, to=4-4]
+	\arrow[hook, from=1-2, to=1-4]
+	\arrow["\alpha"', from=1-2, to=3-4]
+	\arrow["{\exists \Phi_\alpha}", dashed, from=1-4, to=3-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-5, to=1-4]
+	\arrow[dashed, maps to, from=1-5, to=4-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-4, to=3-4]
+    \end{tikzcd}\]
+    so we now obtain $\Phi_\alpha$ that maps from the $\Z G$-basis $B$ of $G^n$ to $A$. We can extend the map $\Phi_\alpha$ linearly such that the $\Phi_\alpha$ maps from $G^n$, since $B$ is a basis. It is ensured by the universal property that $\Phi_\alpha$ is indeed an $\Z G$-module homomorphism. This shows that $\Phi$ is indeed well-defined.
+
+    Next we show that $\Phi$ is a group homomorphism. Let $\alpha,\alpha'\in C^n(G,A)$. Then
+    \begin{align*}
+        (\Phi(\alpha+\alpha'))(g_1 \many g_n) &= \Phi_{\alpha+\alpha'} (g_1 \many g_n) \\
+        &= (\alpha+\alpha')(1 \mid g_1 \mid \dots \mid g_n) \\
+        &= \alpha(1 \mid g_1 \mid \dots \mid g_n) + \alpha'(1 \mid g_1 \mid \dots \mid g_n) \\
+        &= \Phi_\alpha(g_1 \many g_n) + \Phi_{\alpha'}(g_1 \many g_n) \\
+        &= (\Phi_\alpha + \Phi_{\alpha'})(g_1 \many g_n) \\
+        &= (\Phi(\alpha) + \Phi(\alpha'))(g_1 \many g_n)
+    \end{align*}
+    This shows that $\Phi(\alpha+\alpha') = \Phi(\alpha) + \Phi(\alpha')$.
+
+    On the other hand, there is no ambiguity in the well-definedness of $\Psi$. We prove that $\Psi$ is indeed a group homomorphism: Let $\beta, \beta' \in \h_{\Z G}(F_n,A)$, then
+    \begin{align*}
+        (\Psi(\beta+\beta'))(g_1 \many g_n) &= (\beta+\beta')(1\mid g_1 \mid \dots \mid g_n) \\
+        &= \beta(1\mid g_1 \mid \dots \mid g_n) + \beta'(1\mid g_1 \mid \dots \mid g_n) \\
+        &= (\Psi(\beta))(g_1 \many g_n) + (\Psi(\beta'))(g_1 \many g_n)\\
+        &= (\Psi(\beta) + \Psi(\beta'))(g_1 \many g_n)
+    \end{align*}
+    This shows that $\Psi(\beta + \beta') = \Psi(\beta) + \Psi(\beta')$.
+
+    Lastly, we show that $\Phi$ and $\Psi$ is isomorphism pair. Firstly note $(\Psi \circ \Phi)(\alpha) = \Psi (\Phi(\alpha)) = \Psi \circ \Phi_\alpha$, so
+    \[((\Psi \circ \Phi)(\alpha))(g_1 \many g_n) = (\Psi \circ \Phi_\alpha)(g_1 \many g_n) = \Phi_\alpha(1\mid g_1 \mid \dots \mid g_n) = \alpha(g_1 \many g_n)\]
+    So $(\Psi \circ \Phi)(\alpha) = \alpha$. Conversely, see that 
+    \[((\Phi \circ \Psi)(\beta))(1\mid g_1 \mid \dots \mid g_n) = (\Psi(\beta))(g_1 \many g_n) = \beta(1\mid g_1 \mid \dots \mid g_n)\]
+    This shows that $(\Phi \circ \Psi)(\beta) = \beta$. In summary, this shows that $\Psi$ and $\Phi$ are indeed invserses of each other, so the proof is completed.
+\end{proof}
+
+\begin{pro}
+    Under the isomorphism $\h_{\Z G}(F_n, A) \cong C^n(G,A)$, the differential maps $d_{n+1}^*:\h_{\Z G}(F_n, A) \to \h_{\Z G} (F_{n+1}, A)$ translate to, for $n\geq 1$, that
+    \[\delta_{n+1}:C^n(G,A) \to C^{n+1}(G,A),\ f\mapsto \delta_{n+1}(f)\]
+    where $f\mapsto \delta_{n+1}(f)$
+    \begin{align*}
+        &\ \delta_{n+1}(f)(x_1 \many x_{n+1})\\
+        &= x_1 f(x_2 \many x_{n+1}) + \sum_{i=1}^n (-1)^n f(x_1 \many, x_{i-1}, x_i x_{i+1} \many x_{n+1}) + (-1)^{n+1}f(x_1 \many x_n)
+    \end{align*}
+    and when $n=0$, the map $\delta_1 : C^0(G,A) \to C^1(G,A)$ is defined to be $a\mapsto (g\mapsto ga-a)$.
+\end{pro}
+\begin{proof}
+    Firstly, we examine the case for $n=0$.
+    \[\begin{tikzcd} [sep=small]
+	{(\Phi_a:1\mapsto a)} & {\h_{\Z G} (F_0, Z)} && {\h_{\Z G}(F_1,A)} & {\Phi_a \circ d_1} \\
+	\\
+	a & {A=C^0(G,A)} && {C^1(G,A)} & {\Psi(\Phi_a \circ d_1)(g)}
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-24pt}, maps to, from=1-1, to=1-5]
+	\arrow["{d_1^*}", from=1-2, to=1-4]
+	\arrow["\Phi"', tail reversed, no head, from=1-2, to=3-2]
+	\arrow["\Psi", from=1-4, to=3-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-5, to=1-4]
+	\arrow[maps to, from=1-5, to=3-5]
+	\arrow[maps to, from=3-1, to=1-1]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=3-1, to=3-2]
+    \arrow["\in"{marking, allow upside down}, draw=none, from=3-5, to=3-4]
+	\arrow["{\delta_1}"', from=3-2, to=3-4]
+    \end{tikzcd}\]
+    We want that the above diagram is commutative, i.e. we want to show that $\Psi(\Phi_a \circ d_1)(g) = \delta_1(a)$. Simply note
+    \begin{align*}
+        \Psi(\Phi_a \circ d_1)(g) &= (\Phi_a \circ d_1)(1\mid g) \\
+        &= \Phi_a(d_1(1\mid g))\\
+        &= \Phi_a(g-1) \\
+        &= (g-1)\cdot \Phi_a(1)\\
+        &= (g-1)a\\
+        &= ga-a \\
+        &= \delta_1(g)
+    \end{align*}
+    This shows that the statement holds for $n=0$. For $n\geq 1$, we have
+    \[\begin{tikzcd} [sep=small]
+	{\Phi_\beta} & {\h_{\Z G} (F_n, Z)} && {\h_{\Z G}(F_{n+1},A)} & {\Phi_\beta \circ d_{n+1}} \\
+	\\
+	\beta & {C^n(G,A)} && {C^{n+1}(G,A)} & {\Psi(\Phi_\beta \circ d_{n+1})}
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-1, to=1-2]
+	\arrow[curve={height=-24pt}, maps to, from=1-1, to=1-5]
+	\arrow["{d_{n+1}^*}", from=1-2, to=1-4]
+	\arrow["\Phi"', tail reversed, no head, from=1-2, to=3-2]
+	\arrow["\Psi", from=1-4, to=3-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-5, to=1-4]
+	\arrow[maps to, from=1-5, to=3-5]
+	\arrow[maps to, from=3-1, to=1-1]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=3-1, to=3-2]
+	\arrow["{\delta_{n+1}}"', from=3-2, to=3-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=3-5, to=3-4]
+    \end{tikzcd}\]
+    \todo{what?}
+\end{proof}
+
+\begin{re}
+    Altogether, the previous few proposition implies that we have isomorphissm of complex 
+    \[\Phi: \h_{\Z G}(F_\bullet, A) \to C^\bullet (G,A)\]
+    By previous result, we see that $H^n(G,A) := H^n(C^\bullet (G,A)) \cong \ext_{\Z G}(\Z, A)$
+    where 
+    \[H^n(C^\bullet (G,A)) = \frac{\ker \delta_{n+1}}{\im \delta_n}\]
+    Here, we call $\ker \delta_{n+1}$ as the $n$-cocycles, and $\im \delta_n$ the $n$-coboundaries.
+\end{re}
+
+\medskip 
+
+\begin{ex}
+    \hfill
+
+    \begin{enumerate}
+        \item Note the $0$-th group cohomology
+        \[H^0(G,A) = \ker \delta_1 = \sbr{a\in A:\delta_1(a) = 0} = \sbr{a\in A : \forall g\in G,\ ga-a = 0}=A^G\]
+        is just the submodule of $\Z G$ fixed by $G$.
+        \item When $G=\sbr{1}$ is the trivial group, from previous example we see that $H^0(G,A) = A$. For $n\geq 1$, note $H^n(G,A) = H^n(C^n(G,A)) = 0$, since $C^n(G,A)$ is the maps from $G^n=\sbr{1}^n$ to $A$, where there is only one possible ma.
+    \end{enumerate}
+\end{ex}
+
+\medskip 
+
+\begin{thm} [LES in group cohomology]
+    Let $0\to A \to B\to C \to 0$ be a SES of $G$-module. Then we have a LES 
+    \[0 \to A^G \to B^G \to C^G \to H^1(G,A) \to H^1(G,B) \to H^1(G,C) \to H^2(G,A) \to \dots\]
+\end{thm}
+\begin{proof}
+    The proof is immediate follows from LES in Ext groups, since by definition group cohomology is just a special type of Ext group.
+\end{proof}
+
+\begin{cor}
+    Suppose that $H^n(G,B)=0$ for all $n\geq 1$, then we have exact sequence
+    \[0 \to A^G \to B^G \to C^G \to H^1(G,A)\to 0\]
+    and isomorphism 
+    \[H^{n+1}(G,A) \cong H^n(G,C)\]
+\end{cor}
+\begin{proof}
+    Simply apply the assumption on the LES in group cohomology. The isomorphism comes from the exactness.
+\end{proof}
+
+\begin{defn} [Induced module]
+    Let $H$ be a subgroup of $G$, then $\Z H$ is a subalgebra(subring) of $\Z G$. Let $A$ be an $H$-module. We define the induced $G$-module by
+    \[M_H^G(A) := \h_{\Z H} (\Z G, A) = \sbr{\varphi: \Z G \to A: h\varphi(g) = \varphi(hg) \forall h\in H, \forall g\in G}\]
+    where we consider $\Z G$ as the bimodule $_{\Z H} \Z G_{\Z G}$.
+\end{defn}
+
+\medskip
+
+\begin{re}
+    In the case where $G$ is finite, then 
+    \[M^G_H(A) \cong \Z G \ten_{\Z H} A\]
+\end{re}
