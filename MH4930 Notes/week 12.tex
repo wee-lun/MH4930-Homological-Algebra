@@ -1,0 +1,332 @@
+\medskip
+
+\begin{pro} [Transitivity of induced module]
+    Let $K\leq H\leq G$ and $A$ is a $K$-module. Then
+    \[M^G_K(A) \cong M^G_H(M^H_K(A))\]
+\end{pro}
+\begin{proof}
+    By definition we have 
+    \[M^G_H(M^H_K(A)) = \h_{\Z H}(\Z G, \h_{\Z K}(\Z H, A))\]
+    Recall that Tensor-hom adjunction says that if we have $R$-module $X_R,\ _RY_S,\ Z_S$, then
+    \[\h_S(X \ten_R Y, Z) \cong \h_R(X, \h_S(Y,Z))\]
+    Note also that if we have an left $\Z G$-module $V$, we can define
+    \[v * g = g^{-1} \cdot v\]
+    to make $V$ into a right $\Z G$-module. 
+
+    With all the previous setup, we apply the conversion of left module to right module, if necessary, and apply tensor-hom adjunction to obtain
+    \[\h_{\Z H}(\Z G, \h_{\Z K}(\Z H, A))\cong \h_{\Z K}(\Z G \ten_{\Z H} \Z H, A)\]
+    Note $\Z G \ten_{\Z H} \Z H \cong \Z G$, thus we have 
+    \[\h_{\Z K}(\Z G \ten_{\Z H} \Z H, A) \cong \h_{\Z K}(\Z G, A) = M^G_K(A)\]
+    This completes the proof.
+\end{proof}
+
+\begin{pro}
+    Suppose that $G$ is a finite group and $0\to A \to B\to C \to 0$ be a SES of $H$-module, where $H\leq G$. Then we have a SES of $G$-module
+    \[0 \to M_H^G(A) \to M_H^G(B) \to M_H^G(C) \to 0\]
+\end{pro}
+\begin{proof}
+    Note we can write 
+    \[G = \bigcup_{i=1}^m g_iH\]
+    for some $m$, thus we have 
+    \[\Z G = \bigoplus_{i=1}^m g_i \Z H\]
+    as abelian groups. But note $g_i \Z H$ is isomorphic with the regular right $\Z H$-module $\Z H$, so $g_i \Z H$ has a free $\Z H$-basis $\sbr{g_i h\mid h\in H}$.
+
+    So $\Z G$ is a right free $\Z H$-module. Moreover, recall that free implies projective implies flat, so an SES $0\to A \to B\to C\to 0$ induces
+    \[0 \to \Z G \ten _{\Z H} A \to \Z G \ten _{\Z H} B \to \Z G \ten _{\Z H} C \to 0\]
+    Note that each non-zero entries in the above SES is isomorphic to $M_H^G(A)$, $M_H^G(B)$, and $M_H^G(C)$ respectively. Thus we have an equivalent SES
+    \[0 \to M_H^G(A) \to M_H^G(B) \to M_H^G(C) \to 0\]
+    This concludes the proof.
+\end{proof}
+
+\begin{pro}
+    Let $H\leq G$ and $A$ be a $G$-module. Then we have an injective $G$-module homomorphism 
+    \[\varphi:A \to M_H^G(A) = \h_{\Z H} (\Z G, A)\]
+    where $a \mapsto \varphi(a) (x) = xa$ for all $x\in G$, $a\in A$.
+\end{pro}
+\begin{proof}
+    We first check well-definedness, i.e. $\varphi(a) \in M^G_H(A)$. For every $x\in G$ and $h\in H$, we have 
+    \[\varphi(a) (hx) = (hx)a = h(xa) = h(\varphi(a)(x))\]
+    This shows that $\varphi(a)$ is indeed contained in $M^G_H(A)$. Secondly, we check that $\varphi$ is an $G$-module homomorphis: for every $g\in G$, $x\in G$, we have 
+    \[\varphi(g\cdot a) (x) = x(ga) = (xg)(a) = \varphi(a) (xg) = (g\cdot \varphi(a))(x)\]
+    This shows that $\varphi(g\cdot a) = g\cdot \varphi(a)$.
+
+    Lastly, we show that $\varphi$ is injective. let $\varphi(a) = 0$, then for every $x\in G$ we have $\varphi(a)(x) = 0$. Take $x=1$, note
+    \[\varphi(a)(1) = 1\cdot a = a\]
+    But $\varphi(a)(1) = 0$, so $a=0$. This shows that $\varphi$ is injective.
+\end{proof}
+
+\begin{thm} [Shapiro's Lemma]
+    Let $H\leq G$ and $A$ be an $H$-module. For any $n\geq 0$, we have 
+    \[H^n(G, M^G_H(A)) \cong H^n(H,A)\]
+\end{thm}
+\begin{proof}
+    Let $P_\bullet \twoheadrightarrow \Z$ be a projective resolution of $\Z$ as $\Z G$-module. Since $P_n$ is a projective $\Z G$-module, then $P_n$ is a direct summand of $\Z G$-module:
+    \[P_n \vert \bigoplus \Z G\]
+    By restriction to $\Z H$, we see that 
+    \[_{\Z H} P_n \vert \bigoplus\ _{\Z H}\Z G\]
+    But since $_{\Z H} \Z G \cong \bigoplus \Z H$, so we have 
+    \[_{\Z H} P_n \vert \bigoplus \Z H\]
+    This says that $P_n$ is projective as $\Z H$-modules. In other words, we have a projective resolution $P_\bullet \twoheadrightarrow \Z$ as $\Z H$-modules, with all the differential maps are the same.
+
+    Take $\h_{\Z G}(-, M_H^G(A))$ for the projective resolution of $\Z$ as $\Z G$-module, and take $\h_{\Z H}(-,A)$ for the projective resolution of $\Z$ as $\Z H$-module. We also define the maps $\varphi_n:\h_{\Z G}(P_n, M_H^G(A)) \to \h_{\Z H}(P_0, A)$ by $f\mapsto \varphi_n(f)$ where $\varphi_n(f)$ is defined as the map $x\mapsto f(x)(1)$. We thus have the following diagram:
+    \[\begin{tikzcd}[sep=small]
+	0 && {\h_{\Z G}(P_0, M_H^G(A))} && {\h_{\Z G}(P_1, M_H^G(A))} && {\h_{\Z G}(P_2, M_H^G(A))} && \dots \\
+	\\
+	0 && {\h_{\Z H}(P_0, A)} && {\h_{\Z H}(P_1, A)} && {\h_{\Z H}(P_2, A)} && \dots
+	\arrow[from=1-1, to=1-3]
+	\arrow["{d_1^*}", from=1-3, to=1-5]
+	\arrow["{\varphi_0}", from=1-3, to=3-3]
+	\arrow["{d_2^*}", from=1-5, to=1-7]
+	\arrow["{\varphi_1}", from=1-5, to=3-5]
+	\arrow["{d_3^*}", from=1-7, to=1-9]
+	\arrow["{\varphi_2}", from=1-7, to=3-7]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{d_1^*}", from=3-3, to=3-5]
+	\arrow["{d_2^*}", from=3-5, to=3-7]
+	\arrow["{d_3^*}", from=3-7, to=3-9]
+    \end{tikzcd}\]
+    Our goal is to show that $\varphi_\bullet$ is a chain complex isomorphism. In particular, we have to show the above diagram commutes, and that each $\varphi_n$ is an isomorphism.
+
+    Firstly, to show commutativity, we show that $d_n^* \circ \varphi_{n-1} = \varphi_n d_n$. In particular, we see that the following occurs:
+    \[\begin{tikzcd}[sep=small]
+	&& f && {f\circ d_n} \\
+	\dots && {\h_{\Z G}(P_{n-1}, M_H^G(A))} && {\h_{\Z G}(P_n, M_H^G(A))} && \dots \\
+	\\
+	\dots && {\h_{\Z H}(P_{n-1}, A)} && {\h_{\Z H}(P_n, A)} && \dots \\
+	&& {g:x\mapsto f(x)(1)} && {(g\circ d_n) = \varphi_n(f\circ d_n)}
+	\arrow[maps to, from=1-3, to=1-5]
+	\arrow[curve={height=18pt}, maps to, from=1-3, to=5-3]
+	\arrow[curve={height=-30pt}, maps to, from=1-5, to=5-5]
+	\arrow[from=2-1, to=2-3]
+	\arrow["{d_n^*}", from=2-3, to=2-5]
+	\arrow["{\varphi_{n-1}}", from=2-3, to=4-3]
+	\arrow[from=2-5, to=2-7]
+	\arrow["{\varphi_n}", from=2-5, to=4-5]
+	\arrow[from=4-1, to=4-3]
+	\arrow["{d_n^*}", from=4-3, to=4-5]
+	\arrow[from=4-5, to=4-7]
+	\arrow[maps to, from=5-3, to=5-5]
+    \end{tikzcd}\]
+    where the equality at the lower right corner is achieved as follow: Note $\varphi_n(f\circ d_n)$ is defined to be the map $x\mapsto (f\circ d_n)(x)(1)$. On the other hand we note $g\circ d_n$ sends $x$ to $(g\circ d_n)(x) = g(d_n(x))$, where by the definition of $g$ we see 
+    \[g(d_n(x)) = f(d_n(x))(1) = (f\circ d_n)(x)(1)\]
+    In short, we have $g\circ d_n$ sends $x$ to $(f\circ d_n)(x)(1)$, which has the same effect as $\varphi_n(f\circ d_n)$. This shows commutativity.
+
+    Next, to show that $\varphi_n$ is an isomorphism, note that $\h_{\Z G}(V, M_H^G(A)) = \h_{\Z G}(V_{\Z G}, M_H^G(A)_{\Z G})$. By tensor-hom adjunction, we have the following isomorphism
+    \[\h_{\Z G}(V_{\Z G}, M_H^G(A)_{\Z G}) \cong \h_{\Z H}(V\ten_{\Z G} \Z G, A_{\Z H})\]
+    where the isomorphism is given by $f\mapsto (v\ten g \mapsto f(v)(g))$. Recall that $V\ten_{\Z G} \Z G \cong V$, thus we have that 
+    \[\h_{\Z H}(V\ten_{\Z G} \Z G, A_{\Z H}) \cong \h_{\Z H}(V_{\Z H}, A_{\Z H})\]
+    where the isomorphism is given by 
+    \[(v\ten g \mapsto f(v)(g)) \mapsto (v\mapsto f(v)(1))\]
+    Lastly, we see $\h_{\Z H}(_{\Z H} V,\ _{\Z H}A) = \h_{\Z H}(V_{\Z H}, A_{\Z H})$. In short, the above discussion can be summarized as follow:
+    \[\begin{tikzcd}[sep=small]
+	& {\h_{\Z G}(V,M_H^G(A))} & f \\
+	{=} & {\h_{\Z G}(V_{\Z G}, M_H^G(A)_{\Z G})} \\
+	\cong & {\h_{\Z H}(V\ten_{\Z G} \Z G, A_{\Z H})} & {v\ten g \mapsto f(v)(g)} \\
+	\cong & {\h_{\Z H}(V_{\Z H}, A_{\Z H})} & {v\mapsto f(v)(1)} \\
+	{=} & {\h_{\Z H}(_{\Z H}A,\ _{\Z H}A)}
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-3, to=1-2]
+	\arrow[maps to, from=1-3, to=3-3]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=3-3, to=3-2]
+	\arrow[maps to, from=3-3, to=4-3]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-3, to=4-2]
+    \end{tikzcd}\]
+    This completes the proof.
+\end{proof}
+
+\begin{cor}
+    Let $A$ be a $G$-module. Denote the trivial subgroup of $G$ as $1$. For all $n\geq 1$ we have 
+    \[H^n(G, M_1^G(A)) = 0\]
+\end{cor}
+\begin{proof}
+    It follows from Shapiro's Lemma that $H^n(G,M_1^G(A))\cong H^n(1, A)\cong 0$.
+\end{proof}
+
+\begin{cor}[Degree shifting]
+    For any $G$-module $A$, we have
+    \[H^{n+1}(G,A) \cong H^n(G, M_1^G(A)/A)\]
+\end{cor}
+\begin{proof}
+    SInce we have an injective $G$-module homomorphism $A\hookrightarrow M_1^G(A)$, we get a SES
+    \[0 \to A \to M_1^G(A) \to M_1^G(A)/A \to 0\]
+    where we define it as $0\to X \to Y \to Z \to 0$. This induces a LES 
+    \[0 \to H^0(G,X) \to H^0(G,Y) \to H^0(G,Z)\] 
+    \[\to H^1(G,X) \to H^1(G,Y) \to H^1(G,Z) \to H^2(G,X) \to H^2(G,Y) \to \dots\]
+    But note from previous corollary we see that $H^n(G,Y)=0$, thus we have 
+    \[\dots \to 0 \to H^n(G,Z) \to H^{n+1}(G,X) \to 0 \to \dots\]
+    The result follows
+\end{proof}
+
+\begin{defn} [Compatible]
+    Let $A$ and $A'$ be $G$ and $G'$-module respectively. A group homomorphism $\alpha:G'\to G$ is compatible with a (abelian) group homomorphism $f:A\to A'$ if 
+    \[g' \cdot f(a) = f(\alpha(g') \cdot a)\]
+    for all $a\in A$ and all $g'\in G'$.
+\end{defn}
+
+\medskip
+
+\begin{re}
+    Compatibility simultaneously generalizes both module homomorphism and restriction. For example, if $\alpha=\id_G$ and $G'=G$, then 
+    \[g\cdot f(a) = f(g\cdot a)\]
+    On the other hand, if $A'=A$, and take $f=\id_A$, then 
+    \[g'*a = \alpha(g')\cdot a\]
+    where in most scenario we might be taking $G'$ as a subgroup of $G$, and $\alpha$ as the inclusion map.
+\end{re}
+
+\medskip
+
+\begin{pro}
+    Suppose that $\alpha:G'\to G$ and $:A\to A'$ are compatible. Then, for all $n\geq 0$ we have a homomorphism 
+    \[\lambda_n: H^n(G,A) \to H^n(G',A'),\ [\varphi] \mapsto [f\circ \varphi\circ \alpha^n]\]
+    where $\alpha^n:(G')^n \to G^n$ such that $(h_1 \many h_n) \mapsto (\alpha(h_1) \many \alpha(h_n))$. Note that here $\varphi:G^n \to A$.
+\end{pro}
+\begin{proof}
+    To show that we have a homomorphism from $H^\bullet(G,A)$ to $H^n(G',A')$, it suffices to show that there is a homomorphism from $C^\bullet(G,A)$ to $C^\bullet(G',A')$. Define 
+    \[\Phi_0:C^0(G,A) \to C^0(G',A'),\ a\mapsto f(a)\]
+    Also, define for each $n\geq 1$ that 
+    \[\Phi_n: C^n(G,A)\to C^n(G',A'),\ \varphi\mapsto f\circ \varphi \circ \alpha^n\]
+    This gives a diagram:
+    \[\begin{tikzcd}[sep=small]
+	0 && {C^0(G,A)} && {C^1(G,A)} && {C^2(G,A)} && \dots \\
+	\\
+	0 && {C^0(G',A')} && {C^1(G',A')} && {C^2(G',A')} && \dots
+	\arrow[from=1-1, to=1-3]
+	\arrow["{\delta_1}", from=1-3, to=1-5]
+	\arrow["{\Phi_0}"{description}, from=1-3, to=3-3]
+	\arrow["{\delta_2}", from=1-5, to=1-7]
+	\arrow["{\Phi_1}"{description}, from=1-5, to=3-5]
+	\arrow["{\delta_3}", from=1-7, to=1-9]
+	\arrow["{\Phi_2}"{description}, from=1-7, to=3-7]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{\delta_1}", from=3-3, to=3-5]
+	\arrow["{\delta_2}", from=3-5, to=3-7]
+	\arrow["{\delta_3}", from=3-7, to=3-9]
+    \end{tikzcd}\]
+    where by abuse of notation we are denoting the differential maps of both complexes as $\delta_\bullet$. It remains to show that the diagram commutes, i.e. $\Phi \delta = \delta \Phi$, where indices are dropped.
+
+    Firstly, we have 
+    \begin{align*}
+        &\ (\Phi\delta)(\varphi)(h_1 \many h_{n+1})\\
+        &= (f\circ \delta(\varphi)\circ \alpha^{n+1})(h_1 \many h_{n+1})\\
+        &= (f\circ \delta(\varphi))(\alpha(h_1) \many \alpha(h_{n+1}))\\
+        &= f(\alpha(h_1)\cdot \varphi(\alpha(h_1) \many \alpha(h_{n+1}))) \\
+        &\quad + \sum_{i=1}^n(-1)^i \varphi(\alpha(h_1) \many \alpha(h_{i-1}, \alpha(h_i)\alpha(h_{i+1}) \many \alpha(h_{n+1})))\\
+        &\quad +(-1)^{n-1} \varphi(\alpha(h_1) \many \alpha(h_n))\\
+        &= h_1\cdot (f\circ \varphi)(\alpha(h_2) \many \alpha(h_{n+1})) \\
+        &\quad + \sum_{i=1}^n(-1)^i \varphi(\alpha(h_1) \many \alpha(h_{i-1}, \alpha(h_i)\alpha(h_{i+1}) \many \alpha(h_{n+1})))\\
+        &\quad +(-1)^{n-1} \varphi(\alpha(h_1) \many \alpha(h_n))\\
+    \end{align*}
+    On other other hand, we have 
+    \begin{align*}
+        &\ (\delta\Phi)(\varphi)(h_1 \many h_{n+1})\\
+        &= \delta(f\circ \varphi\circ \alpha^n)(h_1 \many h_{n+1})\\
+        &= h_1(f\circ \varphi\circ \alpha^n)(h_2 \many h_{n+1}) \\
+        &\quad + \sum_{i=1}^n(-1)^i \varphi(\alpha(h_1) \many \alpha(h_{i-1}, \alpha(h_i)\alpha(h_{i+1}) \many \alpha(h_{n+1})))\\
+        &\quad +(-1)^{n-1} \varphi(\alpha(h_1) \many \alpha(h_n))
+    \end{align*}
+    where in the last equality we have applied the compatibility that $h(f(a)) = f(\alpha(h)a)$. Therefore, we see that we have commutativity in the above diagram, and thus $\Phi_n$ is indeed a chain homomorphism.
+\end{proof}
+
+\begin{defn} [Natural transformation]
+    Let $\f$ and $\f'$ be covariant functors from category $\mathcal C$ to $\mathcal D$. A natural transformation $\eta$ from $\f$ to $\f'$ is a collection $\sbr{\eta_X: \f(X) \to \f'(X)\mid \forall X \in \obj(\mathcal C)}$ of morphism in category $\mathcal D$ such that for any $\varphi \in \mor_{\mathcal C}(X,Y)$ we have the following commutative diagram
+    \[\begin{tikzcd}[sep=small]
+	{\f(X)} && {\f'(X)} \\
+	\\
+	{\f(Y)} && {\f'(Y)}
+	\arrow["{\eta_X}", from=1-1, to=1-3]
+	\arrow["{\f(\varphi)}"', from=1-1, to=3-1]
+	\arrow["{\f'(\varphi)}"', from=1-3, to=3-3]
+	\arrow["{\eta_Y}", from=3-1, to=3-3]
+    \end{tikzcd}\]
+    We denote a natural transformation from $\f$ to $\f'$ as $\eta:\f \implies \f'$.
+\end{defn}
+
+\medskip 
+
+\begin{ex}
+    Let $\alpha:G'\to G$ be a group homomorphism. We have covariant functors 
+    \[H^n(G,-): \text{G-mod $\to$ Ab}\]
+    \[H^n(G',\ _\alpha-): \text{G-mod $\to$ Ab}\]
+    We have the natural transformation 
+    \[\eta_X:H^n(G,X) \to H^n(G',\ _\alpha X),\ [f] \mapsto [f\circ \alpha^n]\]
+    For each $G$-module homomorphism $\varphi:X\to Y$, we have the following diagram
+    \[\begin{tikzcd}[sep=small]
+	{[f]} && {[f\circ \alpha]} \\
+	{H^n(G,X)} && {H^n(G',\ _\alpha X)} \\
+	\\
+	{H^n(G,Y)} && {H^n(G',\ _\alpha Y)} & {[\varphi\circ (f\circ \alpha^n)]} \\
+	{[\varphi\circ f]} && {[(\varphi\circ f)\circ \alpha^n]}
+	\arrow[maps to, from=1-1, to=1-3]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-1, to=2-1]
+	\arrow[curve={height=40pt}, maps to, from=1-1, to=5-1]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=1-3, to=2-3]
+	\arrow[curve={height=-24pt}, maps to, from=1-3, to=4-4]
+	\arrow["{\eta_X}", from=2-1, to=2-3]
+	\arrow[from=2-1, to=4-1]
+	\arrow[from=2-3, to=4-3]
+	\arrow["{\eta_Y}", from=4-1, to=4-3]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=4-4, to=4-3]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=5-1, to=4-1]
+	\arrow[maps to, from=5-1, to=5-3]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=5-3, to=4-3]
+    \end{tikzcd}\]
+    Since composition is associative, so $[(\varphi\circ f) \circ \alpha^n] = [\varphi\circ (f\circ \alpha^n)]$, and thus the diagram is commutative. This shows that $\eta$ is a natural transformation.
+\end{ex}
+
+\medskip 
+
+\begin{defn} [Restriction homomorphism, Inflation homomorphism]
+    \hfill 
+    
+    \begin{enumerate}
+        \item Consider $H\leq G$ and $\iota:H\hookrightarrow G$ be the inclusion map. Let $A$ be $G$-module, and $\id_A:A\to A$. Note the pair $(\iota, \id_A)$ is compatible. The restriction homomorphism (of group cohomology) is defined to be 
+       \[\res: H^n(G,A) \to H^n(H,A),\ [f] \mapsto [f\circ \iota^n]\]
+       \item Let $N\triangleleft G$ and $A$ is a $G$-module. Define the fixed point module by $N$ as  
+       \[A^N = \sbr{a\in A : n\cdot a = a\ \forall n\in N}\]
+       Then $N$ acts trivially on $A^N$. Also, for any $g\in G$, $a\in A^N$, $n\in N$, then 
+       \[n(ga) = g(g^{-1}ng)a = ga\]
+       So $ga\in A^N$, and thus $A^N$ is a $G$-module.
+
+       Therefore $A^N$ is a $(G/N)$-module. Consider the canonical surjection $\pi:G\twoheadrightarrow G/N$ and the inlcusion map $\varphi: A^N \to A$. Then the pair $(\pi, \varphi)$ is compatible, i.e. 
+       \[g* \varphi(a) = g*a = \varphi(g*a) = \varphi(\pi(g)a)\]
+       for all $g\in G$ and $a\in A^N$. 
+
+       The inflation homomorphism (of group cohomology) is defined to be 
+       \[\inf: H^n(G/N, A^N) \to H^n(G,A),\ [f] \mapsto [\iota \circ f \circ \pi^n] \]
+    \end{enumerate}
+\end{defn}
+
+\medskip
+
+\begin{pro}
+    Let $H\leq G$ such that $[G:H]<\infty$. Let $A$ be a $G$-module. Define $\psi:M_H^G(A) \to A$ by
+    \[\psi(f) = \sum_{i=1}^m g_i \cdot f(g_i^{-1})\]
+    where $\sbr{g_1 \many g_n}=G/H$. Then $\psi$ is a surjective $G$-module homomorphism independent of the choice of coset representatives of $G/H$.
+\end{pro}
+\begin{proof}
+    For each $i$< let $g_i' = g_i h_i$ where $h_i\in H$. If we consider the set of representative $\sbr{g_1' \many g_n'}$, then 
+    \[\Psi(f) = \sum_{i=1}^m g_i' f(g_i'^{-1}) = \sum_{i=1}^m g_ih_i f(h_i^{-1}g_i^{-1}) = \sum_{i=1}^m g_ih_i h_i^{-1}f(g_i^{-1})= \sum_{i=1}^m g_i f(g_i^{-1})\]
+    This shows that the defined map is independent of the choice of coset representative.
+
+    The proof for $\psi$ being a group homomorphism is omitted. 
+
+    \todo{G-module proof, and surjective}
+
+    For each $i=1 \many m$ and $a\in A$, we define $f_{i,a}:\Z G \to A$ where 
+    \[f_{i,a} = 
+    \begin{cases}
+        ha &,\ x= hg_i^{-1},\ h\in H \\
+        0 &, \text{otherwise}
+    \end{cases}\]
+
+\end{proof}
+
+\begin{defn} [Corestriction homomorphism]
+    Let $H\leq G$ such that $[G:H]<\infty$. Let $A$ be a $G$-module. Define $\psi:M_H^G(A) \to A$ by
+    \[\psi(f) = \sum_{i=1}^m g_i f(g_i^{-1})\]
+    where $\sbr{g_1 \many g_n}=G/H$. Previous proposition asserts that $\psi(f)$ is a $G$-module homomorphism. It induces a group homomorphism $\psi^* : H^n(G, M_H^G(A))\to H^n(G,A)$ where 
+    \[[f] \mapsto [\psi\circ f]\]
+    By Shapiro's lemma, we have 
+    \[H^n(H,A) \cong H^n(G, M_H^G(A))\]
+    The corestriction homomorphism (on group cohomology) is the composition of these two maps 
+    \[H^n(H,A) \xto{\cong} H^n(G, M_H^G(A)) \xto{\psi^*} H^n(G,A)\]
+\end{defn}
