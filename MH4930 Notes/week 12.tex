@@ -303,21 +303,66 @@
     where $\sbr{g_1 \many g_n}=G/H$. Then $\psi$ is a surjective $G$-module homomorphism independent of the choice of coset representatives of $G/H$.
 \end{pro}
 \begin{proof}
-    For each $i$< let $g_i' = g_i h_i$ where $h_i\in H$. If we consider the set of representative $\sbr{g_1' \many g_n'}$, then 
+    We first prove that $\psi$ is independent of the choice of coset representatives. For each $i$, let $g_i' = g_i h_i$ where $h_i\in H$. If we consider the set of representative $\sbr{g_1' \many g_n'}$, then 
     \[\Psi(f) = \sum_{i=1}^m g_i' f(g_i'^{-1}) = \sum_{i=1}^m g_ih_i f(h_i^{-1}g_i^{-1}) = \sum_{i=1}^m g_ih_i h_i^{-1}f(g_i^{-1})= \sum_{i=1}^m g_i f(g_i^{-1})\]
-    This shows that the defined map is independent of the choice of coset representative.
+    This shows that the defined map is independent of the choice of coset representatives.
 
-    The proof for $\psi$ being a group homomorphism is omitted. 
+    The proof of $\psi$ being a group homomorphism is left as an exercise. We show that the defined map is a $G$-module homomorphism. Note for each $g\in G$ and $j=1 \many m$, we can write 
+    \[g g_j = g_{j_i} h_j\]
+    since $g g_j$ lives in some cosets of $H$. We see that 
+    \[\psi(g\cdot f) = \sum_{i=1}^m g_i(g\cdot f)(g_i^{-1}) = \sum_{i=1}^m g_i(f(g_i^{-1}g))\]
+    Since the sum is running through $1$ to $m$, thus it is equivalent to write 
+    \begin{align*}
+        \psi(g\cdot f) &= \sum_{i=1}^m g_{j_i} f(g_{j_i}^{-1}g) \\
+        &= \sum_{i=1}^m g_{j_i} f(h_j g_j^{-1})\\
+        &= \sum_{i=1}^m g_{j_i} h_j f(g_j^{-1})\\
+        &= \sum_{i=1}^m gg_j f(g_j^{-1})\\
+        &= g \sum_{i=1}^m g_j f(g_j^{-1})\\
+        &= g \psi(f)
+    \end{align*}
+    This shows that $\psi$ is a $G$-module homomorphism.
 
-    \todo{G-module proof, and surjective}
-
-    For each $i=1 \many m$ and $a\in A$, we define $f_{i,a}:\Z G \to A$ where 
-    \[f_{i,a} = 
+    Lastly, for the surjectivity of $\psi$, for each $i=1 \many m$ and $a\in A$, we define $f_{i,a}:\Z G \to A$ where 
+    \[f_{i,a}(x) = 
     \begin{cases}
         ha &,\ x= hg_i^{-1},\ h\in H \\
-        0 &, \text{otherwise}
+        0 &,\ \text{otherwise}
     \end{cases}\]
-
+    Observe that the criterion $x=hg_i^{-1}$ can be rewritten as $x^{-1}=g_i h^{-1}\in g_i H$. We claim that $f_{i,a}\in M_H^G(A)$, i.e. we want to show that for $h\in H$ and $x\in G$ we have $f_{i,a}(hx) = hf_{i,a}(x)$. By definition, we have 
+    \[f_{i,a}(hx)=
+    \begin{cases}
+        h'(a) &,\ hx=h'g_i^{-1}, h'\in H\\
+        0 &,\ \text{otherwise} 
+    \end{cases}\]
+    and 
+    \[h f_{i,a}(x) = \begin{cases}
+        h(h"a) &,\ x=h"g_i^{-1}, h"\in H\\
+        0 &,\ \text{otherwise} 
+    \end{cases}\]
+    To show that the above two maps are equivalent, note
+    \[x=h"g_i^{-1} \implies hx = hh" g_i^{-1} \implies h'g_i^{-1}\]
+    where the last implication is given by the condition of $f_{i,a}(hx)$. This shows that $h'=hh"$. Using this equality we see that $hf_{i,a}(x)$ can be rewritten as 
+    \begin{align*}
+        hf_{i,a}(x) &=
+        \begin{cases}
+            h'(a) &,\ x=h^{-1}h' g_i^{-1}, h^{-1}h'\in H\\
+            0 &,\ \text{otherwise}
+        \end{cases} \\
+        &= 
+        \begin{cases}
+            h'(a) &,\ hx=h' g_i^{-1}, h'\in H\\
+            0 &,\ \text{otherwise}
+        \end{cases}\\
+        &= f_{i,a}(hx)
+    \end{align*}
+    Thus the claim that $f_{i,a}\in M_H^G(A)$ holds. The proof of surjectivity is now accessibile: for every $a\in A$, consider
+    \begin{align*}
+        \psi(f_{j,g_j^{-1}a}) 
+        &= \sum_{i=1}^m g_i f_{j,g_i^{-1}a}(g_i^{-1})\\
+        &= g_j f_{j,g_j^{-1}a}(g_j^{-1})\\
+        = g_j(g_j^{-1}a) =a
+    \end{align*}
+    where the second last equality follows from observing that the sum is non-zero for when $i=j$, given by the definition of $f_{i,a}$ defined previously. This shows surjectivity of $\psi$, and thus the proof is completed.
 \end{proof}
 
 \begin{defn} [Corestriction homomorphism]
