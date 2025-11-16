@@ -1,0 +1,405 @@
+
+\begin{re}
+    Corestrictionis analogous to transfer map in module theory for groups.
+\end{re}
+
+\medskip
+
+\begin{pro}
+    Let $H$ be a subgroup of $G$ where $[G:H]=m<\infty$. Let $A$ be a $G$-moduke. Then 
+    \[\cores \circ \res: H^n(G,A) \to H^n(G,A),\ z\mapsto mz\]
+    for all $n\geq 0$.
+\end{pro}
+\begin{proof}
+    Consider the following diagram:
+    \[\begin{tikzcd}[sep=small]
+	{x\mapsto(g\mapsto\xi(gx))} \\
+	{\h_{\Z G}(P_\bullet, M_H^G(A))} && {\h_{\Z G}(P_\bullet,A)} \\
+	\\
+	{\h_{\Z H}(P_\bullet,A)} && {\h_{\Z G}(P_\bullet,A)} \\
+	\xi && \xi
+	\arrow["{\psi^*}", from=2-1, to=2-3]
+	\arrow["\Phi", from=4-1, to=2-1]
+	\arrow[dashed, from=4-3, to=2-3]
+	\arrow[from=4-3, to=4-1]
+	\arrow[curve={height=-30pt}, from=5-1, to=1-1]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=5-1, to=4-1]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=5-3, to=4-3]
+	\arrow[maps to, from=5-3, to=5-1]
+    \end{tikzcd}\]
+    where $\Phi$ is given in Shapiro's Lemma. The doted arrow is our desired map, where it is the composition of all the maps. Note for every $x\in P_\bullet$, we have 
+    \begin{align*}
+        (\psi^*\Phi(\xi))(x) &= (\psi \circ \Phi(\xi))(x)\\
+        &= \psi(\Phi(\xi)(x))\\
+        &= \sum_{i=1}^m g_i \Phi(\xi)(x)(g_i^{-1})\\
+        &= \sum_{i=1}^m g_i \xi(g_i^[-1]x)\\
+        &= \sum_{i=1}^m g_i g_i ^{-1}\xi(x)\\
+        &= \sum_{i=1}^m \xi(x)\\
+        &= m\xi(x)\\
+        &= (m\xi)(x)
+    \end{align*}
+    So $(\psi^*\circ \Phi)(\xi) = m\xi$. This induces map on the $n$-th cohomology that 
+    \[[\xi]\mapsto [m\xi] = m[\xi]\]
+    and the proof is completed.
+\end{proof}
+
+\begin{cor}
+    Suppose that $G$ is a group with $|G| = m$. Then $m\cdot H^n(G,A)=0$ for every $G$-module $A$ and $n\geq 1$.
+\end{cor}
+\begin{proof}
+    In the previous proposition, take $H$ to be the trivial subgroup. Then we have 
+    \[\cdot m = \cores \circ \res : H^n(G,A) \to H^n(G,A)\]
+    But note we have the following commutative diagram
+    \[\begin{tikzcd}[sep=small]
+	{H^n(G,A)} && {H^n(G,A)} \\
+	\\
+	& {H^n(\sbr{1},A)=0,\ \forall n\geq 1}
+	\arrow["{\cdot m = \cores \circ \res}"', from=1-1, to=1-3]
+	\arrow["\res", from=1-1, to=3-2]
+	\arrow["\cores", from=3-2, to=1-3]
+    \end{tikzcd}\]
+    where the computation of $H^n(\sbr{1}, A)$ is done previously. Since the map factors through $0$, so we must have $\cdot m = 0$. This completes the proof.
+\end{proof}
+
+\begin{cor}
+    If $|G|<\infty$, then $H^n(G,A)$ is a torsion abelian group for all $n\geq 1$, for any given $G$-module $A$.
+\end{cor}
+\begin{proof}
+    From previous corollary, we see that for every $c\in H^n(G,A)$ we have $m\cdot c = 0$, where $m= |G|$. This is exactly the definition of torsion group.
+\end{proof}
+
+\begin{defn}[Exponent of a group]
+    Given group $G$. The exponent of $G$ is defined to be the smallest non-negative integer such that for all $g\in G$ we have $g^n = 1$.
+\end{defn}
+
+\medskip
+
+\begin{cor}
+    Let $G$ be a group where $|G|=m$. Let $k$ be the exponent of a given $G$-module $A$. If $\gcd(m,k)=1$, then $H^n(G,A)=0$ for all $n\geq 1$. In particular, if $|A|<\infty$ and $\gcd(m,|A|)=1$, then $H^n(G,A)=0$ for all $n\geq 1$.
+\end{cor}
+\begin{proof}
+    Recall that $m\cdot [c] = 0 $ for all $[c]\in H^n(G,A)$. Recall also that the order of $[c]$, denoted as $o([c])$, is a divsior of $m$, by Lagrange's Theorem. Note that the representative $c$ is actually a map where $c:G^n \to A$. Thus we have that 
+    \[(k\cdot c)(g) = k\cdot c(g) = 0\]
+    Since $k$ is the order of $A$, and $c(g)$ is an element of $A$. This means that $k\cdot [c] = [k\cdot c]=0$, so we must have $o([c])\mid k$. However $\gcd(m,k)=1$, so this forces $o([c])=1$, which is equivalent to that $[c]=0$. Since $[c]$ is arbitrary, so $H^n(G,A)=0$.
+
+    Next, if $|A|<\infty$, then $k\mid |A|$, since $|A|\cdot a = 0$ for all $a\in A$. Applying the first part of the statement, if $\gcd(m,|A|)=1$, then $\gcd(m,k)=1$, and the conclusion follows.
+\end{proof}
+
+\begin{ex}
+    Suppose taking $A= \mathbb F_p$. If $p\nmid |G|$, then $H^n(G,A)=0$. If $p\mid |G|$, then, taking for granted, we have 
+    \[H^n(G,A) \cong \ext_{\mathbb F_p G}^n(\mathbb F_p, \mathbb F_p)\]
+    where this is a consequence of Cartan-Eilenberg Mapping Theorem.
+\end{ex}
+
+\newpage
+\subsection{Intepretation of First and Second Group Cohomology}
+
+\begin{defn} [Derivation]
+    Let $A$ be a $G$-module. A map $D:G\to A$ is called a derivation (from $G$ to $A$) if for all $x,y\in G$ we have $D(xy) = D(x) + xD(y)$.
+
+    Also, for any $a\in A$, the map $D_a:G\to A$ defined by $D_a(g) = g\cdot a -a$ is called an inner derivation.
+
+    We use the notation $\der(G,A)$ to the denote the set of all derivations, and $\inn(G,A)$ be the set of all inner derivations.
+\end{defn}
+
+\medskip
+
+\begin{thm}
+    We have that $Z^1(G,A) = \der(G,A)$ and $B^1(G,A) = \inn (G,A)$. So 
+    \[H^1(G,A) = \frac{\der(G,A)}{\inn(G,A)}\]
+    which is the outer derivation.
+\end{thm}
+\begin{proof}
+    Recall that $Z^1(G,A)$ is defined to be $\ker \delta_2$, where $\delta_2:C^1(G,A) \to C^2(G,A)$ is the differential map. Let $f\in \ker \delta_2$, this is to saying that for all $g_0, g_1\in G$ we have 
+    \begin{align*}
+        &\quad \delta_2(f)(g_0, g_1) = g_0f(g_1)- f(g_0 g_1)+f(g_0) = 0\\
+        &\iff f(g_0, g_1) = g_0 f(g_1) + f(g_0)\\
+        &\iff f\in \der(G,A)
+    \end{align*} 
+
+    Recall that $B^1(G,A)$ is defined to be $\im \delta_1$, where $\delta_1: C^0(G,A) \to C^1(G,A)$ is the differential map. Note $\delta_1$ is defined by sending $a$ to 
+    \[g\mapsto g\cdot a - a\]
+    where the image is clearly what $D_a$ does. So $B^1(G,A) = \inn(G,A)$.
+\end{proof}
+
+\begin{cor}
+    Let $A$ be a trivial $G$-module. Then 
+    \[H^1(G,A) = \der(G,A) = \h_{\text{Ab}}(G,A)\]
+    where $\h_{\text{Ab}}(G,A)$ is the set of abelian group homomorphism from $G$ to $A$.
+\end{cor}
+\begin{proof}
+    For any $a\in A$, we have $D_a(g) = g\cdot a -a = a-a = 0$ since $A$ is a trivial $G$-module. This shows that $\inn(G,A)=0$.
+
+    If $f\in \der(G,A)$, then 
+    \[f(xy)=f(x) + xf(y) = f(x) + f(y)\]
+    since, again, $x\in G$ and $f(y) \in A$, and that $A$ is a trivial $G$-module. This shows that $f$ is a group homomorphism. So $\der(G,A) = \h_{\text{Ab}}(G,A)$. This completes the proof.
+\end{proof}
+
+\begin{re}
+    Since $A$ is a $G$-module, we have group homomorphism $\varphi:G \to \aut{A}  = \h_{\text{Ab}}(A,A)$. We get the semi-direct product $E:= A\rtimes_\varphi G$, where 
+    \[(a,g)\cdot (a',g') = (a+g\cdot a', gg')\]
+\end{re}
+
+\medskip
+
+\begin{re}
+    We establish some notations here before proceeding to the next section. Let $Y$ be a normal subgroup of $X$. We define 
+    \[_Y \aut{X} = \sbr{\sigma\in \aut{X}: \sigma(y) = y\ \forall y\in Y,\ \sigma(x)Y = xY\ \forall x\in X}\]
+    If $Y$ is abelian, then we have a group homomorphism $Y\to\ _Y\aut{X}$ defined by $z\mapsto \tau_z$ where $\tau_z:x\mapsto z^{-1}x z$. We are interested in the conjugation structure. Note since $z\in Y$ is an element of a normal subgroup, so we have $x^{-1}z^{-1}x\in Y$, and thus $x^{-1}z^{-1}xz\in Y$. Therefore
+    \[z^{-1}xz \in xY\]
+    Next, we observe that the kernel of the defined map $\tau$ is 
+    \[\sbr{z\in Y:\tau_z = \id_X} = \sbr{z\in Y:z\in Z(X)} = Y\cap Z(X)\]
+    where $Z(X)$ is the center of $X$. We denote the kernel $Y\cap Z(X)$ as $Z_Y(X)$. It is clear that from 1st isomorphism theorem we obtained an injection 
+    \[Y/Z_Y(X) \hookrightarrow\ _Y\aut{X}\]
+\end{re}
+
+\medskip 
+
+\begin{pro}
+    Let $A$ be a $G$-module and $E= A\rtimes_\varphi G$. Then 
+    \[H^1(G,A) \cong \frac{_A \aut{E}}{A/Z_A(E)}\]
+    where $Z_A(E):= A\cap Z(E)$, where $Z(E)$ is the center of $E$. The isomorphism is given by 
+    \[[f] \mapsto [\sigma_f]\]
+    where $\sigma_f:(a,g)\mapsto (a+f(g), g)$.
+\end{pro}
+\begin{proof}
+    Define $\Phi: Z^1(G,A) \to\ _A\aut{E}$ where $f\mapsto \sigma_f$. If we show that $\Phi$ is an isomorphism, and $\Phi$ maps $B^1(G,A)$ to $(A/Z_A(E))$, the result follows.
+
+    We need to show that $\Phi$ is well-defined, i.e. $\sigma_f \in\ _A\aut{E}$. First, we show that $\sigma_f$ is a homomorphism:
+    \[\sigma_f((a,g)(a',g')) = \sigma_f(a+g\cdot a', gg') = (a+ga' + f(gg'), gg')\]
+    and 
+    \[\sigma_f(a,g)\sigma_f(a',g') = (a+f(g),g)(a'+f(g'),g') = (a+f(g) + g\cdot(a' + f(g')), gg')\]
+    Both are equal, since $f(gg') = f(g) + gf(g')$ due to $Z^1(G,A) = \der(G,A)$. We also show that $\sigma_f$ respects identity. This shows $\sigma_f$ is a homomorphism. Next, we need to show that $\sigma_f$ is an automorphism. Note
+    \[f(1) = f(1\cdot 1) = f(1) + 1\cdot f(1) = f(1) + f(1)\]
+    So $f(1)=0$, which implies that 
+    \[\sigma_f(a,1) = (a+f(1),1) = (a,1)\]
+    Given $(a,g)\in E$, we have
+    \[\sigma_f(a,g) = (a+f(g), g) \implies A\sigma_f(a,g) = A(a+f(g), g) \]
+    Note $(a+f(g), g) = (f(g), 1)(a,g)$, so $\sigma_f \in\ _A\aut{E}$. This shows that $\Phi$ is well-defined.
+
+    Next, we show that $\Phi$ is a group homomorphism. See that 
+    \[\Phi(f+f')(a,g) = (a+(f+f')(g), g) = (a + f(g) + f'(g), g)\]
+    and that 
+    \[\Phi(f) \circ \Phi(f')(a,g) = \Phi(f)(a + f'(g) , g) = (a+f'(g) + f(g),g)\]
+    This shows that $\Phi(f+f') = \Phi(f) + \Phi(f')$.
+
+    Next, we show that $\Phi$ is an isomorphism, where we will give its inverse map explicitly. Define $\Psi:\aut{E} \to Z^1(G,A)$ where $\sigma\mapsto(g\mapsto a)$ if $\sigma(0,g) = (a,g)$. Again, we have to show that $\Psi$ is well-defined, i.e. $\Psi(\sigma)$ is a derivation. If $\sigma(0,g) = (a,g)$ and $\sigma(0,g') = (a',g')$, then 
+    \[\sigma(0,gg') = \sigma(0,g)\sigma(0,g') = (a,g)(a',g') = (a+g\cdot a', gg')\]
+    The above implies that 
+    \[\Psi(a)(gg') = a+ga' = \Psi(a)(g) + g\cdot \Psi(a)(g')\]
+    This shows that $\Psi$ is well-defined. 
+
+    We omit the proof for $\Phi\Psi$ and $\Psi\Phi$ being identities, as it is more or less routine. Lastly, we want to show that $\Phi(B^1(G,A)) = A/Z_A(E)$. Recall that $B^1(G,A) = \inn(G,A)$. Take $a\in A$, and consider $\Phi(D_a)$. Note that 
+    \[\Phi(D_a)(a',g') = (a' + D_a(G'), g') = (a' + g'\cdot a - a , g')\]
+    Consider $\tau_a:E\to E$, notice that 
+    \[\tau_a(a',g') = (-a,1)\cdot(a',g')(a,1) = (-a+a', g')(a,1) = (-a+a'+g'\cdot a, g')\]
+    We see that we obtain an equality. Thus $\Phi(D_a) = [\tau_a]$. This completes the proof.
+\end{proof}
+
+\begin{defn} [Group extension]
+    Let $A$ be a $G$-module. An extension of $A$ by $G$ is an SES of groups with the form 
+    \[0 \to A \xto{\iota} E \xto{\pi} G \to 1\]
+    Here $0$ and $1$ both denote the trivial group. Notation $0$ is used to emphasize that $A$ is always abelian, where $1$ is used to emphasize that $G$ need not be abelian. The extension is said to respect the action of $G$ on $A$ if there is a set section $\sigma :G\to E$ (i.e. $\pi\sigma = \id_G$) such that 
+    \[\iota(g\cdot a) = \sigma(g) \iota(a) {\sigma(g)^{-1}}\]
+    Since $\iota$ is injective, by abuse of notation we will drop the symbol $\iota$, where we identified an element of $A$ as an element of $E$.
+\end{defn}
+
+\medskip 
+
+\begin{defn} [Equivalence of two group extension]
+    Let $\mathcal E(G,A)$ be the set of all group extension of $A$ by $G$ with respect to the action of $G$. We define an equivalence relation on $\mathcal E(G,A)$ as follow: given two elements of $\mathcal E(G,A)$, we say that they are equivalent if there is a group isomorphism $\pi$ from $E$ to $E'$.
+    \[\begin{tikzcd}[sep=small]
+	0 && A && E && G && 1 \\
+	\\
+	0 && A && {E'} && G && 1
+	\arrow[from=1-1, to=1-3]
+	\arrow["\iota", from=1-3, to=1-5]
+	\arrow[tail reversed, from=1-3, to=3-3]
+	\arrow["\pi", from=1-5, to=1-7]
+	\arrow["\varphi", from=1-5, to=3-5]
+	\arrow["\sigma"{description}, shift left=3, curve={height=24pt}, from=1-7, to=1-5]
+	\arrow[from=1-7, to=1-9]
+	\arrow[tail reversed, from=1-7, to=3-7]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{\iota'}", from=3-3, to=3-5]
+	\arrow["{\pi'}", from=3-5, to=3-7]
+	\arrow[from=3-7, to=3-9]
+    \end{tikzcd}\]
+\end{defn}
+
+\medskip 
+
+\begin{re}
+    Note the equivalence relation has to be proved. First we need to show that it is well-defined, in the sense that we have to show that the second row really gives a group extension that respects the action of $G$. This is claer, since we have $\sigma' := \varphi\circ \sigma :G\to E'$, where we see that $\pi'\sigma' = \pi' \varphi\sigma = \pi\sigma = \id_G$. Moreover, we have 
+    \begin{align*}
+        \iota'(g\cdot a) &= \varphi(\iota(g\cdot a)) \\
+        &= \varphi(\sigma(g) \iota(a) {\sigma(g)^{-1}})\\
+        &= \sigma'(g) \varphi\iota(a) {\sigma'(g)^{-1}}\\
+        &= \sigma'(g) \iota'(a) {\sigma'(g)^{-1}}
+    \end{align*}
+    This shows well-defined. Secondly, we have to see that the defined relation is really equivalent, this is clear, and is left as an exercise.
+\end{re}
+
+\medskip 
+
+\begin{defn}
+    Given the following element in $\mathcal E(G,A)$:
+    \[\begin{tikzcd}[sep=small]
+	0 && A && E && G && 1
+	\arrow[from=1-1, to=1-3]
+	\arrow["\iota", from=1-3, to=1-5]
+	\arrow["\pi", from=1-5, to=1-7]
+	\arrow["\sigma"{description}, shift left=3, curve={height=24pt}, from=1-7, to=1-5]
+	\arrow[from=1-7, to=1-9]
+    \end{tikzcd}\]
+    We define the factor set $f_\sigma: G\times G\to A$ by 
+    \[\iota(f_\sigma(x,y)):= \sigma(x)\sigma(y) (\sigma(xy))^{-1}\]
+\end{defn}
+
+\begin{lem}
+    Every element in $E$ can be written uniquely as $a\sigma(g)$ where $a\in A$ and $g\in G$. Furthermore, if $x=a\sigma(g)$, then $g= \pi(x)$.
+\end{lem}
+\begin{proof}
+    Let $e\in E$. Since $\sigma$ is a section, so we have $\pi\sigma\pi(e) = \pi(e)$. So 
+    \[\pi(\sigma\pi(e)){\pi(e)}^{-1} = \pi(\sigma\pi(e)e^{-1})=0 \implies \sigma\pi(e)e^{-1}\in \ker\pi = \im \iota\]
+    So there exists some element in $A$, say $a^{-1}$, such that 
+    \[\sigma\pi(e)e^{-1} = a^{-1}\]
+    and recall that we have dropped the symbol $\iota$. Rewriting it, we obtain 
+    \[e = a(\sigma\pi(e)) = a\sigma(\pi(e))\]
+    Note $\pi(e)$ belongs in $G$, we denote it as $g:= \pi(e)$. So, we have write an element $e$ of $E$ as $a\sigma(g)$. This shows that the expression is indeed valid.
+
+    Next, we show that this expression is unique. Suppose $a\sigma(g) = a'\sigma(g')$. Rewriting gives $\sigma(g) \sigma(g')^{-1} = a^{-1}a' \in A$. Note $\ker \pi = A$, so $\sigma(g)\sigma(g')^{-1}\in \ker\pi$, implying that 
+    \[\pi(\sigma(g) \sigma(g')^{-1}) = 1 \implies \pi\sigma(g{g'}^{-1}) = 1\]
+    By definition $\pi\sigma$ is the identity map, so $g{g'}^{-1}=1$, implying that $g = g'$, and so $a=a'$. This shows uniqueness.
+
+    Lastly, if $x=a\sigma(g)$, then $\pi(x) = \pi(a\sigma(g)) = \pi(a)\ \pi(\sigma(g)) = 1\cdot g = g$, completing the proof.
+\end{proof}
+
+\begin{re}
+    For any $x,y\in G$, we have $\sigma(x)\sigma(y)$ is an element fo $E$, so we can write them as $a\sigma(g)$ for some $a\in A$ and $g\in G$. Taking $\pi$ both sides, we have 
+    \[g = \pi(\sigma(x)\sigma(y)) = xy\]
+    Therefore we get 
+    \[\sigma(x)\sigma(y) = a \sigma(xy)\]
+    Moving $\sigma(xy)$ to LHS, we see that it is exactly the form of factor set. This motivates the definition of factor sets.
+\end{re}
+
+\medskip 
+
+\begin{lem}
+    Given $\mathcal E\in \mathcal E(G,A)$. We have $f_\sigma \in Z^2(G,A)$.
+\end{lem}
+\begin{proof}
+    Recall that $Z^2(G,A)$ is the kernel of $\sigma_3:C^2(G,A) \to C^3(G,A)$ where $\delta_3$ is the differential map. So $f\in Z^2(G,A)$ is equivalent to that $\delta(f) = 0$, i.e. for every $x,y,z\in G$, we have 
+    \[xf(y,z) -  f(xy,z)  + f(x,yz) - f(x,y)=0\]
+    To show $f_\sigma\in Z^2(G,A)$, we examine that $f_\sigma$ satisfies the above identity. For the sake of convenience, we write our identity multiplicatively instead of additively. We start from noting by associativity we have 
+    \[(\sigma(x)\sigma(y))\sigma(z) = \sigma(x)(\sigma(y)\sigma(z))\]
+    Firstly, LHS can be rewritten as 
+    \[(\sigma(x)\sigma(y))\sigma(z) = (f_\sigma(x,y)\sigma(xy))\sigma(z) = f_\sigma(x,y)f_\sigma(xy,z)\sigma(xy)\sigma(z) = f_\sigma(x,y)f_\sigma(xy,z)\sigma(xyz) \]
+    On the other hand, from RHS we have
+    \[\sigma(x)(\sigma(y)\sigma(z)) = \sigma(x) (f_\sigma(y,z)\sigma(yz)) = \sigma(x) f_\sigma(y,z)\sigma(x)^{-1}\sigma(x)\sigma(yz) = x\cdot f_\sigma(y,z) f_\sigma(x,yz)\sigma(xyz)\]
+    Note $\sigma(xyz)$ can be cancelled. The result follows by moving every from RHS to LHS and reading it additively. This completes the proof.
+\end{proof}
+
+\begin{lem}
+    Suppose given $\mathcal E\in \mathcal E(G,A)$ where 
+    \[\begin{tikzcd}[sep=small]
+	0 && A && E && G && 1
+	\arrow[from=1-1, to=1-3]
+	\arrow["\iota", from=1-3, to=1-5]
+	\arrow["\pi"{description}, from=1-5, to=1-7]
+	\arrow["\sigma"{description}, curve={height=12pt}, from=1-7, to=1-5]
+	\arrow["{\sigma'}"{description}, shift left=3, curve={height=-12pt}, from=1-7, to=1-5]
+	\arrow[from=1-7, to=1-9]
+    \end{tikzcd}\]
+    where both $\sigma$ and $\sigma'$ are sectors. Then 
+    \[f_\sigma - f_{\sigma'} \in B^2(G,A)\]
+    i.e. $[f_\sigma] = [f_{\sigma'}]$ in $H^2(G,A)$.
+\end{lem}
+\begin{proof}
+    Recall that $B^2(G,A) = \im \delta_2$ where $\delta_2:C^1(G,A)\to C^2(G,A)$. Note $f\in B^2(G,A)$ is equivalent to saying that there exists $\gamma:G\to A$ such that $f = \delta_2 \gamma$, i.e. for every $x,y\in G$ we have
+    \[f(x,y) = x\gamma(y) - \gamma(xy) + \gamma(x)\]
+    Similar for previous, for the sake of convenience we shall write all our equations multiplicatively for the moment. We claim that $\sigma'(g) \in A\sigma(g)$. To see this, we start by noting that $\sigma'(g) \in E$, so we can write $\sigma'(g) = a\sigma(g')$ for some $a\in A$ and $g'\in G$. Taking $\pi$ both sides we have 
+    \[\pi\sigma'(g) = \pi(a\sigma(g')) \implies \pi\sigma'(g) = \pi(a) \pi\sigma(g') \implies g = g'\]
+    since both $\sigma$ and $\sigma'$ are sectors, and recall also that $a = \iota(a)$, so $\pi\iota(a) = 1$. So we have $\sigma'(g) = a\sigma(g) \in A\sigma(g)$, thus the claim is proven.
+
+    The proven claim allows us to conclude that $\sigma'(g) = \gamma(g)\sigma(g)$ for some $\gamma:G\to A$. We now claim that $f_\sigma - f_{\sigma'} = \delta_2 \gamma$. We start from $\sigma'(x) \sigma'(y)$ and rewrite it in two ways. Firstly, we can write 
+    \[\sigma'(x) \sigma'(y) = f_{\sigma'}(x,y)\sigma'(xy) = f_{\sigma'}(x,y) \gamma(xy) \sigma(xy)\]
+    This will be our RHS. On the other hand, we have 
+    \begin{align*}
+        \sigma'(x)\sigma'(y) &= \gamma(x) \sigma(x) \gamma(y) \sigma(y) \\
+        &= \gamma(x) \sigma(x) \gamma(y) \sigma(x)^{-1}\sigma(x) \sigma(y) \\
+        &= \gamma(x) x\cdot \gamma(y)f_\sigma(x,y) \sigma(xy)
+    \end{align*}
+    and this will be our LHS.
+    We see that $\sigma(xy)$ is common term of two sides, so we can cancel it. Lastly, reading the equation additively, we see that 
+    \[\gamma(x) + x\cdot \gamma(y) + f_\sigma(x,y) = f_{\sigma'}(x,y) + \gamma(xy) \implies \gamma(x) + x\cdot \gamma(y) - \gamma(xy) = f_{\sigma'}(x,y) - f_\sigma(x,y)\]
+    This is to say that $f_{\sigma'} - f_\sigma = \delta_2 \gamma$, which implies that $[f_\sigma] = [f_{\sigma'}]$ in $H^2(G,A)$.
+\end{proof}
+
+\begin{re}
+    So, the above lemmas combine to say that we have a well-defined map
+    \[\mathcal E(G,A) \to H^2(G,A),\ \mathcal E \mapsto [f_\sigma]\]
+    where $\sigma$ is the section of $\mathcal E$. Let $E =  A\rtimes_\sigma G$ where $\varphi:G\to \aut{A}$, then we obtain the following SES $\mathcal E$:
+    \[\begin{tikzcd}[sep=small]
+	0 && A && {A\rtimes_\varphi G} && G && 1
+	\arrow[from=1-1, to=1-3]
+	\arrow["\iota", from=1-3, to=1-5]
+	\arrow["\pi"{description}, from=1-5, to=1-7]
+	\arrow["\sigma"', shift left, curve={height=12pt}, from=1-7, to=1-5]
+	\arrow[from=1-7, to=1-9]
+    \end{tikzcd}\]
+    where
+    \begin{itemize}
+        \item $\iota:a \mapsto (a,1)$
+        \item $\pi:(a,g) \mapsto g$
+        \item $\sigma:g\mapsto (0,g)$
+    \end{itemize}
+    It should be clear that $\mathcal E \in \mathcal E(G,A)$. Next, observe that for any $f_\sigma: G\times G \to A$ we have 
+    \begin{align*}
+        \iota(f_\sigma(x,y)) &= \sigma(x) \sigma(y) (\sigma(xy))^{-1}\\
+        &= (0,x)(0,y)(0,xy)^{-1}\\
+        &= (0,1)
+    \end{align*}
+    This says that $f_\sigma$ is the zero in $Z^2(G,A)$, and thus $[f_\sigma]$ represents the zero element in $H^2(G,A)$.
+\end{re}
+
+\medskip 
+
+\begin{lem}
+    If $\mathcal E$ and $\mathcal E'$ are equivalent where, say, the isomorphism is given by $\varphi:E\to E'$. Then 
+    \[[f_\sigma] = [f_{\sigma'}]\]
+    in $H^2(G,A)$. In other words, we have a well-defined map 
+    \[\frac{\mathcal E(G,A)}{\sim} \to H^2(G,A)\]
+\end{lem}
+\begin{proof}
+    It is clear that $\sigma' = \varphi\sigma$ is a section of $\pi'$. We start from definition of factor set that 
+    \[\sigma(x)\sigma(y) = f_\sigma(x,y)\sigma(xy)\]
+    By taking $\varphi$ both sides, we obtain 
+    \[\varphi(\sigma(x)\sigma(y)) = \varphi(f_\sigma(x,y)\sigma(xy))\]
+    i.e. $\sigma'(x)\sigma'(y) = (\varphi f_\sigma)(x,y) \sigma'(xy)$. The LHS can be rewritten as
+    \[\varphi(\sigma(x)\sigma(y)) = f_{\sigma'}(x,y)\sigma'(xy) = \iota'(f_{\sigma'}(x,y)\sigma'(xy))\]
+    On the other hand, the RHS can be rewritten as 
+    \[(\varphi f_\sigma)(x,y) \sigma'(xy) = \varphi\iota(f_\sigma(x,y)) = \iota' f_\sigma(x,y)\]
+    Together, we shown that 
+    \[\iota'f_{\sigma'}(x,y) = \iota'f_{\sigma'}(x,y)\]
+    Thus $f_\sigma(x,y) = f_{\sigma'}(x,y)$. This shows that $[f_\sigma] = [f_{\sigma'}]$, thus completing the proof.
+\end{proof}
+
+\begin{re}
+    In fact, we have an isomorphism
+    \[\frac{\mathcal E(G,A)}{\sim} \cong H^2(G,A)\]
+    The defined map is the previous lemma is actually an isomorphism. To show that it is really an isomorphism, here we give the inverse map of it, i.e. a map 
+    \[\Phi: H^2(G,A) \to \frac{\mathcal E(G,A)}{\sim}\]
+    Given $z\in H^2(G,A)$, we can pick a normalized $f\in Z^2(G,A)$, i.e. $f(1,g) = 0 = f(g,1)$ for all $g\in G$, such that $z = [f]$. We define $E_f = A \times G$ such that 
+    \[(a,x) (b,y) := (a+ x\cdot b + f(x,y), xy)\]
+    Here, the identity element is $(0,1)$ and the inverse is $(a,x)^{-1} = (-x^{-1}\cdot a - f(x^{-1}, x), x^{-1})$. One can check the well-definedness on his own. Then, the image $\Phi(z)$ is defined to be the equivalence classes represented by the SES
+    \[\begin{tikzcd}[sep=small]
+	0 && A && E_f && G && 1
+	\arrow[from=1-1, to=1-3]
+	\arrow["\iota", from=1-3, to=1-5]
+	\arrow["\pi"{description}, from=1-5, to=1-7]
+	\arrow["\sigma"', shift left, curve={height=12pt}, from=1-7, to=1-5]
+	\arrow[from=1-7, to=1-9]
+    \end{tikzcd}\]
+    One can also show that $\Phi$ is indeed the inverse of the map defined in the previous lemma.
+\end{re}
