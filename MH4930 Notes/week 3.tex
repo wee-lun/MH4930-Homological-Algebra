@@ -1,5 +1,5 @@
 \begin{defn} [Extension of scalars]
-    Suppose that $M$ is an $R$-module and $R$ is a subring of $S$. The extension of scalar from $R$ to $S$ on $M$ is defined to be $S\ten_R M$, which is an $S$-module by previous proposition.
+    Suppose that $M$ is an $R$-module and $R$ is a subring of $S$. The extension of scalar from $R$ to $S$ on $M$ is defined to be $S\ten_R M$, which is an $S$-module by previous proposition, since we can view $S$ as $_S S _R$.
 \end{defn}
 
 \medskip
@@ -67,13 +67,13 @@ The following corollary implies that the kernel is the obstruction for $N$ to be
     \end{tikzcd}\]
 	Now let $x\in \ker j$, so $j(x) = 0$, and note that 
 	\[\beta(x) = (\Phi \circ j)(x) = \Phi(j(x)) = \Phi(0) = 0\]
-	and so $x\in \ker \beta$. This shows that $\ker j\subseteq \ker \beta = K$, thus $N/K \subseteq N/\ker \beta \subseteq N/\ker j$. This shows that $N/\ker j$ is the largest possible quotient of $N$ that can be embedded into an $S$-module. And since $j$ is given, so it must be unique. This completes the proof.
+	and so $x\in \ker \beta$. This shows that $\ker j\subseteq \ker \beta = K$, thus $N/K = N/\ker \beta \subseteq N/\ker j$. This shows that $N/\ker j$ is the largest possible quotient of $N$ that can be embedded into an $S$-module. And since $j$ is given, so it must be unique. This completes the proof.
 \end{proof}
 
 \begin{ex}
     \hfill
     \begin{enumerate}
-        \item Consider $_RN$ and we claim that $R\ten_R N \cong N$. To see this, let $\varphi:R\to R$ where $r\mapsto r$ and define $\iota:N\to R\ten_R N$ where $n\mapsto 1\ten n$. It is clear that $\varphi$ is a $R$-module homomorphism. We thus have the following diagram
+        \item Consider $_RN$ and we claim that $R\ten_R N \cong N$. To see this, let $\varphi:N\to N$ where $n\mapsto n$ and define $\iota:N\to R\ten_R N$ where $n\mapsto 1\ten n$. It is clear that $\varphi$ is a $R$-module homomorphism. We thus have the following diagram
         \[\begin{tikzcd}[sep=small]
 	n & N && {R\ten_R N} & {1\ten n} \\
 	\\
@@ -85,7 +85,7 @@ The following corollary implies that the kernel is the obstruction for $N$ to be
 	\arrow["\ni"{description}, draw=none, from=1-4, to=1-5]
 	\arrow["\Phi", dashed, from=1-4, to=3-4]
 \end{tikzcd}\]
-    where by Theorem \ref{thm: uni prop ext sca} $\Phi \circ \iota = \id_N = \varphi$.
+    where by Theorem \ref{thm: uni prop ext sca} $\Phi \circ \iota  = \varphi = \id_N$.
 
     We claim that $\iota$ is an $R$-module isomorphism. Firstly $\iota$ is injective since $\Phi\iota = \id_N$. Next $\iota$ is surjective since $r\ten n = 1\ten \br{rn} = \iota\br{rn}$. Thus the claim is proved.
     \item Let $N$ be a finite abelian group, and so $N$ is a $\Z$-module. We claim that $\Q\ten_\Z N = 0$. To see this, let $\varphi : \Z\to \Q$ and denote $n:= |N|$. Note that
@@ -109,7 +109,7 @@ The following corollary implies that the kernel is the obstruction for $N$ to be
     We claim that $\Phi$ is isomorphism. First to see surjectivity:
     \[\frac{n}{m} = \frac{1}{m}\cdot \frac{n}{1} = \frac{1}{m}\func{\beta}{n} = \frac{1}{m}\Phi(1\ten n) = \func{\Phi}{\frac{1}{m}\ten n}\]
     To see injectivity, note that an element in $\Q \ten_\Z \Z$ takes the form $\sum \br{q_i\ten n_i}$ where $q_i\in \Q$ and $n_i\in \Z$. We can rewrite such element as the following:
-    \[\sum\br{q_i\ten n_i} = \sum\br{q_in_i\ten 1} = \br{\sum\br{q_in_i}}\ten 1 = q\ten 1\]
+    \[\sum\br{q_i\ten n_i} = \sum\br{q_in_i\ten 1} = \br{\sum\br{q_in_i}}\ten 1 =: q\ten 1\]
     where the last equality is to rename the chunky sum into some element $q\in \Q$. We now prove injectivity by showing that the $\ker \Phi$ is trivial: let $q=a/b$ where $q\ten 1\in \ker \Phi$, then
     \begin{align*}
         \func{\Phi}{q\ten 1} = 0 
@@ -223,7 +223,7 @@ It is immediate from the definition that $R$-bilinear implies $R$-balanced. Conv
     \end{align*}
     This proves the second statement.
 
-    For the third statement, note that $\lambda\alpha:M\to M''$ is well-defined, where $m\mapsto \lambda(\alpha(m))$. Similarly we have that $\mu\beta:N\to N''$ is well-defined. Define $\gamma:M\times N\to M''\times N''$ such that $(m,n)\mapsto (\lambda\alpha)(m)\ten (\mu \beta)(n)$. We shall prove that $\gamma$ is $R$-balanced, but is omitted here for the sake of readability. Similarly we have the following commutative diagram:
+    For the third statement, note that $\lambda\alpha:M\to M''$ is well-defined, where $m\mapsto \lambda(\alpha(m))$. Similarly we have that $\mu\beta:N\to N''$ is well-defined. Define $\gamma:M\times N\to M''\times N''$ such that $(m,n)\mapsto (\lambda\alpha)(m)\ten (\mu \beta)(n)$. We shall prove that $\gamma$ is $R$-balanced, but is omitted here for the sake of conciseness. Eventually, we have the following commutative diagram:
     \[\begin{tikzcd}[sep=small]
 	{(m,n)} & {M\times N} && {M\ten_R N} & {m\ten n} \\
 	\\
@@ -453,10 +453,8 @@ This (more or less) completes the proof.
     Let $f:R\to S$ be a ring homomorphism. Then $S\ten_R R^m \cong S^m$ as a left $S$-module.
 \end{cor}
 \begin{proof}
-    Note
-    \[R^m = \bigoplus_{i=1}^mR\]
-    and so 
-    \[S\ten_R R^m =S\ten_R \bigoplus_{i=1}^m R\cong \bigoplus_{i=1}^m\br{S\ten R} \cong \bigoplus_{i=1}^m S= S^m\]
+    Recall that $R^m = \bigoplus_{i=1}^mR$. Observe: 
+    \[S\ten_R R^m =S\ten_R \bigoplus_{i=1}^m R\cong \bigoplus_{i=1}^m\br{S\ten_R R} \cong \bigoplus_{i=1}^m S= S^m\]
     This completes the proof.
 \end{proof}
 

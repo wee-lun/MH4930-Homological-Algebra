@@ -10,8 +10,8 @@
         \[X\xrightarrow{\alpha}Y\xrightarrow{\beta} Z\]
         is said to be exact at $Y$ if $\ker \beta = \im \alpha$, and we say that this sequence is exact.
         \item A complex is a chain 
-        \[\dots \xrightarrow{d_{-2}}X_{-1}\xrightarrow{d_{=1}}X_0 \xrightarrow{d_0}X_1\xrightarrow{d_1}\dots\]
-        where $X_I$ are $R$-modules, and $d_i$ are $R$-modules homomorphisms such that $d_{i+1}d_i=0$ for all $i$. In other words, we have that $\im d_i \subseteq \ker d_{i+1}$
+        \[\dots \xrightarrow{d_{-2}}X_{-1}\xrightarrow{d_{-1}}X_0 \xrightarrow{d_0}X_1\xrightarrow{d_1}\dots\]
+        where $X_i$ are $R$-modules, and $d_i$ are $R$-modules homomorphisms such that $d_{i+1}d_i=0$ for all $i$. In other words, we have that $\im d_i \subseteq \ker d_{i+1}$
         \item A complex is said to be exact if it is exact at every $X_i$.
     \end{enumerate}
 \end{defn}
@@ -32,9 +32,9 @@
     \end{enumerate}
 \end{pro}
 \begin{proof}
-    For the first statement, first suppose that the sequence is exact. Then $\ker\alpha = \im 0 = \sbr{0}$, and thus $\alpha$ is injective. For the converse statement, suppose that $\alpha$ is injective, then $\ker\alpha = 0$. On the other hand, the map from $0$ to $X$ is a zero map. Together we have $\ker\alpha = 0=\im 0$, so the sequence is exact.
+    For the first statement, if the sequence is exact, then $\ker\alpha = \im 0 = \sbr{0}$, so $\alpha$ is injective. Conversely, if $\alpha$ is injective, then $\ker\alpha = 0$. Since the map from $0$ to $X$ is a zero map, so $\im 0=0 = \ker \alpha$, thus the sequence is exact.
 
-    For the second statement, first suppose that the sequence is exact. Then $\im \beta = \ker 0$. However, the zero map $0:Z\to 0$ sends everything to $0$, so the kernel is $Z$. Together we have $\im\beta = Z$, thus $\beta$ is surjective. For the converse statement, suppose that $\beta$ is surjective. Then $\im\beta = Z$. On the other hand, the map from $Z$ to $0$ is a zero map, so $\ker 0 = Z$. Together we have $\im \beta =Z=\ker 0$, so the sequence is exact.
+    For the second statement, if the sequence is exact, then $\im \beta = \ker 0$. Note the image of the map $0:Z\to 0$ is $0$, so $\ker 0 = Z$. Together we have $\im\beta = Z$, thus $\beta$ is surjective. Conversely, if $\beta$ is surjective, then $\im\beta = Z$. Since the map from $Z$ to $0$ is a zero map, so $\ker 0 = Z = \im \beta$, thus the sequence is exact.
 \end{proof}
 
 \begin{cor}
@@ -184,7 +184,7 @@ and $f_i$ are $R$-module homomorphisms. Then we have that:
 
 \begin{re}
     Note that if a SES splits, then we have that
-    \[Y'\cong Y/\alpha(X)= Y/\im \alpha = Y/\ker\beta \cong Z\]
+     \[Y'\cong Y/\alpha(X)= Y/\im \alpha = Y/\ker\beta \cong Z\]
     Moreover, since $\alpha$ is injective, so $\alpha(X)\cong X$ and  we have $Y\cong X\oplus Z$. To conclude, a SES splits implies that $Y\cong X\oplus Z$. However, the converse is not true.
 \end{re}
 
@@ -226,7 +226,7 @@ and $f_i$ are $R$-module homomorphisms. Then we have that:
         \item It implies that $y-\gamma(\beta(y))\in \ker \beta = \im \alpha$, so there exists $x\in X$ such that $\alpha(x) = y-\gamma(\beta(y))$.
         \item We then define $\delta(y):=x$.
     \end{itemize}
-    We first show that $\delta$ is well-defined. Note that the map from $0$ to $X$ is a zero map, so $\ker \alpha =\im 0$ is trivial, meaning that $\alpha$ is injective. Since $\delta$ is defined via $\alpha$, so consequently $\delta$ must be injective. Next we show that $\delta$ is an $R$-module homomorphism. To compute $\delta(ry)$, consider:
+    We first show that $\delta$ is well-defined. Note that by exactness we have $\ker \alpha =\im 0=0$, so $\alpha$ is injective. Since $\delta$ is defined via $\alpha$, so consequently $\delta$ must be injective. Next we show that $\delta$ is an $R$-module homomorphism. To compute $\delta(ry)$, consider:
     \[ry-\func{\gamma}{\func{\beta}{ry}} = r(y-\func{\gamma}{\beta(y)}) = r\alpha(x) = \alpha(rx)\]
     So $\delta(ry)=rx = r\delta(y)$. This shows that $\delta$ is an $R$-module homomorphism. Lastly, we check the requirement: to compute $\delta(\alpha(x))$, consider:
     \[\alpha(x) - \gamma(\beta(\alpha(x))) = \alpha(x) - \gamma(0) = \alpha(x)\]

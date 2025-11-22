@@ -1,7 +1,7 @@
 \medskip
 
-\begin{defn} [Homomorphism of (cochain) complexes]
-    Let $(X^\bullet, d^\bullet)$ and $(Y^\bullet, \delta^\bullet)$ be two (cochain) complexes. The homomorphism from $X^\bullet$ to $Y^\bullet$ is a collection of module homomorphism $\varphi:X^\bullet \to Y^\bullet$ where for all $n$ we have $\varphi_n:X^n \to Y^n$ such that the following diagram commutes:
+\begin{defn} [Homomorphism of (co)chain complexes]
+    Let $(X^\bullet, d^\bullet)$ and $(Y^\bullet, \delta^\bullet)$ be two (co)chain complexes. The homomorphism from $X^\bullet$ to $Y^\bullet$ is a collection of module homomorphism $\varphi:X^\bullet \to Y^\bullet$ where for all $n$ we have $\varphi_n:X^n \to Y^n$ such that the following diagram commutes:
     \[\begin{tikzcd} [sep = small]
 	\dots && {X^{n-1}} && {X^{n}} && \dots \\
 	\\
@@ -20,7 +20,7 @@
 \medskip
 
 \begin{pro}
-    Let $\varphi:X^\bullet \to Y^\bullet$ be a homomorphism of (cochain) complex. Then it induces an $R$-module homomorphism $\alpha^*:H^n(X) \to H^n(Y)$, one for each $n$, given by $\overline x \mapsto \overline {\varphi(x)}$.
+    Let $\varphi:X^\bullet \to Y^\bullet$ be a homomorphism of cochain complex. Then it induces an $R$-module homomorphism $\alpha^*:H^n(X) \to H^n(Y)$, one for each $n$, given by $\overline x \mapsto \overline {\varphi(x)}$. The statement holds similarly for chain complexes.
 \end{pro}
 
 \begin{proof}
@@ -38,11 +38,11 @@
 	\arrow["{\delta^{n+1}}", from=3-3, to=3-5]
 	\arrow["", from=3-5, to=3-7]
     \end{tikzcd}\]
-    let $x\in \ker d_{n+1}$. Since the diagram is commutative, we must have
+    Let $x\in \ker d_{n+1}$. Since the diagram is commutative, we must have
     \[\delta_{n+1}(\varphi_n(x)) = \varphi_{n+1}(d_{n+1}(x))=\varphi_{n+1}(0) = 0\]
-    So $\varphi_n(x) \in \ker \delta_{n+1}$. Thus an element $\overline{x}\in H^n(X)$ means that $x\in \ker d_n$, implying that $\varphi_n(x) \in \ker \delta_{n+1}$, and thus $\overline{\varphi_n(x)}\in H^{n+1}(X)$. This shows that the claimed map is valid.
+    So $\varphi_n(x) \in \ker \delta_{n+1}$. Thus an element $\overline{x}\in H^n(X)$ means that $x\in \ker d_n$, implying that $\varphi_n(x) \in \ker \delta_{n+1}$, and thus $\overline{\varphi_n(x)}\in H^{n+1}(X)$. So the claimed map is valid.
 
-    To show that the map is well-defined, consider elements $\overline{x}$ and $\overline{x'}$ from $H^n(X)$. This means that $x,x'\in \ker\im d_n$, and so $x-x'\in \ker d_{n+1}$. It then follows from the definition of complexes that we have $x-x'\in \im d_n$, so let $x''\in X^{n-1}$ such that $d_n(x'') = x-x'$. Observe that
+    To show that the map is well-defined, consider elements $\overline{x}$ and $\overline{x'}$ from $H^n(X)$. This implies that $x,x'\in \ker d_n$. Consequently $x-x'\in \ker d_{n+1}\subseteq \im d_n $ by the definition of complexes, so let $x''\in X^{n-1}$ such that $d_n(x'') = x-x'$. Observe that
     \[\varphi_n(x)-\varphi_n(x') = \varphi_n(x-x') = \varphi_n(d_n(x'')) = \delta_{n}(\varphi_{n-1}(x''))\]
     Thus $\varphi(x)-\varphi(x')\in \im \delta_n$, i.e. $\overline{(\varphi(x))} = \overline{(\varphi(x'))}$.
 
@@ -108,7 +108,7 @@
     \[\beta_n^*(\overline{y-\alpha_n(x')}) = \overline{\beta_n(y-\alpha_n(x'))} = \overline{\beta_n(y)} - \overline{\beta_n(\alpha_n(x'))} = \overline {z} - 0 = \overline{z}\]
     where note $\beta_n\circ \alpha_n$ is the zero map due to exactness in the assumption.
     
-    For the second statement, recall from some previous remark that exactness of a complex is equivalent to that the cohomology is trivial. According to the first statement we have obtained the long exact sequence
+    For the second statement, recall that exactness of a complex is equivalent to the trivialness of cohomology. From the first statement we obtained the LES:
     \[0 \to H^0(X) \xto{\alpha^*_0} H^0(Y) \xto{\beta^*_0} H^0(Z) \xto{\delta_0} H^1(X) \xto{\alpha^*_1} H^1(Y) \xto{\beta^*_1} H^1(Z) \xto{\delta_1} \cdots\]
     Case 1: if $X^\bullet$ and $Y^\bullet$ are trivial, we have 
     \[0 \to 0 \xto{\alpha^*_0} 0 \xto{\beta^*_0} H^0(Z) \xto{\delta_0} 0 \xto{\alpha^*_1} 0 \xto{\beta^*_1} H^1(Z) \xto{\delta_1} \cdots\]
@@ -122,11 +122,9 @@
     \[0 \to 0 \xto{\alpha^*_0} H^0(Y) \xto{\beta^*_0} 0 \xto{\delta_0} 0 \xto{\alpha^*_1} H^1(Y) \xto{\beta^*_1} 0 \xto{\delta_1} \cdots\]
     This forces $\alpha_n^*$, $\beta_n^*$, and $\delta_n$ to be zero maps. Specifically, note that $\ker \beta_n^* = H^n (Y)$. Due to exactness, we see that $0 = \im \alpha_n^* = \ker \beta_{n}^* = H^{n} (Y)$. This shows that $Y^\bullet$ must be exact.
 
-    Thus the proof is completed.
+    The proof is thus completed.
 \end{proof}
 
-
-\newpage
 \subsection{Ext Group}
 
 \begin{defn} [Projective resolution]
@@ -138,7 +136,7 @@
 \medskip
 
 \begin{re}
-    Similarly we can define a free resolution, which is omitted here.
+    Similarly we can define a free resolution, where we replace projective by free.
 \end{re}
 
 \medskip
@@ -149,12 +147,12 @@
 \begin{proof}
     Let $V$ be an $R$-module. By previous result there exists projective $R$-module $P_0$ such that $P_0 \overset{\ep}{\twoheadrightarrow} V$. Consider $\ker \ep$, and there exists a projective $R$-module $P_1$ such that $P_1$ surjects to $\ker \ep$ via $d_1$. Suppose we have, inductively, that 
     \[P_n \xto{d_n} \dots \xto{d_1} P_0 \xto{\ep} V\]
-    Let $\ep$ be $d_0$, and by our conrstruction we observe that $P_n$ surjects to $\ker d_{n-1}$ via $d_n$, i.e.
+    Let $\ep$ be $d_0$, and by our construction we observe that $P_n$ surjects to $\ker d_{n-1}$ via $d_n$, i.e.
     \[P_n \twoheadrightarrow \ker d_{n-1}\]
     and thus this shows that $\im d_{n} = \ker d_{n-1}$. This completes the proof.
 \end{proof}
 
-With slight modification, a similar statement on free resolution can be proven:
+A similar statement on free resolution can be proven:
 
 \medskip
 

@@ -14,13 +14,13 @@
     \[\pi\br{\mathbf{0}, x_j, \mathbf{0}} = \pi\br{x_1 \many x_{j-1},\ x_{j+1}\many x_m}\implies \pi\br{x_1 \many x_{j-1}, -x_j,\ x_{j+1}\many x_m}=0\]
     So $\br{x_1 \many x_{j-1}, -x_j,\ x_{j+1}\many x_m}\in \ker \pi$. By assumption $\pi$ is isomorphism, so it is injective and has trivial kernel, indicating that $\br{x_1 \many x_{j-1}, -x_j,\ x_{j+1}\many x_m}=(0\many 0)$ and thus $x_j=0$, which is a contradiction.
 
-    $[2\implies 3]$. Let $x_i\in N_i$ and $y_i\in N_i$ be chosen for all $i$ such that
+    $[2\implies 3]$. It is clear that for $x\in N_1 \pd N_m$ we can write $x=x_1 \pd x_m$ where $x_i\in N_i$ for each $i$. It remains to show that this representation is unique. Let $x_i\in N_i$ and $y_i\in N_i$ be chosen for all $i$ such that
     \[\sum_{i=1}^m x_i = \sum_{i=1}^m y_i\]
     Note that for any $j$ we have
     \[N_j \ni x_j - y_j = \sum_{i\neq j}\br{y_i-x_i}\in \sum_{i\neq j}N_i\]
     And so we see that $x_j-y_j$ is a common element of 
     \[N_j \cap \sum_{i\neq j}N_i = \sbr{0}\]
-    and thus implying that $x_j-y_j = 0$, so $x_j = y_j$. Since $j$ is chosen to be arbitrary, we can repeat the procedure and thus showing that there is a unique representation.
+    and thus implying that $x_j-y_j = 0$, so $x_j = y_j$. Since $j$ is chosen to be arbitrary, we can repeat the procedure and thus showing that the representation is unique.
 
     $[3 \implies 1]$. Define $\pi: N_1 \times \dots \times N_m\to N_1 \pd N_m$ such that $\br{x_1, \dots, x_m}\mapsto x_1 \pd x_m$. It is easy to verify that $\pi$ is a $R$-module homomorphism and is surjective. For injectivity, suppose that 
     \[\pi\br{x_1, \dots, x_m}=\pi\br{y_1, \dots, y_m}\]
@@ -28,11 +28,20 @@
 \end{proof}
 
 \begin{re} [Internal direct sum]
-    In any cases in Proposition \ref{pro: indi sum}, we say that $\sum_{i=1}^m N_i$ is a (internal) direct sum and we denote it by 
+    In any cases in Proposition \ref{pro: indi sum}, we say that $\sum_{i=1}^m N_i$ is an internal direct sum, or more oftenly and simply, just direct sum. We denote it by 
     \[\bigoplus_{i=1}^m N_i\]
+    There are several remarks to make regarding direct sum and direct product:
+    \begin{itemize}
+        \item The first statement of previous proposition actually states that direct product and direct sum are equivalent in the finite case.
+        \item Both direct sum and direct product can be taken over an infinite (possible uncountable) index set.
+        \item The difference of direct sum and direct product is that, direct products contained all possible sequences of elements. However, direct sum requires that only finitely many elements are non-zero. Thus, an immediate example is that, when given infinitely many sub-modules $N_1, N_2 ,N_3,\dots$, then
+        \[1\oplus 1 \oplus 1 \oplus 1 \oplus \dots \notin \bigoplus_{i=1}^\infty N_i\]
+        But we have 
+        \[(1,1,1,1,1\dots) \in \prod_{i=1}^{\infty} N_i\]
+    \end{itemize}
+    Of course, direct sum can be further defined for two modules $N$ and $M$ (or more), where by considering $N\times M$ we see that $N$ and $M$ are (isomorphic to some) submodules of $N\times M$. We can then define $N\oplus M$ under the umbrella of $N\times M$.
 \end{re}
 
-\newpage
 \subsection{Free Module and Tensor Product}
 \begin{defn} [Free on a subset]
     Let $F$ be an $R$-module. We say that $F$ is free on a subset $A$ of $F$ if for every $x\in F$ there exist unique non-zero elements $r_1, \dots, r_m\in R$ and unique choice of $a_1, \dots, a_m$ such that 
@@ -266,7 +275,7 @@ The following definition extends the notion of linear map from linear algebra in
 \end{proof}
 
 \begin{re}
-    Note that the tensor product $M\ten_R N$ is defined as a quotient group, and thus any defined map on the tensor product must be examined to be well-defined. This is practically infeasible due to the complicated structure of the quotient group. This is where Theorem \ref{thm: uni prop tens} can come useful, since everything is already settled in the proof, and the only job remain for us to do is to prove that $\beta$ is an $R$-balanced map in order to apply this statement.
+    Note that the tensor product $M\ten_R N$ is defined as a quotient group, and thus any defined map on the tensor product must be examined to be well-defined. This is practically infeasible due to the complicated structure of the quotient group. This is where Theorem \ref{thm: uni prop tens} can come useful, since everything, including well-definedness, is already settled in the proof, and the only job remain for us to do is to prove that $\beta$ is an $R$-balanced map in order to apply this statement.
 \end{re}
 
 \medskip
@@ -282,8 +291,8 @@ The following definition extends the notion of linear map from linear algebra in
     \begin{enumerate}
         \item Let $S, T$ be sub-rings of $R$. Then $_SR_T$ is a bimodule.
         \item Let $I$ be an ideal of $R$. Then $_{R/I}(R/I)_R$ is a bimodule.
-        \item for every $R$-module $M$ where $R$ is commutative, the induced right action $m*r:= r\cdot m$ gives rise to bimodule $_RM_R$.
-        \item Consider modules $_RY_S$ and $Z_S$. We have seen that $M:=\h_S\br{Y_S, Z_S}$ is an abelian group where $\func{\br{\alpha + \beta}}{y}:= \func{\alpha}{y} + \func{\beta}{y}$. Then $M$ is a $R$-module with ring action $\func{(\alpha\cdot r)}{y}:= \func{\alpha}{r\cdot y}$ 
+        \item For every $R$-module $M$ where $R$ is commutative, the induced right action $m*r:= r\cdot m$ gives rise to bimodule $_RM_R$.
+        \item Consider modules $_RY_S$ and $Z_S$. We have seen that $M:=\h_S\br{Y_S, Z_S}$ is an abelian group where $\func{\br{\alpha + \beta}}{y}:= \func{\alpha}{y} + \func{\beta}{y}$. In fact more can be concluded: $M$ is a $R$-module with ring action $\func{(\alpha\cdot r)}{y}:= \func{\alpha}{r\cdot y}$ 
         \item Consider $_RM$ be a $R$-module. If $S$ is contained in the center $\func{Z}{R}$, then we have bimodule $_RM_S$.
     \end{enumerate}
 \end{ex}
@@ -294,7 +303,7 @@ The following definition extends the notion of linear map from linear algebra in
     If we have modules $_SM_R$ and $_RN$, then $M\ten_R N$ is a left $S$-module.
 \end{pro}
 \begin{proof}
-    Define $\func{s}{m,n} = \br{sm,n}$ to be an action of $S$ on $\func{F}{M\times N}$. We need to show that $H\subseteq \func{F}{M\times N}$ is an $S$-submodule, which we will be omitted here. After showing that $H$ is an $S$-submodule, then by definition
+    Define $\func{s}{m,n} = \br{sm,n}$ to be an action of $S$ on $\func{F}{M\times N}$. We need to show that $H\subseteq \func{F}{M\times N}$ is an $S$-submodule, which we will omit here. After showing that $H$ is an $S$-submodule, then by definition
     \[M \ten _R N = \func{F}{M\times N}/H\]
     and so $M\ten_R N$ is an $S$-module.
 \end{proof}

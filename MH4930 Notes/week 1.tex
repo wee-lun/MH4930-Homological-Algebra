@@ -63,7 +63,7 @@ One can think of module analogous to "ring action".
     Here, we provide some examples of modules.
     \begin{enumerate}
         \item For any ring $R$, the trivial module is defined to be $M:=\sbr{0}$ where $r\cdot 0:= 0$ for any $r\in R$
-        \item For any ring $R$, the regular module is defined to be $M=R$ where $r\cdot m:= rm$. To distinguish $R$ as a ring and as a module, we use $_RR$ to denote the ring $R$ being a regular module.
+        \item For any ring $R$, the regular $R$-module is defined to be $M=R$ where $r\cdot m:= rm$. To distinguish $R$ as a ring and as a module, we use $_RR$ to denote the ring $R$ being a regular module.
         \item For any unital ring $R$, the free $R$-module is defined to be $M:= R^n$ where $r\cdot \br{v_1, \dots, v_n} := \br{rv_1, \dots, rv_n}$
         \item Let $M:= \R$, then
         \begin{enumerate}
@@ -89,6 +89,8 @@ One can think of module analogous to "ring action".
 
 \textbf{From now onward, all rings are unital unless otherwise specified.}
 
+\medskip
+
 \begin{pro} \label{pro: 0 and -1 act}
     Let $M$ be an $R$-module, and $x\in N$, $r\in R$. Then we have
     \begin{itemize}
@@ -111,14 +113,12 @@ One can think of module analogous to "ring action".
     $\br{\implies}$. If $N$ is a sub-module of $M$, then $N$ must not be empty since it must contain the identity element. Moreover, since $N$ is a sub-module, thus for any $y\in N$ and $r\in R$ we must have $r\cdot y\in N$ by closure. It is then obvious that $x+r\cdot y\in N$ for any $x,y\in N$ and $r\in R$.
 
     $\br{\impliedby}$. Suppose that $N\subseteq M$ is non-empty $x+r\cdot y\in N$ for any $x,y\in N$ and $r\in R$. First note by taking $r=-1$ we see that for any $x,y\in N$ we have $x-y\in N$, thus by the subgroup criterion we see that $N$ is a subgroup of $M$. Next, since $N$ is non-empty, let $n\in N$ and take $r=-1$. By Proposition \ref{pro: 0 and -1 act} we see that 
-    \[0_M = n -n = n+(-1)\cdot n \in R\]
+    \[0_M = n -n = n+(-1)\cdot n \in N\]
     Finally, by taking $r=0_R$, we $x=0_M$ we see that for any $r\in R$ and $y\in N$ we have $r\cdot y\in N$, which establish the closure. This completes the proof.
 \end{proof}
 \begin{re}
     Note that Proposition \ref{pro: submod cri} can only be used for unital rings. For non-unital rings, we can only prove sub-module via showing that the axioms are true.
 \end{re}
-
-\newpage
 
 \subsection{Algebras and Module Homomorphisms}
 
@@ -151,7 +151,7 @@ One can think of module analogous to "ring action".
 \medskip
 
 \begin{defn} [Algebra homomorphism]
-    Let $\br{A,\cdot}$ and $\br{B,\star}$ be $R$-algebra and $\varphi:A\to B$ be a ring homomorphism. We then say $\varphi$ is an algebra homomorphism from $A$ to $B$ if $\varphi\br{1_A}=1_B$ and $\varphi\br{r\cdot a}=r\star \varphi(a)$. An algebra isomorphism is then a bijective algebra homomorphism.
+    Let $\br{A,\cdot}$ and $\br{B,\star}$ be $R$-algebras and $f:A\to B$ be a ring homomorphism. We then say $f$ is an algebra homomorphism from $A$ to $B$ if $f\br{1_A}=1_B$ and $f\br{r\cdot a}=r\star f(a)$. An algebra isomorphism is then a bijective algebra homomorphism.
 \end{defn}
 
 \medskip
@@ -231,9 +231,12 @@ One can think of module analogous to "ring action".
         \end{itemize}
         To show that it is an $R$-algebra when $R$ is commutative, define $f:R\to \operatorname{End}_R\br{U}$ where $r\mapsto r\mathds 1$ where $r\mathds 1:u\mapsto ru$. It is clear that $r\mathds1 = r\cdot \mathds 1$. We now show that it is an algebra:
         \begin{itemize}
-            \item $(r\mathds1)\cdot \func{\varphi}{u} = (r\mathds1)(\varphi(u)) = r\varphi(u) = \varphi(ru) = \varphi\circ(r\mathds1)(u)$. This shows that $(r\mathds1)\circ\varphi = \varphi \circ (r\mathds1)$
             \item $\func{f}{r+s} = (r+s)\mathds1 = r\mathds1 + s\mathds1 = \func{f}{r} + \func{f}{s}$
+            \item $\func{f}{rs} = (rs)\mathds 1 = (r\mathds1)(s\mathds1) = f(r)f(s)$
+            \item $f(1) = 1\cdot \mathds 1 = \mathds 1$
+            \item $(r\mathds1)\circ \func{\varphi}{u} = r\varphi(u) = \varphi(ru) = \varphi\circ(r\mathds1)(u)$. This shows that $(r\mathds1)\circ\varphi = \varphi \circ (r\mathds1)$
         \end{itemize}
+        The first and second bullets show that $f$ is indeed a ring homomorphism. The third bullet shows that $f$ preserves identity. The last bullet shows that $f(R)\subseteq Z(\operatorname{End}_R(U))$. Together we conclude that $\operatorname{End}_R(U)$ is indeed an $R$-algebra.
     \end{enumerate}
     This completes the proof.
 \end{proof}
@@ -287,7 +290,7 @@ One can think of module analogous to "ring action".
 \medskip
 
 \begin{defn}[Minimal generating set]
-    Let $V$ be a finitely generated module. By definition there exists a non-negative integer $d$ such that $V=RA$ with $|A|=d$. Then we say that $A$ is the minimal generating set of $V$.
+    Let $V$ be a finitely generated module. Consider the collection $\mathcal A$ of all finite set $A$ that generates $V$. Notice for all $A\in \mathcal A$ we must have $|A|$ is a non-negative integer. We say that a generating set $A_0$ is a minimal generating set of $V$ if $|A_0|\leq |A|$ for all $A\in\mathcal A$.
 \end{defn}
 
 \medskip

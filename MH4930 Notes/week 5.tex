@@ -1,17 +1,17 @@
 \begin{pro} \label{pro: inj implies inj}
-    Let $X, Y$ and $V$ be $R$-modules. Let $\beta:X\to Y$ be an $R$-module homomorphism. The map $\beta_*: \h_R(V,X)\to \h_R(V,Y)$ where $f\mapsto \beta\circ f$ is as abelian group homomorphism. Furthermore, if $\beta$ is injective, then so is $\beta_*$. In other words, the SES
-    \[0\to X \xrightarrow{\beta} Y\]
+    Let $X, Y$ and $V$ be $R$-modules. Let $\alpha:X\to Y$ be an $R$-module homomorphism. The map $\alpha_*: \h_R(V,X)\to \h_R(V,Y)$ where $f\mapsto \alpha\circ f$ is as abelian group homomorphism. Furthermore, if $\alpha$ is injective, then so is $\alpha_*$. In other words, the SES
+    \[0\to X \xrightarrow{\alpha} Y\]
     implies that we have the SES
-    \[0 \to \h_R(V,X)\xrightarrow{\beta_*} \h_R(V,Y)\]
+    \[0 \to \h_R(V,X)\xrightarrow{\alpha_*} \h_R(V,Y)\]
 \end{pro}
 
 \begin{proof}
-    Suppose $\beta$ is injective. Let $f\in \h_R(V,X)$ such that $\beta\circ f = 0$ for every $v\in V$. Then for any $v\in V$ we have
-    \[(\beta\circ f)(v)=0 \implies \beta(f(v)) = 0 \implies f(v)=0\]
-    since $\beta$ is injective. This shows that $f$ is a zero map, so $\beta_*$ is injective.
+    The proof for $\alpha_*$ being an abelian group homomorphism is left as an tutorial. Suppose $\alpha$ is injective. Let $f\in \h_R(V,X)$ such that $\alpha\circ f = 0$ for every $v\in V$. Then for any $v\in V$ we have
+    \[(\alpha\circ f)(v)=0 \implies \alpha(f(v)) = 0 \implies f(v)=0\]
+    since $\alpha$ is injective. This shows that $f$ is a zero map, so $\alpha_*$ is injective.
 \end{proof}
 \begin{re}
-    In general $\beta_*$ is not surjective even if $\beta$ is surjective.
+    In general $\alpha_*$ is not surjective even if $\alpha$ is surjective.
 \end{re}
 
 \medskip
@@ -43,7 +43,7 @@
 
     For the second statement, note that the backward direction is equivalent to the first statement, which we have proven it to be true. For the forward direction, suppose that 
     \[0 \to \h_R(V,X)\xrightarrow{\alpha_*}\h_R(V,Y)\xrightarrow{\beta_*}\h_R(V,Z)\]
-    is exact for all $V$. It suffices to take $V=R$, since we have that $\h_R(R, X) \cong X$ where the isomorphism is given by $f\mapsto f(1)$ This is similar for $Y$ and $Z$. Thus we have the following diagram:
+    is exact for all $V$. Consider taking $V=R$, since we have that $\h_R(R, X) \cong X$ where the isomorphism is given by $f\mapsto f(1)$. This is similar for $Y$ and $Z$. Thus we have the following diagram:
     \[\begin{tikzcd}[sep=small]
 	0 && {\h_R(R,X)} && {\h_R(R,Y)} && {\h_R(R,Z)} && 0 \\
 	\\
@@ -60,7 +60,7 @@
 	\arrow["\beta"', from=3-5, to=3-7]
 	\arrow[from=3-7, to=3-9]
     \end{tikzcd}\]
-    where the linking between both sequences is the isomorphism defined above. We claim that the diagram is commutative. We only prove the commutativity between $\h_R(R,X)- \h_R(R,Y)-Y-X$, i.e. the first square. Let $f\in \h_R(R,X)$. Sending $f$ along the upper path we get $(\alpha_* (f))(1) = (\alpha\circ f)(1) = \alpha(f(1))$. On the other hand, sending $f$ along the lower path we get $\alpha(f(1))$. This shows commutativity in the first square. Same argument can be applied to show commutativity in the second square.
+    where the double-sided arrows between both sequences represent the isomorphisms defined above. We claim that the diagram is commutative. We only prove the commutativity between $\h_R(R,X)- \h_R(R,Y)-Y-X$, i.e. the first square. Let $f\in \h_R(R,X)$. Sending $f$ along the upper path we get $(\alpha_* (f))(1) = (\alpha\circ f)(1) = \alpha(f(1))$. On the other hand, sending $f$ along the lower path we get $\alpha(f(1))$. This shows commutativity in the first square. Same argument can be applied to show commutativity in the second square.
     
     We need to show that $\im \alpha = \ker \beta$. We first show $\im\alpha \subseteq
      \ker \beta$. Let $x\in X$, so there exists $f_x\in \h_R(R,X)$ such that $f_x(1) = x$. Sending $f_x$ along the first row, and due to exactness we have that 
@@ -84,16 +84,14 @@
 \begin{proof}
     We only prove the first statement. Consider a map from $\h_R(X, Y\oplus Z)$ to $\h_R(X,Y)\oplus \h_R(X,Z)$ such that 
     \[f\mapsto (\pi_Y\circ f, \pi_Z\circ f)\]
-    This is an isomorphism of abelian groups.
+    This is an isomorphism of abelian groups. The details are left as an exercise.
 \end{proof}
 
 \begin{re}
     The above can be generalized to infinite direct sum, where we have that
     \[\h_R\br{\bigoplus_{i\in I}X_i, Y}\cong \prod_{i\in I} \h_R(X_i, Y)\]
+    This is one of the tutorial question.
 \end{re}
-
-\newpage
-
 
 \subsection{Projective Modules and Introduction to Categories}
 
@@ -143,8 +141,8 @@
     By the assumption, the above SES splits, and thus $F(S) = \ker\pi \oplus P$, showing that $P\mid F(S)$. 
 
     $[4.\implies 1.]$. Suppose as stated in the statement. Assume that we have an SES $0 \to X \xto{\alpha} Y \xto{\beta} Z\to 0$, and consider the short sequence
-    \[0 \to \h_R(P,X)\xto{\alpha_*} \h_R(P,Y) \xto{\beta} \h_R(P,Z)\to 0\]
-    Immediately by Theorem \ref{thm: all exact} we have that $\alpha_*$ is injective, so it suffices to show that $\beta_*$ is surjective. Take $f\in \h_R(P,Z)$. By assumption $F(S) \cong P \oplus P'$ for some free module $F(S)$ and $P'\subseteq F(S)$ is an $R$-module. Consider the following diagram:
+    \[0 \to \h_R(P,X)\xto{\alpha_*} \h_R(P,Y) \xto{\beta_*} \h_R(P,Z)\to 0\]
+    Immediately by Theorem \ref{thm: all exact} we have that $\ker \alpha_* = 0$ and $\im \alpha_* = \ker \beta_*$, so it suffices to show that $\beta_*$ is surjective. Take $f\in \h_R(P,Z)$. By assumption $F(S) \cong P \oplus P'$ for some free module $F(S)$ and $P'\subseteq F(S)$ is an $R$-module. Consider the following diagram:
     \[\begin{tikzcd}[sep=small]
 	s && s \\
 	S && {F(S)} \\
@@ -159,7 +157,7 @@
 	\arrow["f", from=3-3, to=4-3]
 	\arrow["\beta"', from=4-1, to=4-3]
     \end{tikzcd}\]
-    where $\pi$ is the canonical map from $F(S)$ to $P$ and $\iota$ is the inclusion map from $P$ to $F(S)$. Note that $\pi\circ \iota = \id_P$. Next, define the map $\varphi:S \to Y$ where $s\mapsto m_s$ if $\beta(m_S) = (f\circ \pi)(s)$. The map $\varphi$ is inded well-defined since $\beta$ is surjective. Thus we now have the following diagram:
+    where $\pi$ is the canonical map from $F(S)$ to $P$ and $\iota$ is the inclusion map from $P$ to $F(S)$. Note that $\pi\circ \iota = \id_P$. Next, define the map $\varphi:S \to Y$ where $s\mapsto m_s$ if $\beta(m_s) = (f\circ \pi)(s)$. The map $\varphi$ is indeed well-defined since $\beta$ is surjective. Thus we now have the following diagram:
     \[\begin{tikzcd}[sep=small]
 	& s && s \\
 	& S && {F(S)} \\
@@ -207,11 +205,14 @@
 \end{proof}
 
 \begin{re}
-    As shown and stated previously in Proposition \ref{pro: inj implies inj}, if $\beta: X \to Y$ is exact, then $\beta_*: \h_R(V,X) \to \h_R(V,Y)$ is exact for any $V$, but this statement need not holds when we replace injectivity with surjectivity.  In particular, we have the statement: Let $V$ be an $R$-module. Then TFAE
+    As shown and stated previously in Proposition \ref{pro: inj implies inj}, if $\alpha: X \to Y$ is injective, then $\alpha_*: \h_R(V,X) \to \h_R(V,Y)$ is injective for any $V$, but this statement need not holds when we replace injectivity with surjectivity.  In particular, we have the statement: 
+    \begin{quote}
+        \textit{Let $V$ be an $R$-module. Then TFAE
     \begin{itemize}
         \item $V$ is projective.
-        \item the SES $Y \xto{\beta} Z \to 0$ gives rise to the SES $\h_R (V,Y) \xto{\beta_*} \h_R(V,Z)\to 0$.
-    \end{itemize}
+        \item the SES $Y \xto{\beta} Z \to 0$ gives rise to the SES $\h_R (V,Y) \xto{\beta*} \h_R(V,Z)\to 0$.
+    \end{itemize}}
+    \end{quote}
     which is a direct consequence of the first statement of Proposition \ref{pro: Proj Mod}.
 \end{re}
 
@@ -238,7 +239,7 @@
 \end{proof}
 
 \begin{re}
-    Projective module is nice. One of the reasons is that, according to Proposition \ref{pro: Proj Mod}, for a projective module $P$, it suffices to only discuss on its $\h$ set, i.e. we only have to talk about maps. It might seems complicated, but this provides us a huge space to carry out abstraction. In the light of this, we introduce some basic categorical notation.
+    Projective module is nice. One of the reasons is that, according to Proposition \ref{pro: Proj Mod}, for a projective module $P$, it suffices to only discuss on its $\h$ set, i.e. we only have to talk about maps. It might seems complicated, but this provides us a huge space to carry out abstraction. In fact, this is the central theme of category theory. In the light of this, we introduce some basic categorical notation.
 \end{re}
 
 \medskip
