@@ -7,12 +7,12 @@
         Let $\varphi\in \h_\Z(\Z/m\Z, D)$. By definition 
         \[m(\varphi(\overline{1})) = \varphi(\overline{m}) = 0\]
         Thus we know 
-        \[\ext_\Z^0(\Z/m\Z, D)\cong \h_\Z(\Z/m\Z, D) \cong \sbr{d\in D:m\cdot d = 0}\]
-        where we will denote it as $_mD$. To investigate the general case, we have to come up with the projective resolution:
+        \[\ext_\Z^0(\Z/m\Z, D)\cong \h_\Z(\Z/m\Z, D) \cong \sbr{d\in D:m\cdot d = 0} =:\ _m D\]
+        To investigate the general case, consider the projective resolution of $\Z/m\Z$:
         \[\dots \to 0\to \Z\xto{\times m}\Z \xto{\bmod m} \Z/m\Z \to 0\]
-        This is indeed a free resolution of $\Z/m\Z$ (one can verify the exactness easily). Thus taking $\hom$ we get
+        where exactness can be verified easily. Taking $\h_\Z(\Z/m\Z,-)$ we get
         \[0\to \h_\Z(\Z,D) \xto{(\times m)^*}\h_\Z(\Z,D)\to 0 \to \dots\]
-        And it is clear that $\ext^2_\Z(\Z/m\Z, D)=0$ for all $n\geq 2$. We compute the $\ext^1$ as follow: note $\h_\Z(\Z, D)\cong D$ with isomorphism given by $\varphi\mapsto \varphi(1)$. Thus:
+        And it is clear that $\ext^n_\Z(\Z/m\Z, D)=0$ for all $n\geq 2$. We compute the $\ext^1$ as follow: note $\h_\Z(\Z, D)\cong D$ with isomorphism given by $\varphi\mapsto \varphi(1)$. Thus:
         \[\begin{tikzcd} [sep = small]
 	&& \varphi && {m\varphi} \\
 	0 && {\h_\Z(\Z, D)} && {\h_\Z(\Z, D)} && 0 && \dots \\
@@ -38,16 +38,16 @@
 	\arrow[from=5-3, to=5-5]
 	\arrow["\in"{marking, allow upside down}, draw=none, from=5-5, to=4-5]
     \end{tikzcd}\]
-        and $\ext_\Z^1(\Z/m\Z, D)\cong D/mD$.
-    \item If $\Z/m\Z$ is a $(\Z/d\Z)$-module for some $d$, then $d\cdot \overline{1}= \overline{0}$, implying that $\overline{d} = \overline{0}$, so $m\mid d$. We now compute $\ext_{\Z/d\Z}(\Z/m\Z, D)$ where $D$ is a $\Z/d\Z$-module. To come up with a free resolution of $\Z/m\Z$, note we must start from 
-    \[\dots \xto \Z/d\Z \xto{\beta} \Z/d\Z \xto{\alpha} \Z/d\Z \xto{\pi} \Z/m\Z \to 0\]
+    and thus $\ext_\Z^1(\Z/m\Z, D)\cong D/mD$.
+    \item If $\Z/m\Z$ is a $(\Z/d\Z)$-module for some $d$, then $\overline{d} = d\cdot \overline{1}= \overline{0}\in \Z/m\Z$, so $m\mid d$. We now compute $\ext_{\Z/d\Z}(\Z/m\Z, D)$ where $D$ is a $\Z/d\Z$-module. To come up with a free resolution of $\Z/m\Z$, note we can start from 
+    \[\dots \xto{\alpha} \Z/d\Z \xto{\beta} \Z/d\Z \xto{\alpha} \Z/d\Z \xto{\pi} \Z/m\Z \to 0\]
 	where $\pi$ is the canonical surjection. We have to determine what is $\alpha$ and $\beta$. Note we must have $\im\alpha = \ker \pi$. This says that $\alpha$ is the operation $\times m$. Similarly, one can derive that $\beta$ is the operation $\times \frac{d}{m}$. Thus we obtain the free resolution of $\Z/m\Z$:
-	 \[\dots \xto{\times \frac{d}{m}} \Z/d\Z \xto{\times m} \Z/d\Z \xto \Z/d\Z \xto{\times \frac{d}{m}} \Z/d\Z \xto{\times m} \Z/d\Z \xto{\pi} \Z/m\Z \to 0\]
+	 \[\dots \xto{\times m} \Z/d\Z \xto{\times \frac{d}{m}} \Z/d\Z \xto{\times m} \Z/d\Z \xto{\times \frac{d}{m}} \Z/d\Z \xto{\times m} \Z/d\Z \xto{\pi} \Z/m\Z \to 0\]
 	 Next, perform similar action as in the first example: to compute the Ext group, take hom and remove the first entry we have 
 	 \[0 \to \h_{\Z/d\Z}(\Z/d\Z, D) \xto{(\times m)^*} \h_{\Z/d\Z}(\Z/d\Z, D) \xto{(\times \frac{d}{m})^*}\h_{\Z/d\Z}(\Z/d\Z, D) \xto{(\times m)^*}\dots\]
-	 We have verified previously that the $0$-th Ext group is isomorphic to $\h_{\Z/d\Z}(\Z/m\Z, D)$. Let $\varphi\in \h_{\Z/d\Z}(\Z/m\Z, D)$. It suffices to see $d:= \varphi(\overline{1})$. Note $\overline{0} = \varphi(\overline{m}) = m \varphi(\overline{1}) = md$. This says that 
+	 We have verified previously that the $0$-th Ext group is isomorphic to $\h_{\Z/d\Z}(\Z/m\Z, D)$. Let $\varphi\in \h_{\Z/d\Z}(\Z/m\Z, D)$. It suffices to check the case for $d:= \varphi(\overline{1})$. Note $\overline{0} = \varphi(\overline{m}) = m \varphi(\overline{1}) = md$. This says that 
 	 \[\ext_{\Z/d\Z}^0(\Z/m\Z, D)\cong \sbr{d\in D: m\cdot d = 0}\]
-	 Next, since the maps of the complex alternates, all odd-order Ext groups are the same, simialrly for even-order. Direct computation says that if $n$ is odd
+	 Next, since the maps of the complex alternates, all odd-order Ext groups are the same, simialrly for the even-order maps. Direct computation says that if $n$ is odd
 	 \[\ext^n_{\Z/d\Z}(\Z/m\Z, D) \cong \frac{\sbr{x\in D: \frac{d}{m}\cdot x = 0}}{\sbr{mx: x\in D}}\]
 	 and if $n$ is even
 	 \[\ext^n_{\Z/d\Z}(\Z/m\Z, D) \cong \frac{\sbr{x\in D:m\cdot x = 0}}{\sbr{\frac{d}{m} \cdot x:x\in D}}\]
@@ -57,13 +57,13 @@
 \medskip
 
 \begin{re}
-    The above example is not rigorous enough, in the sense that, we cannot assume that we still get the same result if starting from another projective resolution. In fact, we have that the result obtained is independent of the projective resolution.
+    The above example is not rigorous enough, since we have assumed that the $\ext$ group is independent of the choice of projective resolution. The above example is not solid before we establish this fact in the following statement.
 \end{re}
 
 \medskip
 
 \begin{pro} [Comparison Theorem]
-    Let $f:V\to V'$ be an $R$-module homomorphism and $P_\bullet\twoheadrightarrow V$ be a projective resolution of $V$ and $P'_\bullet \twoheadrightarrow V'$ be an exact complex, where it need not to be a projective resolution of $V'$. Then there exists $f_n:P_n\to P_n'$ such that the following commute:
+    Let $f:V\to V'$ be an $R$-module homomorphism and $P_\bullet\twoheadrightarrow V$ be a projective resolution of $V$ and $P'_\bullet$ be an exact complex that surjects onto $V'$, where it need not to be a projective resolution of $V'$. Then there exists $f_n:P_n\to P_n'$ such that the following commute:
     \[\begin{tikzcd}[sep=small]
 	{\dots } && {P_3} && {P_2} && {P_1} && {P_0} && V && 0 \\
 	\\
@@ -103,7 +103,7 @@
 	\arrow["{\delta_0}", from=3-1, to=3-3]
 	\arrow[from=3-3, to=3-5]
 	\end{tikzcd}\]
-	Note $\delta_0$ is surjective. Also $P_0$ get maps to $V'$ via $f\circ d_0$. We thus have the following commutative diagram:
+	Note $\delta_0$ is surjective. Also $P_0$ is mapped to $V'$ via $f\circ d_0$. We thus have the following commutative diagram:
 	\[\begin{tikzcd}[sep=small]
 	&& {P_0} \\
 	\\
@@ -112,19 +112,21 @@
 	\arrow["{f\circ d_0}", from=1-3, to=3-3]
 	\arrow["{\delta_0}", two heads, from=3-1, to=3-3]
 	\end{tikzcd}\]
-	where the existence of $f_0$ is ensured by the definition of projective module. This proves the base case.
+	where the existence of $f_0$ is ensured by the projectivity of $P_0$. This proves the base case.
 
 	Next, suppose we have constructed $f_{n-1}: P_{n-1}\to P_{n-1}'$. The following is a part of the commutative diagram:
 	\[\begin{tikzcd}[sep=small]
-	{P_n} && {P_{n-1}} && {P_{n-2}} \\
+	{P_n} && {P_{n-1}} && {P_{n-2}} && \dots \\
 	\\
-	{P'_n} && {P_{n-1}} && {P'_{n-2}}
+	{P'_n} && {P_{n-1}} && {P'_{n-2}} && \dots
 	\arrow["{d_n}", from=1-1, to=1-3]
 	\arrow["{d_{n-1}}",,from=1-3, to=1-5]
 	\arrow["f_{n-1}", from=1-3, to=3-3]
 	\arrow["f_{n-2}", from=1-5, to=3-5]
 	\arrow["{\delta_n}", from=3-1, to=3-3]
 	\arrow["{\delta_{n-1}}",from=3-3, to=3-5]
+	\arrow["",from=1-5,to=1-7]
+	\arrow["",from=3-5,to=3-7]
 	\end{tikzcd}\]
 	Similarly, consider $f_{n-1}\circ d_n$ that maps $P_n$ to $\im \delta_n$. Note we have to check for the condition on applying the lift of the map in the definition of projective modules, which is true, since 
 	\[\delta_{n-1}\circ (f_{n-1} \circ d_n) = (\delta_{n-1}\circ f_{n-1}) \circ d_n = f_{n-2} \circ d_{n-1}\circ d_n = 0\] 
@@ -137,7 +139,7 @@
 	\arrow["{f_{n-1} \circ d_n}", from=1-3, to=3-3]
 	\arrow["{\delta_n}", two heads, from=3-1, to=3-3]
 	\end{tikzcd}\]
-	where existence of $f_n$ is ensured by the definition of projectivce modules. This proves the first part of the statement.
+	where existence of $f_n$ is ensured by the projectivity of $P_n$. This proves the first part of the statement.
 
 	For the second part of the statement, we use the similar trick to compute the desired maps $s_\bullet$. First define $s_{-2}:0\to V'$ where $s_{-2}=0$ and $s_{-1}:V\to P_0'$ where $s_{-1}=0$. It is clear that the required condition is satisfied, simply check that $f-f = 0 \cdot 0 + \delta_0 \cdot 0 = 0$.
 
@@ -152,7 +154,7 @@
 	\arrow["{f_0 - g_0 - s_{-1}d_0}", from=1-3, to=3-3]
 	\arrow["{\delta_1}", two heads, from=3-1, to=3-3]
 	\end{tikzcd}\]
-	where existence of $s_0$ is ensured by the definition of projective module. We see that the required condition $f_0 - g_0 = s_{-1}d_0 + \delta_1s_0$ holds since the commutativity of the diagram says that $f_0 - g_0 -s_{-1}\circ d_0 = \delta_1s_0$. 
+	where existence of $s_0$ is ensured by the projectivity of $P_0$. We see that the required condition $f_0 - g_0 = s_{-1}d_0 + \delta_1s_0$ holds since the commutativity of the diagram says that $f_0 - g_0 -s_{-1}d_0 = \delta_1s_0$. 
 	For the inductive steps, suppose we have constructed $s_{n-1}:P_{n-1}\to P_n'$. We consider $f_n - g_n - s_{n-1}d_n$ †hat maps $P_n$ to $\im \delta_{n+1}$. We check that
 	\begin{align*}
 		\delta_n(f_n - g_n - s_{n-1}d_n) 
@@ -161,7 +163,7 @@
 		&= (s_{n-1} d_{n-1})d_n\\
 		&= 0
 	\end{align*}
-	Thus, by the definition of projective modules we have the followng commutative diagram:
+	Thus, we have the followng commutative diagram:
 	\[\begin{tikzcd}[sep=small]
 	&& {P_n} \\
 	\\
@@ -170,7 +172,7 @@
 	\arrow["{f_n - g_n - s_{n-1}d_n}", from=1-3, to=3-3]
 	\arrow["{\delta_{n+1}}", two heads, from=3-1, to=3-3]
 	\end{tikzcd}\]
-	where the existence of $s_n$ is ensured by the definition on projective module in lifting of maps. This concludes the proof.
+	where the existence of $s_n$ is ensured by the projectivity of $P_n$. This concludes the proof.
 \end{proof}
 
 \begin{defn}[Homotopic and homotopy equivalence]
@@ -205,13 +207,15 @@
     \end{align*}
     This proves the first statement.
 
-    For the second statement, if $X^\bullet$ and $Y^\bullet$ are homotopy equivalent, it means having $f:X^\bullet\to Y^\bullet$ and $f':Y^\bullet\to X^\bullet$ such that $f\circ f' \simeq \id_{Y^\bullet}$ and $f'\circ f \simeq \id_{X^\bullet}$. These maps induces $f^*:H^n(X^\bullet) \to H^n(Y^\bullet)$ and ${f'}^*:H^n(Y^\bullet) \to H^n(X^\bullet)$. Note
+    For the second statement, if $X^\bullet$ and $Y^\bullet$ are homotopy equivalent, it means having $f:X^\bullet\to Y^\bullet$ and $f':Y^\bullet\to X^\bullet$ such that $f\circ f' \simeq \id_{Y^\bullet}$ and $f'\circ f \simeq \id_{X^\bullet}$, which implies that 
+	\[(f\circ f')^* = (\id_{X^\bullet})^* \quad \text{and} \quad (f'\circ f)^* = (\id_{Y^\bullet})^*\]
+	Moreover, the maps $f$ and $f'$ induce $f^*:H^n(X^\bullet) \to H^n(Y^\bullet)$ and ${f'}^*:H^n(Y^\bullet) \to H^n(X^\bullet)$ respectively. Lastly, note
     \[({f'}^*\circ f^*)([x]) = (f'\circ f)^*([x]) = (\id_{X^\bullet})^*([x]) = [x]\]
     Thus ${f'}^*\circ f^* = \id_{H^n(X^\bullet)}$. Similarly one can show that ${f}^*\circ {f'}^* = \id_{H^n(Y^\bullet)}$. This shows that $f^*$ is an isomorphism, and so $H^n(X^\bullet)$ and $H^n(Y^\bullet)$ are isomorphic.
 \end{proof}
 
 \begin{thm}
-    The $n$-th cohomology group $\ext^n_R(V,W)$ is independent, up to isomorphism, of the choice of the projective resolution of $V$.
+    The $n$-th $\ext$ group $\ext^n_R(V,W)$ is independent, up to isomorphism, of the choice of the projective resolution of $V$.
 \end{thm}
 \begin{proof}
     Let $P_\bullet \twoheadrightarrow V$ and $P'_\bullet \twoheadrightarrow V$ be two projective resolution of $V$. We thus have the following commutative diagram by Comporison Theorem:
@@ -321,7 +325,7 @@
 	\arrow["{1^*}", shift left, harpoon, from=3-7, to=1-7]
 	\arrow["{d_3^*}", from=3-7, to=3-9]
 	\end{tikzcd}\]
-	where note $(g_n f_n)^* = f_n^* g_n^*$. Note that the relation $gf-1 = ds + sd$ implies that $f^*g^* - 1^* = s^*d^* + d^*s^*$. By definition this is saying that $f^*\circ g^* \simeq \id_X$. Similarly, one can repeat all the arguments above to conclude that $g^*\circ f^* \simeq \id_Y$. Therefore the two complexes involving hom induces from $P_\bullet\twoheadrightarrow V$ and $P'_\bullet\twoheadrightarrow V$ are homotopy equivalent. Previous proposition says that the cohomologies computed from these two complexes are isomorphic, and thus the Ext group are independent of the choice of the starting projective resolution.
+	where note $(g_n f_n)^* = f_n^* g_n^*$. Note that the relation $gf-1 = ds + sd$ implies that $f^*g^* - 1^* = s^*d^* + d^*s^*$. By definition of homotopic, this is saying that $f^*\circ g^* \simeq 1^* = \id_X$. Similarly, one can repeat all the arguments above to conclude that $g^*\circ f^* \simeq \id_Y$. Therefore the two complexes involving Hom induced from $P_\bullet\twoheadrightarrow V$ and $P'_\bullet$ are homotopy equivalent. Previous proposition says that the cohomologies computed from these two complexes are isomorphic, and thus the Ext group are independent of the choice of the starting projective resolution.
 \end{proof}
 
 \begin{thm} [Snake Lemma]
@@ -401,7 +405,7 @@ In particular, we denote the second non-zero row as $P_\bullet \oplus Q_\bullet$
 \end{proof}
 
 \begin{thm}
-    Let $0\to X\to Y\to Z\to 0$ be a SES of $R$-modules. Then we have a LES of abelian groups 
+    Let $0\to X\to Y\to Z\to 0$ be a SES of $R$-modules and $D$ be any $R$-module. Then we have a LES of abelian groups 
     \[0 \to \h_R(Z,D) \to \h_R(Y,D) \to \h_R(X,D)\] 
     \[\to \ext^1_R(Z,D) \to \ext^1_R(Y,D) \to \ext^1_R(X,D) \to \ext^2_R(Z,D)\to \dots\]
 \end{thm}
@@ -547,7 +551,7 @@ which completes the proof.
 	\arrow["{\tilde{d_n}}"', hook, from=3-1, to=3-3]
 	\arrow["{\exists \varphi}"', dashed, from=3-3, to=1-1]
 	\end{tikzcd}\] 
-	where existence of $\varphi$ is ensured by the definition of injective module. Lastly, we check that $d_n^*(\varphi) = \phi$. The commutative diagram implies $\varphi \circ \tilde{d_n} = \tilde{\phi}$, so 
+	where existence of $\varphi$ is ensured by the injectivity of $Q$. Lastly, we check that $d_n^*(\varphi) = \phi$. The commutative diagram implies $\varphi \circ \tilde{d_n} = \tilde{\phi}$, so 
 	\[(\varphi \circ \tilde{d_n})([x]) = \tilde{\phi}([x]) \implies \varphi(d_n(x)) = \phi(x) \implies (d_n^*(\varphi))(x) = \phi(x)\]
 	Thus $d_n^*(\varphi) = \phi$, implying that $\phi\in \im d_n^*$. Thus the complex obtained is indeed exact, and thus its cohomologies, i.e. all the Ext groups, are trivial. This completes the proof.
 \end{proof}

@@ -130,13 +130,13 @@
 \begin{defn} [Projective resolution]
     Let $V$ be an $R$-module. A projective resolution of $V$ is an exact complex 
     \[\cdots \to P_2 \xto{d_2} P_1 \xto{d_1} P_0 \xto{\ep} V \to 0\to 0 \to \dots\]
-    such that each $P_i$ is projective $R$-module. In shorthand notation we write $P_\bullet \twoheadrightarrow V$ to denote a free resolution of $V$.
+    such that each $P_i$ is a projective $R$-module. In shorthand notation we write $P_\bullet \twoheadrightarrow V$ to denote a projective resolution of $V$.
 \end{defn}
  
 \medskip
 
 \begin{re}
-    Similarly we can define a free resolution, where we replace projective by free.
+    Similarly we can define a free resolution, where we replace the projective property by free.
 \end{re}
 
 \medskip
@@ -165,21 +165,21 @@ A similar statement on free resolution can be proven:
 \begin{re}
     If $V$ is a projective $R$-module, then we have a projective resolution
     \[\dots \to 0 \to V \xto{\id} V \to 0 \to 0 \dots\]
-    Also, projective resolution is not unique, where the following
+    Also, projective resolution is not unique. Consider:
     \[0 \to V \xto{\alpha} V\oplus V \xto{\beta} V \to 0 \to \dots\]
-    where $\alpha:v\mapsto (v,0$ and $\beta:(v,w)\mapsto w$, is also a projective module of $V$
+    where $\alpha:v\mapsto (v,0)$ and $\beta:(v,w)\mapsto w$. This is also a projective module of $V$
 \end{re}
 
 \medskip
 
 \begin{defn}[Ext group]
     Let $P_\bullet \twoheadrightarrow V$ be a projective resolution of $V$ and $W$ be an $R$-module. We get a complex (of abelian group)
-    \[\mathcal C:=0 \to \h_R(P_0, W)\xto{d_1^*} \h_(P_1, W) \xto{d_2^*} \h_R(P_2, W)\xto{d^*_3}\dots\]
-    where $V$ is forgetted. It is indeed a complex since
+    \[\mathcal C:=0 \to \h_R(P_0, W)\xto{d_1^*} \h_R(P_1, W) \xto{d_2^*} \h_R(P_2, W)\xto{d^*_3}\dots\]
+    where $\h_R(V,W)$ is forgetted. It is indeed a complex since
     \[d_{n+1}^*\circ d_n^* = (d_n \circ d_{n+1})^* = 0\]
     Note that this complex is usually not exact.
 
-    The $n$-th cohomology group derived from the left exact contravariant functor $\h_R(-, W)$ is 
+    The $n$-th Ext group is defined as the $n$-th cohomology group of the above complex: 
     \[\ext_R^n(V,W):= H^n(\mathcal C)=\frac{\ker d_{n+1}^*}{\im d_n^*}\]
     Clearly $\ext_R^0(V,W) = \ker d_1 ^*$.
 \end{defn}
@@ -195,9 +195,9 @@ A similar statement on free resolution can be proven:
     \[P_1 \xto{d_1} P_0 \xto{\ep} V \to 0\]
     Recall that $\h_R(-,W)$ is a left contravariant functor, so we have the exact sequence
     \[0 \xto{0} \h_R(V,W) \xto{\ep^*} \h_R(P_0, W) \xto{d_1^*} \h_R(P_1,W)\]
-    By 1st isomorphism theorem on $\ep^*$ we get 
+    By applying the 1st Isomorphism Theorem on $\ep^*$ we get 
     \[\frac{\h_R(V,W)}{\ker \ep^*}\cong \im\ep^* = \ker d_1^*\]
-    Note that $\ker \ep^* = \im 0 = 0$ due to exactness. On the other hand, by exactness we have $\im \ep^* = \ker d_1^*$. By definition of Ext we have that $\ext^0_R(V,W) = \ker d_1^*$. Altogether, we see
+    where from exactness we get $\im \ep^* = \ker d_1^*$. Note that $\ker \ep^* = \im 0 = 0$ due to exactness. Also, by definition of Ext we have that $\ext^0_R(V,W) = \ker d_1^*$. Altogether, we see
     \[\h_R(V,W) \cong \ext_R^0(V,W)\]
     This completes the proof.
 \end{proof}

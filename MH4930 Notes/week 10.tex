@@ -1,6 +1,6 @@
 \begin{thm}
     Let $0\to U \xto{\alpha} V \xto{\beta} W \to 0$ be a SES of $R$-modules and $D$ be any $R$-module. Then we have a LES 
-    \[0 \to \h_R(D,U) \to \h_R(0,V)\to \h_R(D,W)\]
+    \[0 \to \h_R(D,U) \to \h_R(D,V)\to \h_R(D,W)\]
     \[\to \ext_R^1 (D,U)\to \ext_R^1(D,V)\to \ext_R^1(D,W)\to \ext_R^2(D,U)\to \dots\]
 \end{thm}
 \begin{proof}
@@ -45,7 +45,7 @@
     We shall denote this SES as $0 \to X_\bullet \to Y_\bullet \to Z_\bullet \to 0$. This induces a LES on the cohomology, i.e.
     \[0 \to H^1(X_\bullet) \to H^1(Y_\bullet) \to H^1(Z_\bullet) \to H^2(X_\bullet) \to H^2(Y_\bullet) \to H^2(Z_\bullet) \to \dots\]
     where each cohomology represents their respective Ext groups on either $U,V,$ or $W$. Recall also that the $0$-th Ext group is isomorphic to the hom set. Thus rewriting the above LES gives us
-    \[0 \to \h_R(D,U) \to \h_R(0,V)\to \h_R(D,W)\]
+    \[0 \to \h_R(D,U) \to \h_R(D,V)\to \h_R(D,W)\]
     \[\to \ext_R^1 (D,U)\to \ext_R^1(D,V)\to \ext_R^1(D,W)\to \ext_R^2(D,U)\to \dots\]
     as required.
 \end{proof}
@@ -57,7 +57,7 @@
 \medskip
 
 \begin{re}
-    Since $\h_R(D,-)$ is a left exact covariant functor, we obtained a right covariant derived functor $\ext_R^m(D,-):\text{R-mod} \to \text{Ab}$. This is 'dual' to that the relation between $\h_R(-,D)$ and $\ext_R^n(-,D)$.
+    Since $\h_R(D,-)$ is a left exact covariant functor, we obtained a right covariant derived functor $\ext_R^m(D,-):\text{R-mod} \to \text{Ab}$. This is 'dual' to the relation between $\h_R(-,D)$ and $\ext_R^n(-,D)$.
 \end{re}
 
 \medskip
@@ -101,7 +101,7 @@
 \begin{defn} [Injective resolution]
     An injective resolution of an $R$-module $W$ is an exact sequence 
     \[0 \to W \to Q_0 \to Q_1 \to \dots\]
-    such that each $Q_i$ is injective $R$-module. We denote the injective resolution of $W$ as $Q_\bullet \hookrightarrow W$.
+    such that each $Q_i$ is injective $R$-module. We denote the injective resolution of $W$ as $W \hookrightarrow Q_\bullet$.
 \end{defn}
 
 \medskip
@@ -113,7 +113,7 @@
     
     The whole proof is similar to the proof of existence of projective resolution, except that we will be taking the cokernel.
 
-    Recall that previously in the subsection of injective modules, we know that every $R$-module is a submodule of some injective $R$-module. Thus, suppose given $W$ is an $R$-module, let $Q_0$ be an injective $R$-module such that $W\subseteq Q_0$. We have 
+    Recall that every $R$-module is a submodule of some injective $R$-module. Thus, suppose given $W$ is an $R$-module, let $Q_0$ be an injective $R$-module such that $W\subseteq Q_0$. We have 
     \[0\to W \xto\iota Q_0\]
     Next we need to construct $Q_1$ from the existing information. Consider $\coker \iota$, i.e. $Q_0/\im\iota$, we have that $\pi_0: Q_0\twoheadrightarrow \coker \iota$ is the canonical surjection. Note $\coker \iota$ is also an $R$-module, thus it is contained in some injective $R$-module, say $Q_1$. Therefore, we can simply take the composition map of $Q_0$ to $\coker \iota$ and $\coker \iota$ to $Q_1$, giving us:
     \[\begin{tikzcd}[sep=small]
@@ -193,17 +193,17 @@
         Recall that the quotient of injective module is injective, so $Q_0/B$ is injective, and the above is an injective resolution of $B$. Taking hom we have 
         \[0 \to \h_\Z(A,Q_0) \to \h_\Z(A, Q_0/B) \to 0 \to 0 \to \dots\]
         We see that $\ext_\Z^n(A,B)=0$ for all $n\geq 2$, even without the assumption that $A$ is finitely genererated.
-        \item Let $A$ be a torsion abelian group, i.e. any $a\in A$ there exists some $n\neq 0$ such that $n\cdot a = 0$. We compute $\ext_\Z^0(A,\Z) = \h_\Z(A,\Z)$, which is $0$, since for any group homomorphism $\varphi:A\to \Z$ and any $a\in A$, let $n\neq 0$ such that $n\cdot a = 0$, and so 
+        \item Let $A$ be a torsion abelian group, i.e. any $a\in A$ there exists some $n\neq 0$ such that $n\cdot a = 0$. We compute $\ext_\Z^0(A,\Z) = \h_\Z(A,\Z)$, which we claimed to be $0$, since for any group homomorphism $\varphi:A\to \Z$ and any $a\in A$, let $n\neq 0$ such that $n\cdot a = 0$, and so 
         \[0 = \varphi(0) = \varphi(na) = n\varphi(a)\]
         implying that $\varphi(a)=0$. Since $a$ is arbitrary, so $\varphi$ is the zero map, indicating that $\ext_\Z^0(A,\Z)$ is trivial. Next, we consider $\ext_\Z^1(A,\Z)$. Take 
         \[0 \to \Z \xto{\iota} \Q \xto{\pi} \Q/\Z \to 0\]
         where $\pi$ is the canonical surjection, and $\iota$ is the inclusion map. The above is an injective resolution of $\Z$. Taking hom, we have 
         \[0 \to \h_\Z(A,\Q)\to \h_\Z(A, \Q/\Z) \to 0 \to 0 \to \dots\]
         We claim that $\h_\Z(A,\Q)=0$. To see this, take $\varphi:A\to \Q$ be a group homomorphism and let $a\in A$ and $n\neq 0$ such that $n\cdot a = 0$. Note
-        \[0 = \varphi(0) = \varphi(na) = n\varphi(a)\]
-        Similarly, since $a$ is arbitrary, we have that $\varphi$ is trivial, so $\h_\Z(A,\Q)=0$. Lastly, simply take the first cohomology group and we obtained
+        \[0 = \varphi(0) = \varphi(na) = n\varphi(a) \implies \varphi(a)=0\]
+        Since $a$ is arbitrary, we have that $\varphi$ is trivial, so $\h_\Z(A,\Q)=0$. As a remark, the first cohomology group is
         \[\ext_\Z^1 (A,\Z) = \h_\Z(A,\Q/\Z)\]
-        where $\h_\Z(A,\Q/\Z)$ is called the Pontryagin dual group of $A$.
+        In literature, the group $\h_\Z(A,\Q/\Z)$ is called the Pontryagin dual group of $A$.
     \end{enumerate}
 \end{ex}
 
@@ -251,14 +251,14 @@
 \begin{proof}
     By definition, we have that 
     \[\tor_0^R(D,B) = \ker (1\ten d_0) / \im (1\ten d_1)\]
-    A direct observation says that $\ker (1\ten d_0)$ is $D\ten P_0$.
+    A direct observation says that $\ker (1\ten d_0)$ is $D\ten_R P_0$.
 
     Next, note that we have the following exact sequence:
     \[P_1 \xto{d_1} P_0 \xto{\ep} B \to 0\]
     which induces an exact sequence
     \[D\ten_R P_1 \xto{1\ten d_1} D\ten_R P_0 \xto{1\ten \ep} D\ten_R B \to 0\]
     Thus $\im(1\ten d_1) = \ker (1\ten \ep)$. Altogether, we see that 
-    \[\frac{D\ten P_0}{\im (1\ten d_1)} = \frac{D\ten P_0}{\ker(1\ten \ep)}\]
+    \[\tor_{0}^R(D,B) = \frac{D\ten P_0}{\im (1\ten d_1)} = \frac{D\ten P_0}{\ker(1\ten \ep)}\]
     By 1st Isomorphism Theorem, the RHS is isomorphic to $\im(1\ten \ep)$, which is $D\ten_R B$. This completes the proof.
 \end{proof}
 
@@ -313,7 +313,7 @@
 	\arrow[from=3-9, to=3-11]
 	\arrow[from=3-11, to=3-13]
     \end{tikzcd}\]
-    Taking tensor with $F$ we have 
+    Taking tensor with $D$ we have 
     \[\begin{tikzcd}[sep=small]
 	\dots && {D \ten_R P_2} && {D \ten_R P_1} && {D \ten_R P_0} && 0 \\
 	\\
@@ -431,7 +431,7 @@
     
     To see this, we compute a map $1\ten \zeta_0 :D\ten_R(P_0\oplus Q_0)\to D\ten_R P_0$, which is simply the projection to $D\ten_R P_0$. Note
     \[(1\ten\zeta_0)\circ (1\ten \iota_0) = 1\ten (\zeta_0 \circ \iota 0) = 1\ten \id_{P_0} = \id _{D\ten_R P_0}\]
-    This implies that $1\ten \iota_0$ must be an injective map. In general $1\ten \iota_\bullet$ is injective. On the other hand, it is clear that $1\ten \pi_\bullet$ is surjective. Thus, we have that the columns of the commutative diagram is SES, i.e.
+    This implies that $1\ten \iota_0$ must be an injective map. In general $1\ten \iota_\bullet$ is injective. On the other hand, it is clear that $1\ten \pi_\bullet$ is surjective. Thus, we have that the rows of the commutative diagram forms an SES, i.e.
     \[0 \to X_\bullet \to Y_\bullet \to Z_\bullet \to 0\]
     This induces a LES 
     \[\dots \to H_1(X_\bullet) \to H_1(Y_\bullet) \to H_1(Z_\bullet) \to H_0(X_\bullet) \to H_0(Y_\bullet) \to H_0(Z_\bullet) \to 0\]
